@@ -1,0 +1,42 @@
+{% extends 'lmn/base.html' %} 
+{% block content %}
+
+<h2>Show List</h2>
+
+<div>
+  <div>
+    <h1>Search Shows</h1>
+
+    <form action="{% url 'show_list' %}">
+      {{ form }}
+      <input type="submit" value="Search" />
+    </form>
+
+    <div>
+      {% if shows %}
+        <h3>All Shows</h3>
+      {% endif %}
+    </div>
+
+    <div>
+      {% for show in shows %}
+        <div>
+          <p>Artist: {{ show.artist.name }}</p>
+          <p>Venue: {{ show.venue.name }}</p>
+          <p>Date: {{ show.show_date }}</p>
+        </div>
+
+        <div>
+          <a href="{% url 'show_detail' show_pk=show.pk %}">View Details</a>
+
+          {% comment %} <a >Share</a> Future Purpose {% endcomment %}
+        </div>
+
+      {% empty %}
+        <p>No shows found</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

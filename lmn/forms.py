@@ -18,6 +18,10 @@ class NewNoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ('title', 'text')
+        
+class ShowSearchForm(forms.Form):
+    search_artist = forms.CharField(label='Artist Name', max_length=200, required=False)
+    search_venue = forms.CharField(label='Venue Name', max_length=200, required=False)
 
 
 class UserRegistrationForm(UserCreationForm):

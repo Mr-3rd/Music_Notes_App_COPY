@@ -20,6 +20,7 @@ class NewNoteForm(forms.ModelForm):
         fields = ('title', 'text')
         
 class ShowSearchForm(forms.Form):
+    # This is the search form which is used in show_list.html
     search_artist = forms.CharField(label='Artist Name', max_length=200, required=False)
     search_venue = forms.CharField(label='Venue Name', max_length=200, required=False)
 

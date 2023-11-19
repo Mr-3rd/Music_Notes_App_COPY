@@ -19,7 +19,8 @@ def show_list(request ):
     search_venue = request.GET.get('search_venue')
     
     # filter the shows by date
-    shows = Show.objects.all().order_by('show_date')
+    shows = Show.objects.all().order_by('-show_date') 
+    # - meaning descending order and without means ascending order
      
      
     if search_artist:

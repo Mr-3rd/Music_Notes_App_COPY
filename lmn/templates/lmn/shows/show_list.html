@@ -1,6 +1,5 @@
-{% extends 'lmn/base.html' %} 
-{% block content %}
-<h2>Show List</h2>
+{% extends 'lmn/base.html' %} {% block content %}
+  <h2>Show List</h2>
 <div>
   <div>
     <h1>Search Shows</h1>
@@ -22,7 +21,7 @@
       </div>
       <div>
         <a href="{% url 'show_detail' show_pk=show.pk %}">View Details</a>
-        {% comment %} <a >Share</a> Future Purpose {% endcomment %}
+        {% comment %} <a>Share</a> Future Purpose {% endcomment %}
       </div>
       {% empty %}
       <p>No shows found</p>

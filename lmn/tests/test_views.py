@@ -534,7 +534,6 @@ class TestShowlist(TestCase):
 
         # empty list
         shows = []
-        
 
         for i, date in enumerate(dates):
             # create a venue, artist, and show, this is added in a acending order
@@ -545,7 +544,6 @@ class TestShowlist(TestCase):
         
         # reverse the list of shows so that it's in an descending order
         expected_order = list(reversed(shows))
-
 
         response = self.client.get(reverse('show_list'))
         shows_context = list(response.context['shows'])
@@ -575,7 +573,6 @@ class TestShowlist(TestCase):
         # check that the show is in the search results
         self.assertEqual(shows[0], show)
             
-            
         # search for the show by venue name
         response = self.client.get(reverse('show_list'), {'search_venue': 'venue'})
         shows = list(response.context['shows'])
@@ -596,7 +593,6 @@ class TestShowlist(TestCase):
         
         self.assertEqual(shows, []) # if not in the results, the list will be empty
             
-            
         # search for the show by venue name
         response = self.client.get(reverse('show_list'), {'search_venue': 'venue2'})
         shows = list(response.context['shows'])
@@ -614,26 +610,9 @@ class TestShowDetail(TestCase):
         # display the show detail page with the matching pk
         response = self.client.get(reverse('show_detail', kwargs={'show_pk': show.pk})) 
         
-        # print("")
-        # print("")
-        # print("")
-
-        # print(response.context['show'])
-        # print("")
-        # print("")
-        # print("")
-        # print("")
-        # print(show)
-        
         # check if expected show is the same as the show in the context
         self.assertEqual(response.context['show'], show) 
         
-        
-
-        
-        
-        
-    
     def test_show_detail_not_exist(self):
         
         response = self.client.get(reverse('show_detail', kwargs={'show_pk': 100}))

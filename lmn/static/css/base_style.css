@@ -8,6 +8,11 @@ a {
   color: #18eef5;
 }
 
+#homepage-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 #add-new-show-link {
   font-size: large;
   color: violet;

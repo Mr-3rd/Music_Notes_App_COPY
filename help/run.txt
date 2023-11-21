@@ -1,0 +1,17 @@
+
+# activate the env 
+source venv/bin/activate
+
+# stop env
+deactivate
+
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+
+
+
+pip install jinjalint
+jinjalint lmn/templates --config jinjalint.config

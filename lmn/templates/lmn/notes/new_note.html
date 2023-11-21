@@ -4,6 +4,9 @@
 
   <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date}}</h2>
 
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
   <form method="POST" action="{% url 'new_note' show_pk=show.pk %}">
     
     <div>

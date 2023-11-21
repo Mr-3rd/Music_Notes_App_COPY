@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from ..models import Note, Show
 from ..forms import NewNoteForm 
+from datetime import datetime, timezone
 
 
 @login_required
@@ -15,6 +16,10 @@ def new_note(request, show_pk):
     if request.method == 'POST':
         form = NewNoteForm(request.POST)
         if form.is_valid():
+            dt = datetime.now(timezone.utc)
+            # Check if show date is in the future and if yes then pass it the error message
+            if show.show_date > dt:
+                return render(request, 'lmn/notes/new_note.html' , {'form': form, 'show': show, 'error': "You cannot add a note to a show that hasn't happened yet."})
             note = form.save(commit=False)
             note.user = request.user
             note.show = show

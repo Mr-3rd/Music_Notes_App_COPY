@@ -588,9 +588,7 @@ class TestShowlist(TestCase):
         # search for the show by artist name
         response = self.client.get(reverse('show_list'), {'search_artist': 'artist2'})
         shows = list(response.context['shows'])
-            
-        # check that the show is in the search results
-        
+
         self.assertEqual(shows, []) # if not in the results, the list will be empty
             
         # search for the show by venue name
@@ -616,15 +614,4 @@ class TestShowDetail(TestCase):
     def test_show_detail_not_exist(self):
         
         response = self.client.get(reverse('show_detail', kwargs={'show_pk': 100}))
-        
         self.assertEqual(response.status_code, 404)
-
-
-
-
-
-        
-        
-
-    
-    

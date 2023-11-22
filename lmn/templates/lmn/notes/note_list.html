@@ -1,37 +1,37 @@
-{% extends 'lmn/base.html' %}
+  {% extends 'lmn/base.html' %}
 
-{% block content %}
+  {% block content %}
 
-<h2>{{ title }}</h2>
+  <h2>{{ title }}</h2>
 
-{% for note in notes %}
+  {% for note in notes %}
 
-  <div id="note_{{ note.pk }}">
-    <h3 class="note-title">{{ note.title }}</h3>
+    <div id="note_{{ note.pk }}">
+      <h3 class="note-title">{{ note.title }}</h3>
 
-    <p class="show-info">
-      The show: <a href="{% url 'notes_for_show' show_pk=note.show.pk %}">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</a>
-    </p>
+      <p class="show-info">
+        The show: <a href="{% url 'notes_for_show' show_pk=note.show.pk %}">{{ note.show.artist.name }} at {{ note.show.venue.name }} on {{ note.show.show_date }}</a>
+      </p>
 
-    <p class="note-info">Posted on: {{ note.posted_date }}</p>
+      <p class="note-info">Posted on: {{ note.posted_date }}</p>
 
-    <p>Posted by: 
-      <a class="user" href="{% url 'user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a>
-    </p>
+      <p>Posted by: 
+        <a class="user" href="{% url 'user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a>
+      </p>
 
-    <p class="note-text">{{ note.text|truncatechars:100 }}</p> 
+      <p class="note-text">{{ note.text|truncatechars:100 }}</p> 
 
-    <a href="{% url 'note_detail' note_pk=note.pk %}">Note details</a>
+      <a href="{% url 'note_detail' note_pk=note.pk %}">Note details</a>
 
-  </div>
+    </div>
 
-  <hr>
+    <hr>
 
-{% empty %}
+  {% empty %}
 
-  <p>No notes.</p>
+    <p>No notes.</p>
 
-{% endfor %}
+  {% endfor %}
 
 
-{% endblock %}
+  {% endblock %}

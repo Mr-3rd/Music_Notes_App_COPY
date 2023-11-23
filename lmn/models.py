@@ -57,7 +57,10 @@ class Note(models.Model):
 
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo
-        photo_str = self.photo.url if self.photo else 'No photo uploaded yet!'
+        photo_str = 'No photo uploaded yet!'
+        if self.photo:
+            # If there is a photo, get the photo url
+            photo_str = self.photo.url
 
         return f'User: {self.user} Show: {self.show} Note title: {self.title} \
         Text: {self.text} Posted on: {self.posted_date} Photo {photo_str}'

@@ -1,11 +1,13 @@
 """ Views related to creating and viewing Notes for shows. """
 
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from ..models import Note, Show
 from ..forms import NewNoteForm 
-from datetime import datetime, timezone
+from django.utils import timezone
+
 
 
 @login_required
@@ -16,10 +18,11 @@ def new_note(request, show_pk):
     if request.method == 'POST':
         form = NewNoteForm(request.POST)
         if form.is_valid():
-            dt = datetime.now(timezone.utc)
+            dt = timezone.now()
             # Check if show date is in the future and if yes then pass it the error message
             if show.show_date > dt:
-                return render(request, 'lmn/notes/new_note.html' , {'form': form, 'show': show, 'error': "You cannot add a note to a show that hasn't happened yet."})
+                    # Show error message if the show date is in the future
+                    return HttpResponseForbidden(render(request, 'lmn/notes/new_note.html', {'error': 'You cannot add a note for a show that has not happened yet.'}))
             note = form.save(commit=False)
             note.user = request.user
             note.show = show
@@ -41,6 +44,12 @@ def notes_for_show(request, show_pk):
     """ Get notes for one show, most recent first. """
     show = get_object_or_404(Show, pk=show_pk)  
     notes = Note.objects.filter(show=show_pk).order_by('-posted_date')
+    
+    dt = timezone.now()
+    
+    if show.show_date > dt:
+        # Show error message if the show date is in the future, we also wanna show the show details but just not the notes
+        return HttpResponseForbidden(render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'error': 'You cannot add a note for a show that has not happened yet.'}))
     return render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'notes': notes})
 
 

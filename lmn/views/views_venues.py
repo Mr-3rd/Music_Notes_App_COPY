@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 
 from ..models import Venue, Show
 from ..forms import VenueSearchForm
-from datetime import datetime, timezone
+from django.utils import timezone
+
 
 
 def venue_list(request):
@@ -27,7 +28,8 @@ def artists_at_venue(request, venue_pk):
     """ Get all of the artists who have played a show at the venue with the pk provided """
     shows = Show.objects.filter(venue=venue_pk).order_by('-show_date') 
     venue = Venue.objects.get(pk=venue_pk)
-    dt = datetime.now(timezone.utc)
+    dt = timezone.now()
+
     
     # loop through the shows
     for show in shows:

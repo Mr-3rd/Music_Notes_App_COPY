@@ -1,9 +1,9 @@
-{% extends 'lmn/base.html' %} {% block content %}
+{% extends 'lmn/base.html' %} 
+{% block content %}
 
-  <h2>
-  New note for {{ show.artist.name }} at {{ show.venue.name }} on {{
-  show.show_date}}
-  </h2>
+    <h2>
+    New note for {{ show.artist.name }} at {{ show.venue.name }} on {{show.show_date}}
+    </h2>
 
   <form
   method="POST"

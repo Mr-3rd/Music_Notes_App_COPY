@@ -28,10 +28,10 @@
           {% endif %}
         </div>
       </div>
-        <a href="{% url 'note_detail' note_pk=note.pk %}">Note details</a>
+      <a href="{% url 'note_detail' note_pk=note.pk %}">Note details</a>
     </div>
     <hr/>
-    {% empty %}
+  {% empty %}
     <p>No notes.</p>
   {% endfor %} 
 {% endblock %}

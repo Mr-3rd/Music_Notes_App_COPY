@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
 
 # Remember that every model gets a primary key field by default.
 
@@ -48,6 +49,13 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
+    
+    
+    def save(self, *args, **kwargs):
+        """Create only one note for each user and show"""
+        if Note.objects.filter(user=self.user, show=self.show).count() > 0:
+            raise ValidationError('You can only create one note per show')
+        super(Note, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'User: {self.user} Show: {self.show} Note title: {self.title} \

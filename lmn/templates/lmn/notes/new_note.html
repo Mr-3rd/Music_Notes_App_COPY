@@ -2,6 +2,10 @@
 
 {% block content %}
 
+  {% if error%}
+    <p class="error"> {{ error }}</p>
+  {% endif %}
+
   <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date}}</h2>
 
   <form method="POST" action="{% url 'new_note' show_pk=show.pk %}">
@@ -10,7 +14,10 @@
       {% csrf_token %}
       {{ form.as_p }}
     </div>
+    {% comment %} hide the submit button {% endcomment %}
+    {% if not hide_button %}
     <input type="submit" value="Add Note">
+    {% endif %}
   </form>
 
 {% endblock %}

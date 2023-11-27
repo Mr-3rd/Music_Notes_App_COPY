@@ -1,5 +1,6 @@
 """ Views related to creating and viewing Notes for shows. """
 
+from django.forms import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
@@ -11,17 +12,28 @@ from ..forms import NewNoteForm
 def new_note(request, show_pk):
     """ Create a new note for a show. """
     show = get_object_or_404(Show, pk=show_pk)
-
-    if request.method == 'POST':
-        form = NewNoteForm(request.POST)
-        if form.is_valid():
-            note = form.save(commit=False)
-            note.user = request.user
-            note.show = show
-            note.save()
-            return redirect('note_detail', note_pk=note.pk)
+    
+    # checks that a note for this show doesn't already exist
+    if Note.objects.filter(user=request.user, show=show).count() > 0:
+            form = NewNoteForm()  # empty form
+            # if yes then take them render the form and also an error message and hide the button
+            return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show, 'error': 'You can only create one note per show', "hide_button": True})
+        
     else:
-        form = NewNoteForm()
+        
+
+        if request.method == 'POST':
+            # Check if the user has already created a note for this show
+
+            form = NewNoteForm(request.POST)
+            if form.is_valid():
+                note = form.save(commit=False)
+                note.user = request.user
+                note.show = show
+                note.save()
+                return redirect('note_detail', note_pk=note.pk)
+
+    form = NewNoteForm()
 
     return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show})
 

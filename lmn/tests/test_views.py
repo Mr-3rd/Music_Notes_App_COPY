@@ -21,7 +21,6 @@ class TestHomePage(TestCase):
 
 
 class TestEmptyViews(TestCase):
-
     """ Main views - the ones in the navigation menu """
 
     def test_with_no_artists_returns_empty_list(self):
@@ -38,7 +37,6 @@ class TestEmptyViews(TestCase):
 
 
 class TestArtistViews(TestCase):
-
     fixtures = ['testing_artists', 'testing_venues', 'testing_shows']
 
     def test_all_artists_displays_all_alphabetically(self):
@@ -78,7 +76,6 @@ class TestArtistViews(TestCase):
         self.assertEqual(len(response.context['artists']), 2)
 
     def test_artist_search_one_search_result(self):
-
         response = self.client.get(reverse('artist_list'), {'search_name': 'ACDC'})
         self.assertNotContains(response, 'REM')
         self.assertNotContains(response, 'Yes')
@@ -107,7 +104,6 @@ class TestArtistViews(TestCase):
         self.assertTemplateUsed(response, 'lmn/artists/artist_list_for_venue.html')
 
     def test_artist_detail(self):
-
         """ Artist 1 details displayed in correct template """
         # kwargs to fill in parts of url. Not get or post params
 
@@ -166,7 +162,6 @@ class TestArtistViews(TestCase):
 
 
 class TestVenues(TestCase):
-
     fixtures = ['testing_venues', 'testing_artists', 'testing_shows']
 
     def test_with_venues_displays_all_alphabetically(self):
@@ -294,7 +289,7 @@ class TestVenues(TestCase):
 
 class TestAddNoteUnauthentictedUser(TestCase):
     # Have to add artists and venues because of foreign key constrains in show
-    fixtures = ['testing_artists', 'testing_venues', 'testing_shows'] 
+    fixtures = ['testing_artists', 'testing_venues', 'testing_shows']
 
     def test_add_note_unauthenticated_user_redirects_to_login(self):
         response = self.client.get('/notes/add/1/', follow=True)  # Use reverse() if you can, but not required.
@@ -334,7 +329,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
         # nothing added to database
         # 2 test notes provided in fixture, should still be 2
-        self.assertEqual(Note.objects.count(), initial_note_count)   
+        self.assertEqual(Note.objects.count(), initial_note_count)
 
     def test_add_note_database_updated_correctly(self):
         initial_note_count = Note.objects.count()
@@ -342,8 +337,8 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         new_note_url = reverse('new_note', kwargs={'show_pk': 1})
 
         response = self.client.post(
-            new_note_url, 
-            {'text': 'ok', 'title': 'blah blah'}, 
+            new_note_url,
+            {'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         # Verify note is in database
@@ -361,8 +356,8 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
     def test_redirect_to_note_detail_after_save(self):
         new_note_url = reverse('new_note', kwargs={'show_pk': 1})
         response = self.client.post(
-            new_note_url, 
-            {'text': 'ok', 'title': 'blah blah'}, 
+            new_note_url,
+            {'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         new_note = Note.objects.filter(text='ok', title='blah blah').first()
@@ -372,7 +367,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
 class TestUserProfile(TestCase):
     # Have to add artists and venues because of foreign key constrains in show
-    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes'] 
+    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes']
 
     # verify correct list of reviews for a user
     def test_user_profile_show_list_of_their_notes(self):
@@ -417,7 +412,7 @@ class TestUserProfile(TestCase):
 
 class TestNotes(TestCase):
     # Have to add Notes and Users and Show, and also artists and venues because of foreign key constrains in Show
-    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes'] 
+    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes']
 
     def test_latest_notes(self):
         response = self.client.get(reverse('latest_notes'))
@@ -463,15 +458,15 @@ class TestUserAuthentication(TestCase):
 
     def test_user_registration_logs_user_in(self):
         response = self.client.post(
-            reverse('register'), 
+            reverse('register'),
             {
-                'username': 'sam12345', 
-                'email': 'sam@sam.com', 
-                'password1': 'feRpj4w4pso3az', 
-                'password2': 'feRpj4w4pso3az', 
-                'first_name': 'sam', 
+                'username': 'sam12345',
+                'email': 'sam@sam.com',
+                'password1': 'feRpj4w4pso3az',
+                'password2': 'feRpj4w4pso3az',
+                'first_name': 'sam',
                 'last_name': 'sam'
-            }, 
+            },
             follow=True)
 
         # Assert user is logged in - one way to do it...
@@ -487,18 +482,18 @@ class TestUserAuthentication(TestCase):
         # TODO If user is browsing site, then registers, once they have registered, they should
         # be redirected to the last page they were at, not the homepage.
         response = self.client.post(
-            reverse('register'), 
+            reverse('register'),
             {
-                'username': 'sam12345', 
-                'email': 'sam@sam.com', 
-                'password1': 'feRpj4w4pso3az@1!2', 
-                'password2': 'feRpj4w4pso3az@1!2', 
-                'first_name': 'sam', 
+                'username': 'sam12345',
+                'email': 'sam@sam.com',
+                'password1': 'feRpj4w4pso3az@1!2',
+                'password2': 'feRpj4w4pso3az@1!2',
+                'first_name': 'sam',
                 'last_name': 'sam'
-            }, 
+            },
             follow=True)
         new_user = authenticate(username='sam12345', password='feRpj4w4pso3az@1!2')
-        self.assertRedirects(response, reverse('user_profile', kwargs={"user_pk": new_user.pk}))   
+        self.assertRedirects(response, reverse('user_profile', kwargs={"user_pk": new_user.pk}))
         self.assertContains(response, 'sam12345')  # page has user's username on it
 
 
@@ -519,4 +514,12 @@ class TestErrorViews(TestCase):
         # there are no current views that return 403. When users can edit notes, or edit 
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
-        pass 
+        pass
+
+
+class TestLogoutPage(TestCase):
+
+    def test_logout_page_message(self):
+        logout_page_url = reverse('logout')
+        response = self.client.get(logout_page_url)
+        self.assertContains(response, 'Goodbye, see you next time.')

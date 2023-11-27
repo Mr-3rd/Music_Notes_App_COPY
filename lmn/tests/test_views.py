@@ -523,3 +523,8 @@ class TestLogoutPage(TestCase):
         logout_page_url = reverse('logout')
         response = self.client.get(logout_page_url)
         self.assertContains(response, 'Goodbye, see you next time.')
+
+    def test_redirect_to_logout_page_when_user_logs_out(self):
+        logout_page_url = reverse('logout')
+        response = self.client.get(logout_page_url)
+        self.assertEqual(200, response.status_code)

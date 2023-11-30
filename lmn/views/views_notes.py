@@ -1,6 +1,7 @@
 """ Views related to creating and viewing Notes for shows. """
 
-from django.http import HttpResponseForbidden
+from django.forms import ValidationError
+from django.http import HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
@@ -15,19 +16,21 @@ def new_note(request, show_pk):
     """ Create a new note for a show. """
     show = get_object_or_404(Show, pk=show_pk)
 
+    # if the request is a POST request, then validate the form and save the note
     if request.method == 'POST':
         form = NewNoteForm(request.POST)
         if form.is_valid():
-            dt = timezone.now()
-            # Check if show date is in the future and if yes then pass it the error message
-            if show.show_date > dt:
-                    # Show error message if the show date is in the future
-                    return HttpResponseForbidden(render(request, 'lmn/notes/new_note.html', {'error': 'You cannot add a note for a show that has not happened yet.'}))
             note = form.save(commit=False)
             note.user = request.user
             note.show = show
-            note.save()
-            return redirect('note_detail', note_pk=note.pk)
+
+            try: 
+                note.save()
+                return redirect('note_detail', note_pk=note.pk)
+            # if an error occurs, show the error message 
+            except ValidationError as e:
+                # Show error message if the show date is in the future
+                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', { 'error': e}))
     else:
         form = NewNoteForm()
 

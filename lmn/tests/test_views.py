@@ -568,5 +568,5 @@ class TestnoNotesforFutureShows(TestCase):
         response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah'}) 
         self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
-        self.assertContains(response_2, 'You cannot add a note for a show that has not happened yet.', status_code=403) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1

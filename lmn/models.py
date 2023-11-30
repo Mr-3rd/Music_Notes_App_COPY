@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Remember that every model gets a primary key field by default.
 
@@ -43,12 +44,20 @@ class Show(models.Model):
 
 class Note(models.Model):
     """ One User's opinion of one Show. """
+    STARS = (
+        (1, '1 Star'),
+        (2, '2 Stars'),
+        (3, '3 Stars'),
+        (4, '4 Stars'),
+        (5, '5 Stars')
+    )
     show = models.ForeignKey(Show, blank=False, on_delete=models.CASCADE)
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
+    rating = models.IntegerField(default=1, choices=STARS, validators=[MinValueValidator(1), MaxValueValidator(5)])
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
 
     def __str__(self):
         return f'User: {self.user} Show: {self.show} Note title: {self.title} \
-        Text: {self.text} Posted on: {self.posted_date}'
+        Text: {self.text} Rating: {self.rating} Posted on: {self.posted_date}'

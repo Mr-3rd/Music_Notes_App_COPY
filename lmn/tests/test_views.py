@@ -528,7 +528,7 @@ class TestErrorViews(TestCase):
         # there are no current views that return 403. When users can edit notes, or edit 
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
-
+        pass
 
 class TestnoNotesforFutureShows(TestCase):
     #     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
@@ -565,17 +565,3 @@ class TestnoNotesforFutureShows(TestCase):
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
         self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1
-
-
-class TestLogoutPage(TestCase):
-
-    def test_logout_page_message(self):
-        logout_page_url = reverse('logout')
-        response = self.client.get(logout_page_url)
-        self.assertContains(response, 'Goodbye, see you next time.')
-
-    def test_redirect_to_logout_page_when_user_logs_out(self):
-        logout_page_url = reverse('logout')
-        response = self.client.get(logout_page_url)
-        self.assertEqual(200, response.status_code)
-

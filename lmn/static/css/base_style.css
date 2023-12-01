@@ -8,6 +8,18 @@ a {
   color: #18eef5;
 }
 
+#homepage-link {
+    color: inherit;
+    text-decoration: inherit;
+    font-size: 32px;
+    padding: 30px;
+}
+
+#homepage-link:hover {
+    color: #18eef5;
+    text-decoration: underline;
+}
+
 #add-new-show-link {
   font-size: large;
   color: violet;

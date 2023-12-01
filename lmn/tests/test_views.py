@@ -343,11 +343,11 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
         response = self.client.post(
             new_note_url, 
-            {'text': 'ok', 'title': 'blah blah'}, 
+            {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         # Verify note is in database
-        new_note_query = Note.objects.filter(text='ok', title='blah blah')
+        new_note_query = Note.objects.filter(rating=5, text='ok', title='blah blah')
         self.assertEqual(new_note_query.count(), 1)
 
         # And one more note in DB than before
@@ -362,10 +362,10 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         new_note_url = reverse('new_note', kwargs={'show_pk': 1})
         response = self.client.post(
             new_note_url, 
-            {'text': 'ok', 'title': 'blah blah'}, 
+            {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(rating=5, text='ok', title='blah blah').first()
 
         self.assertRedirects(response, reverse('note_detail', kwargs={'note_pk': new_note.pk}))
 

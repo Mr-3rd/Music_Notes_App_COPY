@@ -522,8 +522,11 @@ class TestErrorViews(TestCase):
         # there are no current views that return 403. When users can edit notes, or edit 
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
+        pass
 
 # Testing photo upload and redirecting feature after users upload a photo successfully 
+
+
 class TestPhotoUpload(TestCase):
     # Need to create testing shows, artists,and venues to be able to create note and have a note id key.
     # Fixtures used the same from above tests

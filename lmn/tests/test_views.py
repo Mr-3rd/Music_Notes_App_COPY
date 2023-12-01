@@ -523,12 +523,16 @@ class TestErrorViews(TestCase):
 
 class TestOneNotePerShow(TestCase):
     
+    # fixure data
     fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
 
+    # user setup
     def setUp(self):
         user = User.objects.first()
         self.client.force_login(user)
         
+    # test that user can only create one note per show
     def test_error_msg_for_more_than_one_note_per_show(self):
         response = self.client.get(reverse('new_note', kwargs={'show_pk': 1}))
+        # response containts the error message
         self.assertContains(response, 'You can only create one note per show')

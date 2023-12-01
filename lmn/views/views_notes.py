@@ -17,6 +17,7 @@ def new_note(request, show_pk):
     if Note.objects.filter(user=request.user, show=show).count() > 0:
             form = NewNoteForm()  # empty form
             # if yes then take them render the form and also an error message and hide the button
+            # render the form with an error message and hide the button and show the update button 
             return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show, 'error': 'You can only create one note per show', "hide_button": True})
         
     else:

@@ -16,12 +16,11 @@
         <p id="Photo_title">Photo:</p>
         <div class="show_photo">
           {% if note.photo %}
-            <!-- Photo show Url render from users uploaded photo- Payload is coming from forms class when users make a post req-->
+            <!--If there is a photo that can be rendered from user's photo upload, extract the url from the uploaded photo, then use that photo url for the <img/> tag to display user's photo-->
             <img
-              id="users_photo_of_show"
+              id="user-photo-upload"
               src="{{note.photo.url}}"
-              style="width: 50%; height: auto"
-              alt="Note Detail Photo of show">
+              alt="Photo of users visited show">
             <!-- If no photo show, then display no photo uploaded -->
           {% else %}
             <p id="No_photo_text">No Photo Uploaded for show!</p>

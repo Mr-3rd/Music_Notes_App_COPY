@@ -31,7 +31,7 @@ class NewNoteForm(forms.ModelForm):
         if photo:
 
             if not photo.content_type.startswith('image/'):
-                raise ValidationError("Invalid Photo Upload! This upload was not a image upload!")
+                raise ValidationError('Invalid Photo Upload! This upload was not a image upload!')
             try:
                 # Open photo file
                 users_image = Image.open(photo)
@@ -41,7 +41,7 @@ class NewNoteForm(forms.ModelForm):
                 users_image.verify()
 
             except Exception:
-                raise ValidationError("Invalid Photo Upload! This upload was not a image upload!")
+                raise ValidationError('Invalid Photo Upload! This upload was not a image upload!')
 
         return photo
 

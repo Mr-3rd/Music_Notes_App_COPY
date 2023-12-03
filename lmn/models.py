@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Django's storage manager library that helps with retrieving, storing, deleting related media files. This helps with  the details on where to store it
+from django.core.files.storage import default_storage
+
 # Remember that every model gets a primary key field by default.
 
 # The User model is provided by Django. The email field is not unique by
@@ -48,7 +51,16 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
+    # Image field to upload photos in the notes section
+    # Image upload is optional and can be null
+    photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
 
     def __str__(self):
+        # Photo Url will be generated if there is a photo uploaded, else it will display no photo
+        photo_str = 'No photo uploaded yet!'
+        if self.photo:
+            # If there is a photo, get the photo url
+            photo_str = self.photo.url
+
         return f'User: {self.user} Show: {self.show} Note title: {self.title} \
-        Text: {self.text} Posted on: {self.posted_date}'
+        Text: {self.text} Posted on: {self.posted_date} Photo {photo_str}'

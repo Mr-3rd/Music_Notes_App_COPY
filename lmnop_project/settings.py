@@ -138,4 +138,11 @@ STATIC_URL = '/static/'
 
 
 # Where to send user after successful login, and logout, if no other page is provided.
+
+# Media Files to where the picture uploads is placed
+MEDIA_URL = '/media/'
+
+# Add media to url path of base directory
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 LOGIN_REDIRECT_URL = 'homepage'

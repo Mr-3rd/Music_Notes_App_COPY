@@ -11,6 +11,14 @@ from datetime import timezone
 from lmn.models import Artist, Note, Show, Venue
 from django.contrib.auth.models import User
 
+# Simple upload file library allows to create a "in memory file" that behaves like a file type that would be uploaded. Can customize what type of upload it is (e.g name, content, content type)
+# https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
+from django.core.files.uploadedfile import SimpleUploadedFile
+# Using a simple generated image using pillow library
+from PIL import Image
+# Import IO for file manipulation
+import io
+
 
 class TestHomePage(TestCase):
 
@@ -348,7 +356,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
     def test_add_note_database_updated_correctly(self):
         initial_note_count = Note.objects.count()
 
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         response = self.client.post(
             new_note_url,
@@ -368,7 +376,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         self.assertEqual(now.date(), posted_date.date())  # TODO check time too
 
     def test_redirect_to_note_detail_after_save(self):
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
         response = self.client.post(
             new_note_url,
             {'text': 'ok', 'title': 'blah blah'},
@@ -528,7 +536,125 @@ class TestErrorViews(TestCase):
         # there are no current views that return 403. When users can edit notes, or edit 
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
-        pass
+        pass 
+
+class TestOneNotePerShow(TestCase):
+    
+    # fixure data
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
+
+    # user setup
+    def setUp(self):
+        user = User.objects.first()
+        self.client.force_login(user)
+        
+    # test that user can only create one note per show
+    def test_error_msg_for_more_than_one_note_per_show(self):
+        response = self.client.get(reverse('new_note', kwargs={'show_pk': 1}))
+        # response containts the error message
+        self.assertContains(response, 'You can only create one note per show')
+
+# Testing photo upload and redirecting feature after users upload a photo successfully 
+
+
+class TestPhotoUpload(TestCase):
+    # Need to create testing shows, artists,and venues to be able to create note and have a note id key.
+    # Fixtures used the same from above tests
+    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes'] 
+
+    # SetUp method used from previous tests above
+    # This gets the first user from User model, and then bypasses a request to login into that user without the need to know the password of that user. 
+    def setUp(self):
+        # Log someone in first
+        user = User.objects.first()
+        self.client.force_login(user)
+
+    # This is to mimic a real file type to upload and the app only has a imagefield from the models where it only validates real image data that are accepted. So a random string or random binary data as a file will not pass the validation.
+    # Static methods: https://www.toppr.com/guides/python-guide/references/methods-and-functions/methods/built-in/staticmethod/python-staticmethod/#:~:text=Methods%20and%20Functions-,Python%20staticmethod(),the%20Python%20staticmethod()%20function. - Doesn't need self, just a helper function
+    @staticmethod
+    def generate_testing_image_to_use(name='test_image.jpg'):
+        # Understanding BytesIO()- My understanding, creates a file like data from string data. You can use it to manipulate binary data (images, audio,vids, etc) without making a physical file in system, instead just uses RAM.
+        # https://levelup.gitconnected.com/python-stringio-and-bytesio-compared-with-open-c0e99b9def31#:~:text=StringIO%20and%20BytesIO%20are%20methods,to%20mimic%20a%20normal%20file. 
+        # https://www.reddit.com/r/learnpython/comments/z9lfa7/class_bytes_vs_class_iobytesio/
+        buffer_file = io.BytesIO()
+
+        mock_image_creation = Image.new('RGB', (200, 200), color='grey')
+
+        # Saving the image into the file buffer as a JPEG
+        mock_image_creation.save(buffer_file, 'JPEG')
+
+        # Move cursor before reading the file to the first (start) of the buffer
+        buffer_file.seek(0)
+
+        # Returns a mimic mock image file type (The buffer reads the content of the mock image file into the simple file uploaded)
+        # https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
+        return SimpleUploadedFile(name, buffer_file.read(), content_type='image/jpeg')
+
+    # Test a valid photo upload to ensure the page redirects as expected when the upload and save is done.
+    def test_successful_photo_upload_and_redirects_to_note_detail_page(self):
+        # Mock image uses simple upload file library method and pillow image creation. Calling this function would create a real mock image data to send for the mock post request
+        mock_image = self.generate_testing_image_to_use()
+
+        # Mock form data to send to create a new note 
+        # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+
+        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+
+        # Response would redirect to the note_detail.html page after successful save and upload
+        response = self.client.post(
+            new_note_url, mock_form_data, follow=True
+        )
+
+        # Print the contents body of the response, should expect contents from note details 
+        # print('Response', response.content)
+
+        # Get first new note that was created
+        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+
+        # Assert that the response redirected to note detail page:
+        self.assertRedirects(response, reverse('note_detail', kwargs={
+                             'note_pk': new_note.pk}))
+
+        # Check if the response note_detail html page template was used
+        self.assertTemplateUsed(response, 'lmn/notes/note_detail.html')
+
+    # Test that the expected photo is returned when a page is loaded with notes
+    def test_expected_photo_is_returned_when_note_detail_page_is_loaded(self):
+        mock_image = self.generate_testing_image_to_use()
+
+        # Mock form data to send to create a new note 
+        # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+
+        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+
+        # Post req to send notes with uploaded photo to the new note url
+        upload_mock_image_response = self.client.post(
+            new_note_url, mock_form_data, follow=True
+        )
+
+        # First note retrieved
+        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+
+        # Fetch note detail page of that new note created
+        note_detail_url = reverse('note_detail', kwargs={'note_pk': new_note.pk})
+
+        # Check if the upload post requests responses with a redirect to new note created
+        self.assertRedirects(upload_mock_image_response, note_detail_url)
+
+        # A get request response of the note detail page directly
+        response_from_note_detail_url = self.client.get(note_detail_url)
+
+        # Simple check if note detail page was used
+        self.assertTemplateUsed(response_from_note_detail_url, 'lmn/notes/note_detail.html')
+
+        # Expect photo from note detail page is returned when a page is loaded with notes
+        # Checking to see if the note detail page response contains the photo url
+        self.assertContains(response_from_note_detail_url, new_note.photo.url)
+
+        # Checking the response
+        # print(response_from_note_detail_url.content)
 
 class TestnoNotesforFutureShows(TestCase):
     #     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),

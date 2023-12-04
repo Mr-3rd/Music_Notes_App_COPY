@@ -7,23 +7,31 @@ from django.contrib.auth.decorators import login_required
 
 from ..models import Note, Show
 from ..forms import NewNoteForm 
+
 from django.utils import timezone
-
-
 
 @login_required
 def new_note(request, show_pk):
     """ Create a new note for a show. """
     show = get_object_or_404(Show, pk=show_pk)
+    
+    # checks that a note for this show doesn't already exist
+    if Note.objects.filter(user=request.user, show=show).exists():
+        form = NewNoteForm()  # empty form
+        # if yes then take them render the form and also an error message and hide the button
+        # render the form with an error message and hide the button and show the update button 
+        return render(request, 'lmn/notes/new_note.html', {
+            'form': form, 'show': show, 
+            'error': 'You can only create one note per show', 
+            "hide_button": True
+        })
 
-    # if the request is a POST request, then validate the form and save the note
     if request.method == 'POST':
-        form = NewNoteForm(request.POST)
+        form = NewNoteForm(request.POST, request.FILES)
         if form.is_valid():
             note = form.save(commit=False)
             note.user = request.user
             note.show = show
-
             try: 
                 note.save()
                 return redirect('note_detail', note_pk=note.pk)
@@ -31,10 +39,12 @@ def new_note(request, show_pk):
             except ValidationError as e:
                 # Show error message if the show date is in the future
                 return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', { 'error': e}))
+
     else:
         form = NewNoteForm()
 
     return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show})
+
 
 
 def latest_notes(request):

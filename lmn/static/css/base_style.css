@@ -39,6 +39,12 @@ a {
   margin: 2px;
 }
 
+/* Users uploaded photo size styles for both note detail and shows picture */
+#user-photo-upload {
+  width: 50%;
+  height: auto;
+}
+
 .display-box {
   display: flex;
   flex-direction: column;

@@ -1,20 +1,24 @@
-{% extends 'lmn/base.html' %}
+{% extends 'lmn/base.html' %} 
 
 {% block content %}
-  {% if error %}
-    <div class="display-box">
-      <p class="error">{{ error }}</p>
-      <a class="back-btn" href="{% url 'venue_list' %}">Back</a> 
+
+{% if error %}
+<div class="display-box">
+  <p class="error">{{ error }}</p>
+  <a class="back-btn" href="{% url 'venue_list' %}">Back</a> 
+</div>
+{% else %}
+
+  <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date }}</h2>
+  
+  <form method="POST" enctype="multipart/form-data" action="{% url 'new_note' show_pk=show.pk %}">
+    <div>
+      {% csrf_token %}
+      {{ form.as_p }}
     </div>
-  {% else %}
-    <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date}}</h2>
-    <form method="POST" action="{% url 'new_note' show_pk=show.pk %}">
-      <div>
-        {% csrf_token %}
-        {{ form.as_p }}
-      </div>
-        <input type="submit" value="Add Note">
-    </form>
-  {%endif%}
+    {% if not hide_button %}
+      <input type="submit" value="Add Note">
+    {% endif %}
+  </form>
 
 {% endblock %}

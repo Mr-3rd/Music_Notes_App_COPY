@@ -59,9 +59,9 @@ class Note(models.Model):
 
     def save(self, *args, **kwargs):
        """Create only one note for each user and show"""
-        if Note.objects.filter(user=self.user, show=self.show).count() > 0:
+       if Note.objects.filter(user=self.user, show=self.show).exists():
             raise ValidationError('You can only create one note per show')
-        super(Note, self).save(*args, **kwargs)
+       super(Note, self).save(*args, **kwargs)
 
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import ValidationError
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 # Django's storage manager library that helps with retrieving, storing, deleting related media files. This helps with  the details on where to store it
 from django.core.files.storage import default_storage
@@ -47,6 +48,8 @@ class Show(models.Model):
 
 class Note(models.Model):
     """ One User's opinion of one Show. """
+    # show = models.ForeignKey(Show, blank=False, on_delete=models.CASCADE, limit_choices_to={'show_date__lt': timezone.now()})
+
     show = models.ForeignKey(Show, blank=False, on_delete=models.CASCADE)
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=False)
@@ -61,6 +64,8 @@ class Note(models.Model):
        """Create only one note for each user and show"""
        if Note.objects.filter(user=self.user, show=self.show).exists():
             raise ValidationError('You can only create one note per show')
+       if self.show.show_date > timezone.now():
+           raise ValidationError("Cannot add notes to future shows.")
        super(Note, self).save(*args, **kwargs)
 
     def __str__(self):

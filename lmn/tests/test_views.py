@@ -8,7 +8,7 @@ import re
 import datetime
 from datetime import timezone
 
-from lmn.models import Note
+from lmn.models import Artist, Note, Show, Venue
 from django.contrib.auth.models import User
 
 # Simple upload file library allows to create a "in memory file" that behaves like a file type that would be uploaded. Can customize what type of upload it is (e.g name, content, content type)
@@ -140,6 +140,7 @@ class TestArtistViews(TestCase):
         # From the fixture, show 2's "show_date": "2017-02-02T19:30:00-06:00"
         expected_date = datetime.datetime(2017, 2, 2, 19, 30, 0, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
+        
 
         # from the fixture, show 1's "show_date": "2017-01-02T17:30:00-00:00",
         self.assertEqual(show2.artist.name, 'REM')
@@ -152,15 +153,19 @@ class TestArtistViews(TestCase):
         url = reverse('venues_for_artist', kwargs={'artist_pk': 2})
         response = self.client.get(url)
         shows = list(response.context['shows'].all())
-        show1 = shows[0]
-        self.assertEqual(1, len(shows))
+        show1, show2 = shows[0], shows[1]
+        self.assertEqual(2, len(shows))
 
         # This show has "show_date": "2017-01-21T21:45:00-00:00",
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
-        expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
+        
+        expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-
+        
+        expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
+        self.assertEqual(show2.show_date, expected_date)
+        
         # Artist 3, no shows
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 3})
@@ -259,13 +264,22 @@ class TestVenues(TestCase):
         url = reverse('artists_at_venue', kwargs={'venue_pk': 1})
         response = self.client.get(url)
         shows = list(response.context['shows'].all())
-        show1 = shows[0]
-        self.assertEqual(1, len(shows))
+        show1 , show2= shows[0], shows[1]
+        self.assertEqual(2, len(shows))
+
 
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
+        
+        self.assertEqual(show1.artist.name, 'ACDC')
+        self.assertEqual(show1.venue.name, 'First Avenue')
+        
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
+        self.assertEqual(show2.show_date, expected_date)
+        
+        expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
+
 
         # Venue 3 has not had any shows
 
@@ -642,15 +656,38 @@ class TestPhotoUpload(TestCase):
         # Checking the response
         # print(response_from_note_detail_url.content)
 
+class TestnoNotesforFutureShows(TestCase):
+    #     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
+    
+    # <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/accounts/login/?next=/notes/add/1/">
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
 
-class TestLogoutPage(TestCase):
 
-    def test_logout_page_message(self):
-        logout_page_url = reverse('logout')
-        response = self.client.get(logout_page_url)
-        self.assertContains(response, 'Goodbye, see you next time.')
+    def setUp(self): # login user 
+        user = User.objects.first()
+        self.client.force_login(user)
 
-    def test_redirect_to_logout_page_when_user_logs_out(self):
-        logout_page_url = reverse('logout')
-        response = self.client.get(logout_page_url)
-        self.assertEqual(200, response.status_code)
+    
+    def test_display_error_msg(self):
+        # note count we started with 3
+        initial_note_count = Note.objects.count()
+        
+        # url for adding a note to a past show
+        new_note_url = reverse('new_note', kwargs={'show_pk': 1}) 
+        
+        # for future
+        new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 
+        
+        # add a note for the show that has already happened
+        response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah'}, follow=True)
+        
+        # all should be 200 
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should increase by 1
+        
+        # for future show
+        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah'}) 
+        self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
+        self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
+        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1

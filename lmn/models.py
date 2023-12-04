@@ -55,18 +55,18 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
-    
+
     # Image field to upload photos in the notes section from the main branch
     # Image upload is optional and can be null
     photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
-       """Create only one note for each user and show"""
-       if Note.objects.filter(user=self.user, show=self.show).exists():
+        """Create only one note for each user and show"""
+        if Note.objects.filter(user=self.user, show=self.show).exists():
             raise ValidationError('You can only create one note per show')
-       if self.show.show_date > timezone.now():
-           raise ValidationError("Cannot add notes to future shows.")
-       super(Note, self).save(*args, **kwargs)
+        if self.show.show_date > timezone.now():
+            raise ValidationError("Cannot add notes to future shows.")
+        super(Note, self).save(*args, **kwargs)
 
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo

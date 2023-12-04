@@ -25,6 +25,7 @@ def new_note(request, show_pk):
             'error': 'You can only create one note per show', 
             "hide_button": True
         })
+        
 
     if request.method == 'POST':
         form = NewNoteForm(request.POST, request.FILES)

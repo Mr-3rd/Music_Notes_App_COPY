@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
 
 # Django's storage manager library that helps with retrieving, storing, deleting related media files. This helps with  the details on where to store it
 from django.core.files.storage import default_storage
@@ -51,9 +52,16 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
-    # Image field to upload photos in the notes section
+    
+    # Image field to upload photos in the notes section from the main branch
     # Image upload is optional and can be null
     photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+       """Create only one note for each user and show"""
+       if Note.objects.filter(user=self.user, show=self.show).exists():
+            raise ValidationError('You can only create one note per show')
+       super(Note, self).save(*args, **kwargs)
 
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo

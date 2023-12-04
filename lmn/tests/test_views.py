@@ -342,7 +342,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
     def test_add_note_database_updated_correctly(self):
         initial_note_count = Note.objects.count()
 
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         response = self.client.post(
             new_note_url,
@@ -362,7 +362,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         self.assertEqual(now.date(), posted_date.date())  # TODO check time too
 
     def test_redirect_to_note_detail_after_save(self):
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
         response = self.client.post(
             new_note_url,
             {'text': 'ok', 'title': 'blah blah'},
@@ -522,7 +522,23 @@ class TestErrorViews(TestCase):
         # there are no current views that return 403. When users can edit notes, or edit 
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
-        pass
+        pass 
+
+class TestOneNotePerShow(TestCase):
+    
+    # fixure data
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
+
+    # user setup
+    def setUp(self):
+        user = User.objects.first()
+        self.client.force_login(user)
+        
+    # test that user can only create one note per show
+    def test_error_msg_for_more_than_one_note_per_show(self):
+        response = self.client.get(reverse('new_note', kwargs={'show_pk': 1}))
+        # response containts the error message
+        self.assertContains(response, 'You can only create one note per show')
 
 # Testing photo upload and redirecting feature after users upload a photo successfully 
 

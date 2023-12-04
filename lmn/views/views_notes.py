@@ -12,31 +12,32 @@ from ..forms import NewNoteForm
 def new_note(request, show_pk):
     """ Create a new note for a show. """
     show = get_object_or_404(Show, pk=show_pk)
-    
+
     # checks that a note for this show doesn't already exist
-    if Note.objects.filter(user=request.user, show=show).count() > 0:
-            form = NewNoteForm()  # empty form
-            # if yes then take them render the form and also an error message and hide the button
-            # render the form with an error message and hide the button and show the update button 
-            return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show, 'error': 'You can only create one note per show', "hide_button": True})
-        
+    if Note.objects.filter(user=request.user, show=show).exists():
+        form = NewNoteForm()  # empty form
+        # if yes then take them render the form and also an error message and hide the button
+        # render the form with an error message and hide the button and show the update button 
+        return render(request, 'lmn/notes/new_note.html', {
+            'form': form, 'show': show, 
+            'error': 'You can only create one note per show', 
+            "hide_button": True
+        })
+
+    if request.method == 'POST':
+        form = NewNoteForm(request.POST, request.FILES)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.user = request.user
+            note.show = show
+            note.save()
+            return redirect('note_detail', note_pk=note.pk)
+    
     else:
-        
-
-        if request.method == 'POST':
-            # Check if the user has already created a note for this show
-
-            form = NewNoteForm(request.POST)
-            if form.is_valid():
-                note = form.save(commit=False)
-                note.user = request.user
-                note.show = show
-                note.save()
-                return redirect('note_detail', note_pk=note.pk)
-
-    form = NewNoteForm()
+        form = NewNoteForm()
 
     return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show})
+
 
 
 def latest_notes(request):

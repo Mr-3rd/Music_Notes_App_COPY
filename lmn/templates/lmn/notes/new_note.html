@@ -1,21 +1,21 @@
-{% extends 'lmn/base.html' %}
+{% extends 'lmn/base.html' %} 
 
 {% block content %}
 
   {% if error %}
     <p class="error"> {{ error }}</p>
-    <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date }}</h2>
-    {% comment %} redirect to update note, button {% endcomment %}
-  {% else %}
-    <form method="POST" action="{% url 'new_note' show_pk=show.pk %}">
-      <div>
-        {% csrf_token %}
-        {{ form.as_p }}
-      </div>
-      {% if not hide_button %}
-        <input type="submit" value="Add Note">
-      {% endif %}
-    </form>
   {% endif %}
+
+  <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date }}</h2>
+  
+  <form method="POST" enctype="multipart/form-data" action="{% url 'new_note' show_pk=show.pk %}">
+    <div>
+      {% csrf_token %}
+      {{ form.as_p }}
+    </div>
+    {% if not hide_button %}
+      <input type="submit" value="Add Note">
+    {% endif %}
+  </form>
 
 {% endblock %}

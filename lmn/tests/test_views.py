@@ -599,7 +599,7 @@ class TestPhotoUpload(TestCase):
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
         mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
 
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         # Response would redirect to the note_detail.html page after successful save and upload
         response = self.client.post(
@@ -627,7 +627,7 @@ class TestPhotoUpload(TestCase):
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
         mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
 
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         # Post req to send notes with uploaded photo to the new note url
         upload_mock_image_response = self.client.post(
@@ -673,7 +673,7 @@ class TestnoNotesforFutureShows(TestCase):
         initial_note_count = Note.objects.count()
         
         # url for adding a note to a past show
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1}) 
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3}) 
         
         # for future
         new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 

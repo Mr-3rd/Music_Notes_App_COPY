@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.test import TestCase
 
 from django.contrib.auth.models import User
@@ -11,10 +12,8 @@ from PIL import Image
 # Import IO for file manipulation
 import io
 
-from lmn.models import User, Show, Note
+from lmn.models import User, Show, Note, Artist, Venue
 
-# Validation error for invalid media upload type
-from django.core.exceptions import ValidationError
 
 # Test that forms are validating correctly, and don't accept invalid data
 
@@ -85,6 +84,16 @@ class NewNoteFormTests(TestCase):
 
     # Testing valid image file upload (happy path)
     def test_valid_image_uploaded_from_users(self):
+
+        # Create a whole new user, show, venue, artist, for this test because there can't be duplicate notes per show
+        mock_user = User.objects.create(username='mock_user', password='testing')
+
+        mock_artist = Artist.objects.create(name='Mock_Artist_for_testing')
+
+        mock_venue = Venue.objects.create(name='Example_Venue_For_Test', city='Example_City', state='Example_State')
+
+        mock_show = Show.objects.create(show_date=timezone.now(), artist=mock_artist, venue=mock_venue)
+
         # Mock image provided by pillow image creation file
         mock_image = self.generate_testing_image_to_use()
 
@@ -101,16 +110,12 @@ class NewNoteFormTests(TestCase):
         # Assert that the form is valid with valid photo uploaded
         self.assertTrue(new_note_form.is_valid())
 
-        # Assert that uploaded photo is in notes_detail
-        # First Instances for users and show models
-        user = User.objects.first()  
-        show = Show.objects.first()  
-
         # Check if form is valid, then save it 
         if new_note_form.is_valid():
+            # print('valid!')
             new_note = new_note_form.save(commit=False)
-            new_note.user = user
-            new_note.show = show
+            new_note.user = mock_user
+            new_note.show = mock_show
             new_note.save()
 
         # Retrieve the saved note with the latest ID (Recent note id that was just create)
@@ -119,6 +124,7 @@ class NewNoteFormTests(TestCase):
         self.assertTrue(saved_note.photo.url.endswith('.jpg'))
 
     # Unhappy path, same as above test, but this time the photo upload will be invalid and we will assert that there is errors in photo field and assert the form.is_valid() is false
+
     def test_invalid_image_upload(self):
         mock_image = SimpleUploadedFile('Wishlist.txt', b'This is invalid content upload!', content_type='text/plain')
 

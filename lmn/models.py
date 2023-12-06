@@ -71,15 +71,17 @@ class Note(models.Model):
     def delete_photo(self, photo):
         # check if that photo exists first before deleting it
         if default_storage.exists(photo.name):  
-            # Call the custom delete function sending in the photo name
+
             default_storage.delete(photo.name)
 
-        # When the place is deleted, delete the picture completely as well.
+        # When the note is deleted, delete the picture completely as well from the folder before from the database.
 
     def delete(self, *args, **kwargs):
         if self.photo:
+            # This method takes care of deleting the photo from the default storage system (user_images folder)
             self.delete_photo(self.photo)
 
+        # Calls the delete super class which handles the deletion off the instance from the database. 'args' and 'kwargs' are arguments for the delete super method. 
         super().delete(*args, **kwargs)
 
     def __str__(self):

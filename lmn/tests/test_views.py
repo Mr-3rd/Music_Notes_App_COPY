@@ -8,7 +8,9 @@ import re
 import datetime
 from datetime import timezone
 
-from lmn.models import Artist, Note, Show, Venue
+
+from lmn.models import Note, Show, Artist, Venue
+
 from django.contrib.auth.models import User
 
 # Simple upload file library allows to create a "in memory file" that behaves like a file type that would be uploaded. Can customize what type of upload it is (e.g name, content, content type)
@@ -537,6 +539,102 @@ class TestErrorViews(TestCase):
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
         pass 
+
+
+class TestShowlist(TestCase):
+    
+    def test_all_shows_order_by_date(self):
+        
+        # dates dict
+        dates = [
+            datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc),
+            datetime.datetime(2021, 6, 1, 21, 45, tzinfo=timezone.utc),
+            datetime.datetime(2022, 6, 1, 21, 45, tzinfo=timezone.utc)
+        ]
+
+        # empty list
+        shows = []
+
+        for i, date in enumerate(dates):
+            # create a venue, artist, and show, this is added in a acending order
+            venue = Venue.objects.create(name=f'venue_{i}', city=f'city_{i}', state='MN')
+            artist = Artist.objects.create(name=f'artist_{i}')
+            show = Show.objects.create(show_date=date, artist=artist, venue=venue)
+            shows.append(show)
+        
+        # reverse the list of shows so that it's in an descending order
+        expected_order = list(reversed(shows))
+
+        response = self.client.get(reverse('show_list'))
+        shows_context = list(response.context['shows'])
+
+        # check that the shows are in the correct order
+        self.assertEqual(shows_context, expected_order)
+        
+    def test_no_shows_found(self):
+        
+        response = self.client.get(reverse('show_list'))
+        show_in_template = response.context['shows']
+        
+        self.assertContains(response, 'No shows found')
+        self.assertEquals(0, len(show_in_template))
+        
+    def test_search_match_found(self):
+            
+        # create a venue, artist, and show
+        venue = Venue.objects.create(name='venue', city='city', state='MN')
+        artist = Artist.objects.create(name='artist')
+        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+            
+        # search for the show by artist name
+        response = self.client.get(reverse('show_list'), {'search_artist': 'artist'})
+        shows = list(response.context['shows'])
+            
+        # check that the show is in the search results
+        self.assertEqual(shows[0], show)
+            
+        # search for the show by venue name
+        response = self.client.get(reverse('show_list'), {'search_venue': 'venue'})
+        shows = list(response.context['shows'])
+            
+        self.assertEqual(shows[0], show)
+            
+    def test_search_match_not_found(self):
+            
+        venue = Venue.objects.create(name='venue', city='city', state='MN')
+        artist = Artist.objects.create(name='artist')
+        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+            
+        # search for the show by artist name
+        response = self.client.get(reverse('show_list'), {'search_artist': 'artist2'})
+        shows = list(response.context['shows'])
+
+        self.assertEqual(shows, []) # if not in the results, the list will be empty
+            
+        # search for the show by venue name
+        response = self.client.get(reverse('show_list'), {'search_venue': 'venue2'})
+        shows = list(response.context['shows'])
+            
+        self.assertEqual(shows, [])
+
+class TestShowDetail(TestCase):
+    
+    def test_show_detail_exists(self):
+        
+        venue = Venue.objects.create(name='venue', city='city', state='MN')
+        artist = Artist.objects.create(name='artist')
+        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+        
+        # display the show detail page with the matching pk
+        response = self.client.get(reverse('show_detail', kwargs={'show_pk': show.pk})) 
+        
+        # check if expected show is the same as the show in the context
+        self.assertEqual(response.context['show'], show) 
+        
+    def test_show_detail_not_exist(self):
+        
+        response = self.client.get(reverse('show_detail', kwargs={'show_pk': 100}))
+        self.assertEqual(response.status_code, 404)
 
 class TestOneNotePerShow(TestCase):
     

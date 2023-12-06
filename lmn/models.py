@@ -68,6 +68,20 @@ class Note(models.Model):
             raise ValidationError("Cannot add notes to future shows.")
         super(Note, self).save(*args, **kwargs)
 
+    def delete_photo(self, photo):
+        # check if that photo exists first before deleting it
+        if default_storage.exists(photo.name):  
+            # Call the custom delete function sending in the photo name
+            default_storage.delete(photo.name)
+
+        # When the place is deleted, delete the picture completely as well.
+
+    def delete(self, *args, **kwargs):
+        if self.photo:
+            self.delete_photo(self.photo)
+
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo
         photo_str = 'No photo uploaded yet!'

@@ -108,6 +108,7 @@ def note_detail(request, note_pk):
 
 # Delete feature will be available withing that note details
 
+@login_required
 def delete_note(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)
     # If users is requests want to delete the note, delete that note they are sending in with that note primary key, and then redirect them back to the latest note list page

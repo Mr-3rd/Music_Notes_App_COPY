@@ -78,6 +78,10 @@ def notes_for_show(request, show_pk):
     notes = Note.objects.filter(show=show_pk).order_by('-posted_date')
     
     dt = timezone.now()
+    
+    if Note.objects.filter(user=request.user, show=show).exists(): # if the user has already created a note for this show instead of showing '"Add your own notes for this show" show "edit note" button'
+        return render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'notes': notes, 'hide_button': True})
+            
     if show.show_date > dt:
         # Show error message if the show date is in the future, we also wanna show the show details but just not the notes
         return HttpResponseForbidden(render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'error': 'You cannot add a note for a show that has not happened yet.'}))

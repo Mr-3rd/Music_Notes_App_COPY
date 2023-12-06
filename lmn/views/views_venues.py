@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 
 from ..models import Venue, Show
 from ..forms import VenueSearchForm
+from django.utils import timezone
+
 
 
 def venue_list(request):
@@ -26,8 +28,19 @@ def artists_at_venue(request, venue_pk):
     """ Get all of the artists who have played a show at the venue with the pk provided """
     shows = Show.objects.filter(venue=venue_pk).order_by('-show_date') 
     venue = Venue.objects.get(pk=venue_pk)
+    dt = timezone.now()
 
-    return render(request, 'lmn/artists/artist_list_for_venue.html', {'venue': venue, 'shows': shows})
+    
+    # loop through the shows
+    for show in shows:
+        # checks if the venue has a show that hasn't happened yet
+        if show.show_date > dt:
+                return render(request, 'lmn/artists/artist_list_for_venue.html', {'venue': venue, 'shows': shows})
+            
+    # if there are no shows in the future, don't display the link to add a show and pass it the variable displayShowlink
+    return render(request, 'lmn/artists/artist_list_for_venue.html', {'venue': venue, 'shows': shows, 'dontshowLink': True})
+
+
 
 
 def venue_detail(request, venue_pk):

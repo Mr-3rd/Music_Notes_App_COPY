@@ -8,12 +8,25 @@ a {
   color: #18eef5;
 }
 
+#homepage-link {
+    color: inherit;
+    text-decoration: inherit;
+    font-size: 32px;
+    padding: 30px;
+}
+
+#homepage-link:hover {
+    color: #18eef5;
+    text-decoration: underline;
+}
+
 #add-new-show-link {
   font-size: large;
   color: violet;
 }
 
-#welcome-user-msg, #login-or-sign-up {
+#welcome-user-msg,
+#login-or-sign-up {
   position: absolute;
   right: 0px;
   padding-right: 10px;
@@ -24,4 +37,34 @@ a {
   border-radius: 5px;
   padding: 2px;
   margin: 2px;
+}
+
+/* Users uploaded photo size styles for both note detail and shows picture */
+#user-photo-upload {
+  width: 50%;
+  height: auto;
+}
+
+.display-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+
+.back-btn {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  color: #555;
+
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.back-btn:hover {
+  background-color: #e6e6e6;
 }

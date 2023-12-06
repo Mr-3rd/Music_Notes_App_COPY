@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('lmn.urls')),
 ]
+
+
+# If the app is running locally, (DEBUG is available only in dev env.) then add these media roots in addition to the url patterns. This allows for the app to recognize media file paths to target and render properly on client side (html pages)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

@@ -8,8 +8,18 @@ import re
 import datetime
 from datetime import timezone
 
+
 from lmn.models import Note, Show, Artist, Venue
+
 from django.contrib.auth.models import User
+
+# Simple upload file library allows to create a "in memory file" that behaves like a file type that would be uploaded. Can customize what type of upload it is (e.g name, content, content type)
+# https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
+from django.core.files.uploadedfile import SimpleUploadedFile
+# Using a simple generated image using pillow library
+from PIL import Image
+# Import IO for file manipulation
+import io
 
 
 class TestHomePage(TestCase):
@@ -21,7 +31,6 @@ class TestHomePage(TestCase):
 
 
 class TestEmptyViews(TestCase):
-
     """ Main views - the ones in the navigation menu """
 
     def test_with_no_artists_returns_empty_list(self):
@@ -38,7 +47,6 @@ class TestEmptyViews(TestCase):
 
 
 class TestArtistViews(TestCase):
-
     fixtures = ['testing_artists', 'testing_venues', 'testing_shows']
 
     def test_all_artists_displays_all_alphabetically(self):
@@ -78,7 +86,6 @@ class TestArtistViews(TestCase):
         self.assertEqual(len(response.context['artists']), 2)
 
     def test_artist_search_one_search_result(self):
-
         response = self.client.get(reverse('artist_list'), {'search_name': 'ACDC'})
         self.assertNotContains(response, 'REM')
         self.assertNotContains(response, 'Yes')
@@ -107,7 +114,6 @@ class TestArtistViews(TestCase):
         self.assertTemplateUsed(response, 'lmn/artists/artist_list_for_venue.html')
 
     def test_artist_detail(self):
-
         """ Artist 1 details displayed in correct template """
         # kwargs to fill in parts of url. Not get or post params
 
@@ -136,6 +142,7 @@ class TestArtistViews(TestCase):
         # From the fixture, show 2's "show_date": "2017-02-02T19:30:00-06:00"
         expected_date = datetime.datetime(2017, 2, 2, 19, 30, 0, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
+        
 
         # from the fixture, show 1's "show_date": "2017-01-02T17:30:00-00:00",
         self.assertEqual(show2.artist.name, 'REM')
@@ -148,15 +155,19 @@ class TestArtistViews(TestCase):
         url = reverse('venues_for_artist', kwargs={'artist_pk': 2})
         response = self.client.get(url)
         shows = list(response.context['shows'].all())
-        show1 = shows[0]
-        self.assertEqual(1, len(shows))
+        show1, show2 = shows[0], shows[1]
+        self.assertEqual(2, len(shows))
 
         # This show has "show_date": "2017-01-21T21:45:00-00:00",
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
-        expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
+        
+        expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-
+        
+        expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
+        self.assertEqual(show2.show_date, expected_date)
+        
         # Artist 3, no shows
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 3})
@@ -166,7 +177,6 @@ class TestArtistViews(TestCase):
 
 
 class TestVenues(TestCase):
-
     fixtures = ['testing_venues', 'testing_artists', 'testing_shows']
 
     def test_with_venues_displays_all_alphabetically(self):
@@ -256,13 +266,22 @@ class TestVenues(TestCase):
         url = reverse('artists_at_venue', kwargs={'venue_pk': 1})
         response = self.client.get(url)
         shows = list(response.context['shows'].all())
-        show1 = shows[0]
-        self.assertEqual(1, len(shows))
+        show1 , show2= shows[0], shows[1]
+        self.assertEqual(2, len(shows))
+
 
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
+        
+        self.assertEqual(show1.artist.name, 'ACDC')
+        self.assertEqual(show1.venue.name, 'First Avenue')
+        
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
+        self.assertEqual(show2.show_date, expected_date)
+        
+        expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
+
 
         # Venue 3 has not had any shows
 
@@ -294,7 +313,7 @@ class TestVenues(TestCase):
 
 class TestAddNoteUnauthentictedUser(TestCase):
     # Have to add artists and venues because of foreign key constrains in show
-    fixtures = ['testing_artists', 'testing_venues', 'testing_shows'] 
+    fixtures = ['testing_artists', 'testing_venues', 'testing_shows']
 
     def test_add_note_unauthenticated_user_redirects_to_login(self):
         response = self.client.get('/notes/add/1/', follow=True)  # Use reverse() if you can, but not required.
@@ -334,16 +353,16 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
         # nothing added to database
         # 2 test notes provided in fixture, should still be 2
-        self.assertEqual(Note.objects.count(), initial_note_count)   
+        self.assertEqual(Note.objects.count(), initial_note_count)
 
     def test_add_note_database_updated_correctly(self):
         initial_note_count = Note.objects.count()
 
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         response = self.client.post(
-            new_note_url, 
-            {'text': 'ok', 'title': 'blah blah'}, 
+            new_note_url,
+            {'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         # Verify note is in database
@@ -359,10 +378,10 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         self.assertEqual(now.date(), posted_date.date())  # TODO check time too
 
     def test_redirect_to_note_detail_after_save(self):
-        new_note_url = reverse('new_note', kwargs={'show_pk': 1})
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
         response = self.client.post(
-            new_note_url, 
-            {'text': 'ok', 'title': 'blah blah'}, 
+            new_note_url,
+            {'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         new_note = Note.objects.filter(text='ok', title='blah blah').first()
@@ -372,7 +391,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
 class TestUserProfile(TestCase):
     # Have to add artists and venues because of foreign key constrains in show
-    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes'] 
+    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes']
 
     # verify correct list of reviews for a user
     def test_user_profile_show_list_of_their_notes(self):
@@ -417,7 +436,7 @@ class TestUserProfile(TestCase):
 
 class TestNotes(TestCase):
     # Have to add Notes and Users and Show, and also artists and venues because of foreign key constrains in Show
-    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes'] 
+    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes']
 
     def test_latest_notes(self):
         response = self.client.get(reverse('latest_notes'))
@@ -463,15 +482,15 @@ class TestUserAuthentication(TestCase):
 
     def test_user_registration_logs_user_in(self):
         response = self.client.post(
-            reverse('register'), 
+            reverse('register'),
             {
-                'username': 'sam12345', 
-                'email': 'sam@sam.com', 
-                'password1': 'feRpj4w4pso3az', 
-                'password2': 'feRpj4w4pso3az', 
-                'first_name': 'sam', 
+                'username': 'sam12345',
+                'email': 'sam@sam.com',
+                'password1': 'feRpj4w4pso3az',
+                'password2': 'feRpj4w4pso3az',
+                'first_name': 'sam',
                 'last_name': 'sam'
-            }, 
+            },
             follow=True)
 
         # Assert user is logged in - one way to do it...
@@ -487,18 +506,18 @@ class TestUserAuthentication(TestCase):
         # TODO If user is browsing site, then registers, once they have registered, they should
         # be redirected to the last page they were at, not the homepage.
         response = self.client.post(
-            reverse('register'), 
+            reverse('register'),
             {
-                'username': 'sam12345', 
-                'email': 'sam@sam.com', 
-                'password1': 'feRpj4w4pso3az@1!2', 
-                'password2': 'feRpj4w4pso3az@1!2', 
-                'first_name': 'sam', 
+                'username': 'sam12345',
+                'email': 'sam@sam.com',
+                'password1': 'feRpj4w4pso3az@1!2',
+                'password2': 'feRpj4w4pso3az@1!2',
+                'first_name': 'sam',
                 'last_name': 'sam'
-            }, 
+            },
             follow=True)
         new_user = authenticate(username='sam12345', password='feRpj4w4pso3az@1!2')
-        self.assertRedirects(response, reverse('user_profile', kwargs={"user_pk": new_user.pk}))   
+        self.assertRedirects(response, reverse('user_profile', kwargs={"user_pk": new_user.pk}))
         self.assertContains(response, 'sam12345')  # page has user's username on it
 
 
@@ -520,6 +539,7 @@ class TestErrorViews(TestCase):
         # their profiles, or do other activities when it must be verified that the 
         # correct user is signed in (else 403) then this test can be written.
         pass 
+
 
 class TestShowlist(TestCase):
     
@@ -615,3 +635,157 @@ class TestShowDetail(TestCase):
         
         response = self.client.get(reverse('show_detail', kwargs={'show_pk': 100}))
         self.assertEqual(response.status_code, 404)
+
+class TestOneNotePerShow(TestCase):
+    
+    # fixure data
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
+
+    # user setup
+    def setUp(self):
+        user = User.objects.first()
+        self.client.force_login(user)
+        
+    # test that user can only create one note per show
+    def test_error_msg_for_more_than_one_note_per_show(self):
+        response = self.client.get(reverse('new_note', kwargs={'show_pk': 1}))
+        # response containts the error message
+        self.assertContains(response, 'You can only create one note per show')
+
+# Testing photo upload and redirecting feature after users upload a photo successfully 
+
+
+class TestPhotoUpload(TestCase):
+    # Need to create testing shows, artists,and venues to be able to create note and have a note id key.
+    # Fixtures used the same from above tests
+    fixtures = ['testing_users', 'testing_artists', 'testing_venues', 'testing_shows', 'testing_notes'] 
+
+    # SetUp method used from previous tests above
+    # This gets the first user from User model, and then bypasses a request to login into that user without the need to know the password of that user. 
+    def setUp(self):
+        # Log someone in first
+        user = User.objects.first()
+        self.client.force_login(user)
+
+    # This is to mimic a real file type to upload and the app only has a imagefield from the models where it only validates real image data that are accepted. So a random string or random binary data as a file will not pass the validation.
+    # Static methods: https://www.toppr.com/guides/python-guide/references/methods-and-functions/methods/built-in/staticmethod/python-staticmethod/#:~:text=Methods%20and%20Functions-,Python%20staticmethod(),the%20Python%20staticmethod()%20function. - Doesn't need self, just a helper function
+    @staticmethod
+    def generate_testing_image_to_use(name='test_image.jpg'):
+        # Understanding BytesIO()- My understanding, creates a file like data from string data. You can use it to manipulate binary data (images, audio,vids, etc) without making a physical file in system, instead just uses RAM.
+        # https://levelup.gitconnected.com/python-stringio-and-bytesio-compared-with-open-c0e99b9def31#:~:text=StringIO%20and%20BytesIO%20are%20methods,to%20mimic%20a%20normal%20file. 
+        # https://www.reddit.com/r/learnpython/comments/z9lfa7/class_bytes_vs_class_iobytesio/
+        buffer_file = io.BytesIO()
+
+        mock_image_creation = Image.new('RGB', (200, 200), color='grey')
+
+        # Saving the image into the file buffer as a JPEG
+        mock_image_creation.save(buffer_file, 'JPEG')
+
+        # Move cursor before reading the file to the first (start) of the buffer
+        buffer_file.seek(0)
+
+        # Returns a mimic mock image file type (The buffer reads the content of the mock image file into the simple file uploaded)
+        # https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
+        return SimpleUploadedFile(name, buffer_file.read(), content_type='image/jpeg')
+
+    # Test a valid photo upload to ensure the page redirects as expected when the upload and save is done.
+    def test_successful_photo_upload_and_redirects_to_note_detail_page(self):
+        # Mock image uses simple upload file library method and pillow image creation. Calling this function would create a real mock image data to send for the mock post request
+        mock_image = self.generate_testing_image_to_use()
+
+        # Mock form data to send to create a new note 
+        # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
+
+        # Response would redirect to the note_detail.html page after successful save and upload
+        response = self.client.post(
+            new_note_url, mock_form_data, follow=True
+        )
+
+        # Print the contents body of the response, should expect contents from note details 
+        # print('Response', response.content)
+
+        # Get first new note that was created
+        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+
+        # Assert that the response redirected to note detail page:
+        self.assertRedirects(response, reverse('note_detail', kwargs={
+                             'note_pk': new_note.pk}))
+
+        # Check if the response note_detail html page template was used
+        self.assertTemplateUsed(response, 'lmn/notes/note_detail.html')
+
+    # Test that the expected photo is returned when a page is loaded with notes
+    def test_expected_photo_is_returned_when_note_detail_page_is_loaded(self):
+        mock_image = self.generate_testing_image_to_use()
+
+        # Mock form data to send to create a new note 
+        # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3})
+
+        # Post req to send notes with uploaded photo to the new note url
+        upload_mock_image_response = self.client.post(
+            new_note_url, mock_form_data, follow=True
+        )
+
+        # First note retrieved
+        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+
+        # Fetch note detail page of that new note created
+        note_detail_url = reverse('note_detail', kwargs={'note_pk': new_note.pk})
+
+        # Check if the upload post requests responses with a redirect to new note created
+        self.assertRedirects(upload_mock_image_response, note_detail_url)
+
+        # A get request response of the note detail page directly
+        response_from_note_detail_url = self.client.get(note_detail_url)
+
+        # Simple check if note detail page was used
+        self.assertTemplateUsed(response_from_note_detail_url, 'lmn/notes/note_detail.html')
+
+        # Expect photo from note detail page is returned when a page is loaded with notes
+        # Checking to see if the note detail page response contains the photo url
+        self.assertContains(response_from_note_detail_url, new_note.photo.url)
+
+        # Checking the response
+        # print(response_from_note_detail_url.content)
+
+class TestnoNotesforFutureShows(TestCase):
+    #     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
+    
+    # <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/accounts/login/?next=/notes/add/1/">
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
+
+
+    def setUp(self): # login user 
+        user = User.objects.first()
+        self.client.force_login(user)
+
+    
+    def test_display_error_msg(self):
+        # note count we started with 3
+        initial_note_count = Note.objects.count()
+        
+        # url for adding a note to a past show
+        new_note_url = reverse('new_note', kwargs={'show_pk': 3}) 
+        
+        # for future
+        new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 
+        
+        # add a note for the show that has already happened
+        response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah'}, follow=True)
+        
+        # all should be 200 
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should increase by 1
+        
+        # for future show
+        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah'}) 
+        self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
+        self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
+        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1

@@ -10,11 +10,12 @@ from ..forms import NewNoteForm
 
 from django.utils import timezone
 
+
 @login_required
 def new_note(request, show_pk):
     """ Create a new note for a show. """
     show = get_object_or_404(Show, pk=show_pk)
-    
+
     # checks that a note for this show doesn't already exist
     if Note.objects.filter(user=request.user, show=show).exists():
         form = NewNoteForm()  # empty form
@@ -25,7 +26,39 @@ def new_note(request, show_pk):
             'error': 'You can only create one note per show', 
             "hide_button": True
         })
-        
+
+    # checks that a note for this show doesn't already exist
+    if Note.objects.filter(user=request.user, show=show).exists():
+        form = NewNoteForm()  # empty form
+        # if yes then take them render the form and also an error message and hide the button
+        # render the form with an error message and hide the button and show the update button 
+        return render(request, 'lmn/notes/new_note.html', {
+            'form': form, 'show': show, 
+            'error': 'You can only create one note per show', 
+            "hide_button": True
+        })
+
+    # checks that a note for this show doesn't already exist
+    if Note.objects.filter(user=request.user, show=show).exists():
+        form = NewNoteForm()  # empty form
+        # if yes then take them render the form and also an error message and hide the button
+        # render the form with an error message and hide the button and show the update button 
+        return render(request, 'lmn/notes/new_note.html', {
+            'form': form, 'show': show, 
+            'error': 'You can only create one note per show', 
+            "hide_button": True
+        })
+
+    # checks that a note for this show doesn't already exist
+    if Note.objects.filter(user=request.user, show=show).exists():
+        form = NewNoteForm()  # empty form
+        # if yes then take them render the form and also an error message and hide the button
+        # render the form with an error message and hide the button and show the update button 
+        return render(request, 'lmn/notes/new_note.html', {
+            'form': form, 'show': show, 
+            'error': 'You can only create one note per show', 
+            "hide_button": True
+        })
 
     if request.method == 'POST':
         form = NewNoteForm(request.POST, request.FILES)
@@ -39,13 +72,12 @@ def new_note(request, show_pk):
             # if an error occurs, show the error message 
             except ValidationError as e:
                 # Show error message if the show date is in the future
-                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', { 'error': e}))
+                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', {'error': e}))
 
     else:
         form = NewNoteForm()
 
     return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show})
-
 
 
 def latest_notes(request):
@@ -58,9 +90,9 @@ def notes_for_show(request, show_pk):
     """ Get notes for one show, most recent first. """
     show = get_object_or_404(Show, pk=show_pk)  
     notes = Note.objects.filter(show=show_pk).order_by('-posted_date')
-    
+
     dt = timezone.now()
-    
+
     if show.show_date > dt:
         # Show error message if the show date is in the future, we also wanna show the show details but just not the notes
         return HttpResponseForbidden(render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'error': 'You cannot add a note for a show that has not happened yet.'}))
@@ -70,4 +102,15 @@ def notes_for_show(request, show_pk):
 def note_detail(request, note_pk):
     """ Display one note. """
     note = get_object_or_404(Note, pk=note_pk)
+
     return render(request, 'lmn/notes/note_detail.html', {'note': note})
+
+
+# Delete feature will be available withing that note details
+
+def delete_note(request, note_pk):
+    note = get_object_or_404(Note, pk=note_pk)
+    # If users is requests want to delete the note, delete that note they are sending in with that note primary key, and then redirect them back to the latest note list page
+    if request.method == 'POST':
+        note.delete()
+    return redirect('latest_notes')

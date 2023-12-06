@@ -9,10 +9,10 @@
   <!-- Check if any photo is available from users -->
   <p id="note-photo">Photo:</p>
   {% if note.photo %}
-  <img id="user-photo-upload" src="{{note.photo.url}}" alt="Note Detail Photo" />
-  <!-- else display no photo's uploaded -->
+    <img id="user-photo-upload" src="{{note.photo.url}}" alt="Note Detail Photo" />
+    <!-- else display no photo's uploaded -->
   {% else %}
-  <p id="no_photo_uploaded_text">No Photo uploaded</p>
+    <p id="no_photo_uploaded_text">No Photo uploaded</p>
   {% endif %}
 
   <!-- Delete Button Form -->

@@ -693,6 +693,7 @@ class TestnoNotesforFutureShows(TestCase):
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1
         
 class TesteditNoteRequest(TestCase):
+    """ Test edit note request, with valid and invalid data """
     
     fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
     
@@ -722,3 +723,14 @@ class TesteditNoteRequest(TestCase):
         
         # check the content
         self.assertContains(updated_note, 'testing_1')
+        
+        # now to test with fake data and note
+        note_url = self.client.get(reverse('edit_note', kwargs={'show_pk': 21321}))
+        
+        # should be 404
+        self.assertEqual(note_url.status_code, 404)
+        
+        # check the template we are in should be the 404 page
+        self.assertTemplateUsed('404.html')
+        
+        

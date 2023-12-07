@@ -47,7 +47,7 @@ def new_note(request, show_pk):
 
 @login_required
 def edit_note(request, show_pk):
-    """ Edit a note for a show. """
+    """ Edit a note for a show. each show should be having only one note instance per user"""
     show = get_object_or_404(Show, pk=show_pk) # get the show
     note = get_object_or_404(Note, show=show, user=request.user) # get the note for the show and user
     

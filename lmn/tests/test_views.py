@@ -140,7 +140,6 @@ class TestArtistViews(TestCase):
         # From the fixture, show 2's "show_date": "2017-02-02T19:30:00-06:00"
         expected_date = datetime.datetime(2017, 2, 2, 19, 30, 0, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-        
 
         # from the fixture, show 1's "show_date": "2017-01-02T17:30:00-00:00",
         self.assertEqual(show2.artist.name, 'REM')
@@ -159,13 +158,13 @@ class TestArtistViews(TestCase):
         # This show has "show_date": "2017-01-21T21:45:00-00:00",
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
-        
+
         expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-        
+
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
         self.assertEqual(show2.show_date, expected_date)
-        
+
         # Artist 3, no shows
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 3})
@@ -264,22 +263,20 @@ class TestVenues(TestCase):
         url = reverse('artists_at_venue', kwargs={'venue_pk': 1})
         response = self.client.get(url)
         shows = list(response.context['shows'].all())
-        show1 , show2= shows[0], shows[1]
+        show1, show2 = shows[0], shows[1]
         self.assertEqual(2, len(shows))
 
+        self.assertEqual(show1.artist.name, 'ACDC')
+        self.assertEqual(show1.venue.name, 'First Avenue')
 
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
-        
-        self.assertEqual(show1.artist.name, 'ACDC')
-        self.assertEqual(show1.venue.name, 'First Avenue')
-        
+
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
         self.assertEqual(show2.show_date, expected_date)
-        
+
         expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-
 
         # Venue 3 has not had any shows
 
@@ -538,8 +535,9 @@ class TestErrorViews(TestCase):
         # correct user is signed in (else 403) then this test can be written.
         pass 
 
+
 class TestOneNotePerShow(TestCase):
-    
+
     # fixure data
     fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
 
@@ -547,7 +545,7 @@ class TestOneNotePerShow(TestCase):
     def setUp(self):
         user = User.objects.first()
         self.client.force_login(user)
-        
+
     # test that user can only create one note per show
     def test_error_msg_for_more_than_one_note_per_show(self):
         response = self.client.get(reverse('new_note', kwargs={'show_pk': 1}))
@@ -656,38 +654,87 @@ class TestPhotoUpload(TestCase):
         # Checking the response
         # print(response_from_note_detail_url.content)
 
+
 class TestnoNotesforFutureShows(TestCase):
     #     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
-    
+
     # <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/accounts/login/?next=/notes/add/1/">
     fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
 
-
-    def setUp(self): # login user 
+    def setUp(self):  # login user 
         user = User.objects.first()
         self.client.force_login(user)
 
-    
     def test_display_error_msg(self):
         # note count we started with 3
         initial_note_count = Note.objects.count()
-        
+
         # url for adding a note to a past show
         new_note_url = reverse('new_note', kwargs={'show_pk': 3}) 
-        
+
         # for future
         new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 
-        
+
         # add a note for the show that has already happened
         response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah'}, follow=True)
-        
+
         # all should be 200 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should increase by 1
-        
+
         # for future show
         response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah'}) 
         self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
-        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400)
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1
+
+
+class TestNoteDeletion(TestCase):
+    fixtures = ['testing_artists', 'testing_venues', 'testing_shows']
+
+    def setUp(self):
+        # Create 2 new users to test deletion scenarios for unauthorized and authorized
+        self.mockUser1 = User.objects.create_user(
+            username='MockUser1', password='TestingPass1', email='MockUserMailing1@gmail.com')
+        self.mockUser2 = User.objects.create_user(
+            username='MockUsers2', password='TestingPass2', email='MockUserMailing2@gmail.com')
+
+        show = Show.objects.first()
+
+        # New Note instance from mock user 1
+        self.note = Note.objects.create(user=self.mockUser1, show=show, text='Testing note deletion', title='blah blah')
+
+    # Testing successful note deletion from that authorized owner of that note
+    def test_delete_that_note_from_authorized_owner(self):
+        # Use and login user 1 for owner
+        self.client.login(username='MockUser1', password='TestingPass1')
+
+        # Post request to delete
+        response = self.client.post(reverse('delete_note', kwargs={'note_pk': self.note.pk}))
+
+        # After response, check if the note does not exists after the client's post req to delete
+        self.assertFalse(Note.objects.filter(pk=self.note.pk).exists())
+
+        # In the delete function in views_note, it would redirect you after deletion
+        self.assertRedirects(response, reverse('latest_notes'))
+
+    def test_delete_note_by_unauthorized_owner(self):
+
+        # Login user 2 
+        self.client.login(username='MockUser2', password='TestingPass2')
+
+        # User 2 will make a post request to delete the note
+        response = self.client.post(reverse('delete_note', kwargs={'note_pk': self.note.pk}), follow=True)
+
+        print(response.content)
+
+        # Url redirection: accounts/login/?next=/notes/detail/delete/1/
+        expected_url_redirected_to_login = reverse('login') + '?next=' + \
+            reverse('delete_note', kwargs={'note_pk': self.note.pk})
+        # Assert that note should still exists
+        self.assertTrue(Note.objects.filter(pk=self.note.pk).exists())
+
+        # Assert that the Response should be redirected to login page
+        self.assertRedirects(response, expected_url_redirected_to_login, status_code=302, target_status_code=200)

@@ -10,6 +10,7 @@ from datetime import timezone
 
 from lmn.models import Artist, Note, Show, Venue
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Simple upload file library allows to create a "in memory file" that behaves like a file type that would be uploaded. Can customize what type of upload it is (e.g name, content, content type)
 # https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
@@ -18,6 +19,9 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image
 # Import IO for file manipulation
 import io
+
+# Default storage import
+from django.core.files.storage import default_storage
 
 
 class TestHomePage(TestCase):
@@ -692,7 +696,7 @@ class TestnoNotesforFutureShows(TestCase):
 
 
 class TestNoteDeletion(TestCase):
-    fixtures = ['testing_artists', 'testing_venues', 'testing_shows']
+    fixtures = ['testing_artists', 'testing_venues', 'testing_shows', 'testing_users']
 
     def setUp(self):
         # Create 2 new users to test deletion scenarios for unauthorized and authorized
@@ -720,6 +724,7 @@ class TestNoteDeletion(TestCase):
         # In the delete function in views_note, it would redirect you after deletion
         self.assertRedirects(response, reverse('latest_notes'))
 
+    # Testing note deletion for unauthorized owner
     def test_delete_note_by_unauthorized_owner(self):
 
         # Login user 2 
@@ -738,3 +743,69 @@ class TestNoteDeletion(TestCase):
 
         # Assert that the Response should be redirected to login page
         self.assertRedirects(response, expected_url_redirected_to_login, status_code=302, target_status_code=200)
+
+
+# Test after note deletion, the photo is gone from media file as well
+class TestNoteDeletionAndPhotoIsDeletedInMediaAsWell(TestCase):
+    def setUp(self):
+        self.mockUser1 = User.objects.create_user(
+            username='MockUser1', password='TestingPass1', email='MockUserMailing1@gmail.com')
+
+        self.client.force_login(self.mockUser1)
+
+        # Creating a new show
+        # Create a whole new user, show, venue, artist, for this test because there can't be duplicate notes per show
+        mock_artist = Artist.objects.create(name='Mock_Artist_for_testing')
+
+        mock_venue = Venue.objects.create(name='Example_Venue_For_Test', city='Example_City', state='Example_State')
+
+        self.mock_show = Show.objects.create(show_date=timezone.now(), artist=mock_artist, venue=mock_venue)
+
+    # This is to mimic a real file type to upload and the app only has a imagefield from the models where it only validates real image data that are accepted. So a random string or random binary data as a file will not pass the validation.
+    @staticmethod
+    def generate_testing_image_to_use(name='test_image.jpg'):
+        # Understanding BytesIO()- My understanding, creates a file like data from string data. You can use it to manipulate binary data (images, audio,vids, etc) without making a physical file in system, instead just uses RAM.
+        # https://levelup.gitconnected.com/python-stringio-and-bytesio-compared-with-open-c0e99b9def31#:~:text=StringIO%20and%20BytesIO%20are%20methods,to%20mimic%20a%20normal%20file. 
+        # https://www.reddit.com/r/learnpython/comments/z9lfa7/class_bytes_vs_class_iobytesio/
+        buffer_file = io.BytesIO()
+
+        mock_image_creation = Image.new('RGB', (200, 200), color='grey')
+
+        # Saving the image into the file buffer as a JPEG
+        mock_image_creation.save(buffer_file, 'JPEG')
+
+        # Move cursor before reading the file to the first (start) of the buffer
+        buffer_file.seek(0)
+
+        # Returns a mimic mock image file type (The buffer reads the content of the mock image file into the simple file uploaded)
+        # https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
+        return SimpleUploadedFile(name, buffer_file.read(), content_type='image/jpeg')
+
+    # Testing out the feature where after a note has been deleted, the photo is deleted in the default storage as well
+    def test_successful_note_deletion_also_deletes_photo_entirely(self):
+        # Create note w/ photo upload
+        # Mock image uses simple upload file library method and pillow image creation. Calling this function would create a real mock image data to send for the mock post request
+        mock_image = self.generate_testing_image_to_use()
+
+        # Mock form data to send to create a new note 
+        # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+
+        new_note_url = reverse('new_note', kwargs={'show_pk': self.mock_show.pk})
+
+        # Response would redirect to the note_detail.html page after successful save and upload
+        response = self.client.post(
+            new_note_url, mock_form_data, follow=True
+        )
+
+        # Get first new note that was created
+        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+
+        # Delete note url
+        delete_note_url = reverse('delete_note', kwargs={'note_pk': new_note.pk})
+
+        # Making the post to delete the note with given context and url
+        self.client.post(delete_note_url)
+
+        # Photo should be gone from storage(Media folder/user_images)
+        self.assertFalse(default_storage.exists(new_note.photo.name))

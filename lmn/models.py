@@ -64,7 +64,7 @@ class Note(models.Model):
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
-    rating = models.IntegerField(default=1, choices=STARS, validators=[MinValueValidator(1), MaxValueValidator(5)])
+    rating = models.IntegerField(default=3, choices=STARS, validators=[MinValueValidator(1), MaxValueValidator(5)])
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
 
     # Image field to upload photos in the notes section from the main branch

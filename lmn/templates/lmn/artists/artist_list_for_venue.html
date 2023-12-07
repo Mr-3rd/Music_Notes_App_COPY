@@ -8,7 +8,9 @@
 
     <div class="show" id="show_{{ show.pk }}">
       <p>{{ show.artist.name}} on {{ show.show_date }}.
-        <a href="{% url 'notes_for_show' show_pk=show.pk %}">See notes for this show, and add your own</a>
+        {% if dontshowLink%}
+          <a href="{% url 'notes_for_show' show_pk=show.pk %}">See notes for this show, and add your own</a>
+        {% endif %}
       </p>
     </div>
 

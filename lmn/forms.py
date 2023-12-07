@@ -4,6 +4,8 @@ from .models import Note
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
+from PIL import Image  # Used to open image and validate image format
+from io import BytesIO
 
 
 class VenueSearchForm(forms.Form):
@@ -17,7 +19,36 @@ class ArtistSearchForm(forms.Form):
 class NewNoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ('title', 'text', 'rating')
+        fields = ('title', 'text', 'photo', 'rating')
+
+    # Check if the photo uploaded is valid
+    def clean_photo(self):
+        photo = self.cleaned_data.get('photo')
+
+        # print('photo:', photo) # Debug print will show photo name and extension or it will say 'None'
+
+        # If there is a photo uploaded then check if the file is a valid image media upload  from users
+        if photo:
+
+            if not photo.content_type.startswith('image/'):
+                raise ValidationError('Invalid Photo Upload! This upload was not a image upload!')
+            try:
+                # Open photo file
+                users_image = Image.open(photo)
+
+                # verify if image loads properly
+                # https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.verify
+                users_image.verify()
+
+            except Exception:
+                raise ValidationError('Invalid Photo Upload! This upload was not a image upload!')
+
+        return photo
+
+class ShowSearchForm(forms.Form):
+    # This is the search form which is used in show_list.html
+    search_artist = forms.CharField(label='Artist Name', max_length=200, required=False)
+    search_venue = forms.CharField(label='Venue Name', max_length=200, required=False)
 
 
 class UserRegistrationForm(UserCreationForm):

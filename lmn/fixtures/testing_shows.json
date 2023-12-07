@@ -25,5 +25,14 @@
       "artist":2,
       "venue":1
     }
+  },
+  {
+    "model": "lmn.show",
+    "pk":4,
+    "fields":{
+      "show_date": "2024-02-02T19:30:00-00:00",
+      "artist":2,
+      "venue":1
+    }
   }
 ]

@@ -2,14 +2,22 @@ from django.shortcuts import render, get_object_or_404
 
 from ..models import Artist, Show
 from ..forms import ArtistSearchForm
+from django.utils import timezone
 
 
 def venues_for_artist(request, artist_pk):
     """ Get all of the venues where this artist has played a show """
     shows = Show.objects.filter(artist=artist_pk).order_by('-show_date')  # most recent first
     artist = Artist.objects.get(pk=artist_pk)
-    return render(request, 'lmn/venues/venue_list_for_artist.html', {'artist': artist, 'shows': shows})
+    dt = timezone.now()
+    
+    # loop through the shows
+    for show in shows:
+        # checks if the venue has a show that hasn't happened yet
+        if show.show_date > dt:
+                return render(request, 'lmn/venues/venue_list_for_artist.html', {'artist': artist, 'shows': shows})
 
+    return render(request, 'lmn/venues/venue_list_for_artist.html', {'artist': artist, 'shows': shows, 'dontshowLink': True})
 
 def artist_list(request):
     """ Get a list of all artists, ordered by name.

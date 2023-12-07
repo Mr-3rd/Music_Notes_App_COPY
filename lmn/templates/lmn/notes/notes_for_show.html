@@ -1,32 +1,38 @@
 {% extends 'lmn/base.html' %}
 
 {% block content %}
-
-  <h2 id="show-title">Notes for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date }}</h2>
-
-  <a id="add-new-show-link" href="{% url 'new_note' show_pk=show.pk %}">Add your own notes for this show</a>
-
-  {% for note in notes %}
-
-    <div id="note_{{ note.pk }}">
-      <p class="note-info">Posted on: {{ note.posted_date }}</p>
-
-      <p>Posted by: 
-        <a class="user" href="{% url 'user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a>
-      </p>
-
-      <p class="note-text">{{ note.text|truncatechars:100 }}</p> 
-
-      <a href="{% url 'note_detail' note_pk=note.pk %}">Note details</a>
+  <h2 id="show-title">
+    Notes for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date }}
+  </h2>
+  {% if error %}
+    <div class="display-box">
+      <p class="error">{{ error }}</p><a class="back-btn" href="{% url 'venue_list' %}">Back</a> 
     </div>
-
-    <hr>
-
-  {% empty %}
-
-    <p>No notes.</p>
-
-  {% endfor %}
-
-
+  {% else %}
+    <a id="add-new-show-link" href="{% url 'new_note' show_pk=show.pk %}">Add your own notes for this show</a>
+    {% for note in notes %}
+      <div id="note_{{ note.pk }}">
+        <p class="note-info">Posted on: {{ note.posted_date }}</p>
+        <p>Posted by: <a class="user" href="{% url 'user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a></p>
+        <p class="note-text">{{ note.text|truncatechars:100 }}</p>
+        <!-- Photo of the show if users choose to upload -->
+        <div class="note-photo">
+          <p id="Photo_title">Photo:</p>
+          <div class="show_photo">
+            {% if note.photo %}
+              <!--If there is a photo that can be rendered from user's photo upload, extract the url from the uploaded photo, then use that photo url for the <img/> tag to display user's photo-->
+              <img id="user-photo-upload" src="{{note.photo.url}}" alt="Photo of users visited show">
+              <!-- If no photo show, then display no photo uploaded -->
+            {% else %}
+              <p id="No_photo_text">No Photo Uploaded for show!</p>
+            {% endif %}
+          </div>
+        </div>
+        <a href="{% url 'note_detail' note_pk=note.pk %}">Note details</a>
+      </div>
+      <hr/>
+    {% empty %}
+      <p>No notes.</p>
+    {% endfor %} 
+  {% endif%}
 {% endblock %}

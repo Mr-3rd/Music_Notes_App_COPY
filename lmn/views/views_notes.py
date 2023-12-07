@@ -45,6 +45,7 @@ def new_note(request, show_pk):
 
     return render(request, 'lmn/notes/new_note.html', {'form': form, 'show': show})
 
+@login_required
 def edit_note(request, show_pk):
     """ Edit a note for a show. """
     show = get_object_or_404(Show, pk=show_pk) # get the show
@@ -79,8 +80,9 @@ def notes_for_show(request, show_pk):
     
     dt = timezone.now()
     
-    if Note.objects.filter(user=request.user, show=show).exists(): # if the user has already created a note for this show instead of showing '"Add your own notes for this show" show "edit note" button'
-        return render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'notes': notes, 'hide_button': True})
+    if request.user.is_authenticated: # we only wanna shows this to user if logged 
+         if Note.objects.filter(user=request.user, show=show).exists(): # if the user has already created a note for this show instead of showing '"Add your own notes for this show" show "edit note" button'
+            return render(request, 'lmn/notes/notes_for_show.html', {'show': show, 'notes': notes, 'hide_button': True})
             
     if show.show_date > dt:
         # Show error message if the show date is in the future, we also wanna show the show details but just not the notes

@@ -691,3 +691,34 @@ class TestnoNotesforFutureShows(TestCase):
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
         self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1
+        
+class TesteditNoteRequest(TestCase):
+    
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
+    
+    # login user 
+    def setUp(self):
+        user = User.objects.first()
+        self.client.force_login(user)
+    
+    def test_editing_note(self):
+        
+        # get an existing note from the fixture data
+        note_url = self.client.get(reverse('edit_note', kwargs={'show_pk': 1}))
+        
+        # should be 200
+        self.assertEqual(note_url.status_code, 200)
+        
+        self.assertTemplateUsed('lmn/notes/edit_note.html')
+        
+        # update the note with new data and follow to the updated note
+        updated_note = self.client.post(reverse('edit_note', kwargs={'show_pk': 1}), {'text': 'testing_1', 'title': 'blah blah'}, follow=True) # follow set to true because it will take you to the updated note in detail_note
+        
+        # should be 200
+        self.assertEqual(updated_note.status_code, 200)
+        
+        # check the template we are in should be the note detail page
+        self.assertTemplateUsed('lmn/notes/note_detail.html')
+        
+        # check the content
+        self.assertContains(updated_note, 'testing_1')

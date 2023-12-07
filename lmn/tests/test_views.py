@@ -705,6 +705,7 @@ class TestNoteDeletion(TestCase):
         self.mockUser2 = User.objects.create_user(
             username='MockUsers2', password='TestingPass2', email='MockUserMailing2@gmail.com')
 
+        # Grab the first show object
         show = Show.objects.first()
 
         # New Note instance from mock user 1
@@ -791,6 +792,7 @@ class TestNoteDeletionAndPhotoIsDeletedInMediaAsWell(TestCase):
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
         mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
 
+        # new note creation
         new_note_url = reverse('new_note', kwargs={'show_pk': self.mock_show.pk})
 
         # Response would redirect to the note_detail.html page after successful save and upload

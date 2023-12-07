@@ -4,6 +4,8 @@
     {{ note.show.artist.name }} at {{ note.show.venue.name }} by
     <a href="{% url 'user_profile' user_pk=note.user.pk %}">{{ note.user.username }}</a>
   </h2>
+
+  <h3 id="note-rating">{{ note.get_rating_display }}</h3>
   <p id="note-title"><b>{{ note.title}}</b></p>
   <p id="note-text">{{ note.text }}</p>
   <!-- Check if any photo is available from users -->

@@ -58,7 +58,7 @@ class NewNoteFormTests(TestCase):
         self.assertFalse(form.is_valid())
 
     def test_ok_title_and_length_is_valid(self):
-        form_data = {'title': 'blah blah', 'text': 'blah, blah, blah.'}
+        form_data = {'rating': 5, 'title': 'blah blah', 'text': 'blah, blah, blah.'}
         form = NewNoteForm(form_data)
         self.assertTrue(form.is_valid())
 
@@ -99,7 +99,7 @@ class NewNoteFormTests(TestCase):
 
         # Mock form data to send to NewNoteForm object
         # Mock Data taken from above tests, just added photo section as well
-        form_data_with_photo_upload = {'title': 'blah blah', 'text': 'blah, blah, blah.'}
+        form_data_with_photo_upload = {'title': 'blah blah', 'text': 'blah, blah, blah.', 'rating': 5}
 
         # Attached files to the form data to send, I am not sure why we need to separate data and files, but before it would fail where files is not properly attached to the form data for the new note form object.
         files = {'photo': mock_image}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 
@@ -48,12 +49,22 @@ class Show(models.Model):
 
 class Note(models.Model):
     """ One User's opinion of one Show. """
+
+    STARS = (
+        (1, '1 Star'),
+        (2, '2 Stars'),
+        (3, '3 Stars'),
+        (4, '4 Stars'),
+        (5, '5 Stars')
+    )
+
     # show = models.ForeignKey(Show, blank=False, on_delete=models.CASCADE, limit_choices_to={'show_date__lt': timezone.now()})
 
     show = models.ForeignKey(Show, blank=False, on_delete=models.CASCADE)
     user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
+    rating = models.IntegerField(default=3, choices=STARS, validators=[MinValueValidator(1), MaxValueValidator(5)])
     posted_date = models.DateTimeField(auto_now_add=True, blank=False)
 
     # Image field to upload photos in the notes section from the main branch
@@ -75,5 +86,5 @@ class Note(models.Model):
             # If there is a photo, get the photo url
             photo_str = self.photo.url
 
-        return f'User: {self.user} Show: {self.show} Note title: {self.title} \
-        Text: {self.text} Posted on: {self.posted_date} Photo {photo_str}'
+        return (f'User: {self.user} Show: {self.show} Note title: {self.title} \ '
+                f'Text: {self.text} Posted on: {self.posted_date} Rating: {self.rating} Photo: {photo_str}')

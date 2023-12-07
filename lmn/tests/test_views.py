@@ -361,12 +361,12 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         response = self.client.post(
-            new_note_url,
-            {'text': 'ok', 'title': 'blah blah'},
+            new_note_url, 
+            {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         # Verify note is in database
-        new_note_query = Note.objects.filter(text='ok', title='blah blah')
+        new_note_query = Note.objects.filter(rating=5, text='ok', title='blah blah')
         self.assertEqual(new_note_query.count(), 1)
 
         # And one more note in DB than before
@@ -380,11 +380,11 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
     def test_redirect_to_note_detail_after_save(self):
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
         response = self.client.post(
-            new_note_url,
-            {'text': 'ok', 'title': 'blah blah'},
+            new_note_url, 
+            {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(rating=5, text='ok', title='blah blah').first()
 
         self.assertRedirects(response, reverse('note_detail', kwargs={'note_pk': new_note.pk}))
 
@@ -695,7 +695,7 @@ class TestPhotoUpload(TestCase):
 
         # Mock form data to send to create a new note 
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
-        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'rating': 5, 'photo': mock_image}
 
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
@@ -708,7 +708,7 @@ class TestPhotoUpload(TestCase):
         # print('Response', response.content)
 
         # Get first new note that was created
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
 
         # Assert that the response redirected to note detail page:
         self.assertRedirects(response, reverse('note_detail', kwargs={
@@ -723,7 +723,7 @@ class TestPhotoUpload(TestCase):
 
         # Mock form data to send to create a new note 
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
-        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'rating': 5, 'photo': mock_image}
 
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
@@ -733,7 +733,7 @@ class TestPhotoUpload(TestCase):
         )
 
         # First note retrieved
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
 
         # Fetch note detail page of that new note created
         note_detail_url = reverse('note_detail', kwargs={'note_pk': new_note.pk})
@@ -777,14 +777,14 @@ class TestnoNotesforFutureShows(TestCase):
         new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 
         
         # add a note for the show that has already happened
-        response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah'}, follow=True)
+        response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah', 'rating': 5}, follow=True)
         
         # all should be 200 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should increase by 1
         
         # for future show
-        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah'}) 
+        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah', 'rating': 5})
         self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
         self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out

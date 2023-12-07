@@ -15,11 +15,15 @@
     <p id="no_photo_uploaded_text">No Photo uploaded</p>
   {% endif %}
 
+  <!-- If the correct user is authenticated and login, then show that delete button for that note detail -->
+  {% if user.is_authenticated and note.user == user %}
   <!-- Delete Button Form -->
   <form action="{% url 'delete_note' note_pk=note.pk %}" method="POST">
     {% csrf_token %}
     <input type="submit" value="Delete" onclick="return deleteConfirm()" />
   </form>
+
+  {% endif %}
 
   <!-- When users click the delete button, they will be shown a confirmation prompt to confirm deletion. If users confirms to delete it, then it will return true and continue to send form request to delete. Else if cancel, then returns false, and the note is not deleted. -->
   <script>

@@ -78,7 +78,18 @@ def note_detail(request, note_pk):
 @login_required
 def delete_note(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)
-    # If users is requests want to delete the note, delete that note they are sending in with that note primary key, and then redirect them back to the latest note list page
+
+    # Check if current user is the owner of those notes they are about to delete
+    # If the user that is requesting is not the same as the holders off those notes, give them a response forbidden
+    if request.user != note.user:
+        return HttpResponseForbidden('You are unauthorized to delete this note!')
+
+    # If the correct authorized user is requesting a deletion of the note, delete that note they are sending in with that note primary key, and then redirect them back to the latest note list page
     if request.method == 'POST':
-        note.delete()
+        if request.user == note.user:
+            # Delete that note
+            note.delete()
+            # Redirect them to the latest notes
+            return redirect('latest_notes')
+
     return redirect('latest_notes')

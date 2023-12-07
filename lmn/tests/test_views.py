@@ -728,7 +728,7 @@ class TestNoteDeletion(TestCase):
         # User 2 will make a post request to delete the note
         response = self.client.post(reverse('delete_note', kwargs={'note_pk': self.note.pk}), follow=True)
 
-        print(response.content)
+        # print(response.content)
 
         # Url redirection: accounts/login/?next=/notes/detail/delete/1/
         expected_url_redirected_to_login = reverse('login') + '?next=' + \

@@ -27,39 +27,6 @@ def new_note(request, show_pk):
             "hide_button": True
         })
 
-    # checks that a note for this show doesn't already exist
-    if Note.objects.filter(user=request.user, show=show).exists():
-        form = NewNoteForm()  # empty form
-        # if yes then take them render the form and also an error message and hide the button
-        # render the form with an error message and hide the button and show the update button 
-        return render(request, 'lmn/notes/new_note.html', {
-            'form': form, 'show': show, 
-            'error': 'You can only create one note per show', 
-            "hide_button": True
-        })
-
-    # checks that a note for this show doesn't already exist
-    if Note.objects.filter(user=request.user, show=show).exists():
-        form = NewNoteForm()  # empty form
-        # if yes then take them render the form and also an error message and hide the button
-        # render the form with an error message and hide the button and show the update button 
-        return render(request, 'lmn/notes/new_note.html', {
-            'form': form, 'show': show, 
-            'error': 'You can only create one note per show', 
-            "hide_button": True
-        })
-
-    # checks that a note for this show doesn't already exist
-    if Note.objects.filter(user=request.user, show=show).exists():
-        form = NewNoteForm()  # empty form
-        # if yes then take them render the form and also an error message and hide the button
-        # render the form with an error message and hide the button and show the update button 
-        return render(request, 'lmn/notes/new_note.html', {
-            'form': form, 'show': show, 
-            'error': 'You can only create one note per show', 
-            "hide_button": True
-        })
-
     if request.method == 'POST':
         form = NewNoteForm(request.POST, request.FILES)
         if form.is_valid():
@@ -106,8 +73,8 @@ def note_detail(request, note_pk):
     return render(request, 'lmn/notes/note_detail.html', {'note': note})
 
 
-# Delete feature will be available withing that note details
-
+# Delete feature will be available within that note details
+# When a non login users tries to delete, it will redirect them to the login section
 @login_required
 def delete_note(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)

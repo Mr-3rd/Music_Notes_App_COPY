@@ -542,12 +542,10 @@ class TestErrorViews(TestCase):
         pass 
 
 
-
-
 class TestShowlist(TestCase):
-    
+
     def test_all_shows_order_by_date(self):
-        
+
         # dates dict
         dates = [
             datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc),
@@ -564,7 +562,7 @@ class TestShowlist(TestCase):
             artist = Artist.objects.create(name=f'artist_{i}')
             show = Show.objects.create(show_date=date, artist=artist, venue=venue)
             shows.append(show)
-        
+
         # reverse the list of shows so that it's in an descending order
         expected_order = list(reversed(shows))
 
@@ -573,69 +571,73 @@ class TestShowlist(TestCase):
 
         # check that the shows are in the correct order
         self.assertEqual(shows_context, expected_order)
-        
+
     def test_no_shows_found(self):
-        
+
         response = self.client.get(reverse('show_list'))
         show_in_template = response.context['shows']
-        
+
         self.assertContains(response, 'No shows found')
         self.assertEquals(0, len(show_in_template))
-        
+
     def test_search_match_found(self):
-            
+
         # create a venue, artist, and show
         venue = Venue.objects.create(name='venue', city='city', state='MN')
         artist = Artist.objects.create(name='artist')
-        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
-            
+        show = Show.objects.create(show_date=datetime.datetime(
+            2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+
         # search for the show by artist name
         response = self.client.get(reverse('show_list'), {'search_artist': 'artist'})
         shows = list(response.context['shows'])
-            
+
         # check that the show is in the search results
         self.assertEqual(shows[0], show)
-            
+
         # search for the show by venue name
         response = self.client.get(reverse('show_list'), {'search_venue': 'venue'})
         shows = list(response.context['shows'])
-            
+
         self.assertEqual(shows[0], show)
-            
+
     def test_search_match_not_found(self):
-            
+
         venue = Venue.objects.create(name='venue', city='city', state='MN')
         artist = Artist.objects.create(name='artist')
-        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
-            
+        show = Show.objects.create(show_date=datetime.datetime(
+            2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+
         # search for the show by artist name
         response = self.client.get(reverse('show_list'), {'search_artist': 'artist2'})
         shows = list(response.context['shows'])
 
-        self.assertEqual(shows, []) # if not in the results, the list will be empty
-            
+        self.assertEqual(shows, [])  # if not in the results, the list will be empty
+
         # search for the show by venue name
         response = self.client.get(reverse('show_list'), {'search_venue': 'venue2'})
         shows = list(response.context['shows'])
-            
+
         self.assertEqual(shows, [])
 
+
 class TestShowDetail(TestCase):
-    
+
     def test_show_detail_exists(self):
-        
+
         venue = Venue.objects.create(name='venue', city='city', state='MN')
         artist = Artist.objects.create(name='artist')
-        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
-        
+        show = Show.objects.create(show_date=datetime.datetime(
+            2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+
         # display the show detail page with the matching pk
         response = self.client.get(reverse('show_detail', kwargs={'show_pk': show.pk})) 
-        
+
         # check if expected show is the same as the show in the context
         self.assertEqual(response.context['show'], show) 
-        
+
     def test_show_detail_not_exist(self):
-        
+
         response = self.client.get(reverse('show_detail', kwargs={'show_pk': 100}))
         self.assertEqual(response.status_code, 404)
 
@@ -782,7 +784,6 @@ class TestnoNotesforFutureShows(TestCase):
         # add a note for the show that has already happened
 
         response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah', 'rating': 5}, follow=True)
-        
 
         # all should be 200 
         self.assertEqual(response.status_code, 200)
@@ -892,7 +893,7 @@ class TestNoteDeletionAndPhotoIsDeletedInMediaAsWell(TestCase):
 
         # Mock form data to send to create a new note 
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
-        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image, 'rating': 4}
 
         # new note creation
         new_note_url = reverse('new_note', kwargs={'show_pk': self.mock_show.pk})

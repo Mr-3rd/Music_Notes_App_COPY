@@ -1,0 +1,9 @@
+{% extends 'lmn/base.html' %}
+
+{% block content %}
+  <h1>{{ show.venue.name }}</h1>
+  <p>Artists: {{ show.artist.name }}</p>
+  <p>Address:  {{ venue.city }}, {{ venue.state }}</p>
+  <p>Date: {{ show.show_date }}</p>
+  <a href="{% url 'notes_for_show' show.pk %}">View Notes</a>
+{% endblock %}

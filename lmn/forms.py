@@ -19,7 +19,7 @@ class ArtistSearchForm(forms.Form):
 class NewNoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ('title', 'text', 'photo')
+        fields = ('title', 'text', 'photo', 'rating')
 
     # Check if the photo uploaded is valid
     def clean_photo(self):
@@ -44,6 +44,11 @@ class NewNoteForm(forms.ModelForm):
                 raise ValidationError('Invalid Photo Upload! This upload was not a image upload!')
 
         return photo
+
+class ShowSearchForm(forms.Form):
+    # This is the search form which is used in show_list.html
+    search_artist = forms.CharField(label='Artist Name', max_length=200, required=False)
+    search_venue = forms.CharField(label='Venue Name', max_length=200, required=False)
 
 
 class UserRegistrationForm(UserCreationForm):

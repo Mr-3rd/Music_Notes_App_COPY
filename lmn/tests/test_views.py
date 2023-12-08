@@ -8,7 +8,9 @@ import re
 import datetime
 from datetime import timezone
 
-from lmn.models import Artist, Note, Show, Venue
+
+from lmn.models import Note, Show, Artist, Venue
+
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -360,12 +362,12 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
         response = self.client.post(
-            new_note_url,
-            {'text': 'ok', 'title': 'blah blah'},
+            new_note_url, 
+            {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
         # Verify note is in database
-        new_note_query = Note.objects.filter(text='ok', title='blah blah')
+        new_note_query = Note.objects.filter(rating=5, text='ok', title='blah blah')
         self.assertEqual(new_note_query.count(), 1)
 
         # And one more note in DB than before
@@ -379,11 +381,11 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
     def test_redirect_to_note_detail_after_save(self):
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
         response = self.client.post(
-            new_note_url,
-            {'text': 'ok', 'title': 'blah blah'},
+            new_note_url, 
+            {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(rating=5, text='ok', title='blah blah').first()
 
         self.assertRedirects(response, reverse('note_detail', kwargs={'note_pk': new_note.pk}))
 
@@ -540,6 +542,104 @@ class TestErrorViews(TestCase):
         pass 
 
 
+
+
+class TestShowlist(TestCase):
+    
+    def test_all_shows_order_by_date(self):
+        
+        # dates dict
+        dates = [
+            datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc),
+            datetime.datetime(2021, 6, 1, 21, 45, tzinfo=timezone.utc),
+            datetime.datetime(2022, 6, 1, 21, 45, tzinfo=timezone.utc)
+        ]
+
+        # empty list
+        shows = []
+
+        for i, date in enumerate(dates):
+            # create a venue, artist, and show, this is added in a acending order
+            venue = Venue.objects.create(name=f'venue_{i}', city=f'city_{i}', state='MN')
+            artist = Artist.objects.create(name=f'artist_{i}')
+            show = Show.objects.create(show_date=date, artist=artist, venue=venue)
+            shows.append(show)
+        
+        # reverse the list of shows so that it's in an descending order
+        expected_order = list(reversed(shows))
+
+        response = self.client.get(reverse('show_list'))
+        shows_context = list(response.context['shows'])
+
+        # check that the shows are in the correct order
+        self.assertEqual(shows_context, expected_order)
+        
+    def test_no_shows_found(self):
+        
+        response = self.client.get(reverse('show_list'))
+        show_in_template = response.context['shows']
+        
+        self.assertContains(response, 'No shows found')
+        self.assertEquals(0, len(show_in_template))
+        
+    def test_search_match_found(self):
+            
+        # create a venue, artist, and show
+        venue = Venue.objects.create(name='venue', city='city', state='MN')
+        artist = Artist.objects.create(name='artist')
+        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+            
+        # search for the show by artist name
+        response = self.client.get(reverse('show_list'), {'search_artist': 'artist'})
+        shows = list(response.context['shows'])
+            
+        # check that the show is in the search results
+        self.assertEqual(shows[0], show)
+            
+        # search for the show by venue name
+        response = self.client.get(reverse('show_list'), {'search_venue': 'venue'})
+        shows = list(response.context['shows'])
+            
+        self.assertEqual(shows[0], show)
+            
+    def test_search_match_not_found(self):
+            
+        venue = Venue.objects.create(name='venue', city='city', state='MN')
+        artist = Artist.objects.create(name='artist')
+        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+            
+        # search for the show by artist name
+        response = self.client.get(reverse('show_list'), {'search_artist': 'artist2'})
+        shows = list(response.context['shows'])
+
+        self.assertEqual(shows, []) # if not in the results, the list will be empty
+            
+        # search for the show by venue name
+        response = self.client.get(reverse('show_list'), {'search_venue': 'venue2'})
+        shows = list(response.context['shows'])
+            
+        self.assertEqual(shows, [])
+
+class TestShowDetail(TestCase):
+    
+    def test_show_detail_exists(self):
+        
+        venue = Venue.objects.create(name='venue', city='city', state='MN')
+        artist = Artist.objects.create(name='artist')
+        show = Show.objects.create(show_date=datetime.datetime(2017, 1, 21, 21, 45, tzinfo=timezone.utc), artist=artist, venue=venue)
+        
+        # display the show detail page with the matching pk
+        response = self.client.get(reverse('show_detail', kwargs={'show_pk': show.pk})) 
+        
+        # check if expected show is the same as the show in the context
+        self.assertEqual(response.context['show'], show) 
+        
+    def test_show_detail_not_exist(self):
+        
+        response = self.client.get(reverse('show_detail', kwargs={'show_pk': 100}))
+        self.assertEqual(response.status_code, 404)
+
+
 class TestOneNotePerShow(TestCase):
 
     # fixure data
@@ -599,7 +699,7 @@ class TestPhotoUpload(TestCase):
 
         # Mock form data to send to create a new note 
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
-        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'rating': 5, 'photo': mock_image}
 
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
@@ -612,7 +712,7 @@ class TestPhotoUpload(TestCase):
         # print('Response', response.content)
 
         # Get first new note that was created
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
 
         # Assert that the response redirected to note detail page:
         self.assertRedirects(response, reverse('note_detail', kwargs={
@@ -627,7 +727,7 @@ class TestPhotoUpload(TestCase):
 
         # Mock form data to send to create a new note 
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
-        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image}
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'rating': 5, 'photo': mock_image}
 
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
@@ -637,7 +737,7 @@ class TestPhotoUpload(TestCase):
         )
 
         # First note retrieved
-        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+        new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
 
         # Fetch note detail page of that new note created
         note_detail_url = reverse('note_detail', kwargs={'note_pk': new_note.pk})
@@ -680,14 +780,16 @@ class TestnoNotesforFutureShows(TestCase):
         new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 
 
         # add a note for the show that has already happened
-        response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah'}, follow=True)
+
+        response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah', 'rating': 5}, follow=True)
+        
 
         # all should be 200 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should increase by 1
 
         # for future show
-        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah'}) 
+        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah', 'rating': 5})
         self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
         # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out

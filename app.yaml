@@ -1,0 +1,5 @@
+runtime: python310
+entrypoint: gunicorn -b :$PORT lmnop_project.wsgi
+
+env_variables:
+  AdminLmn_PW: V>oD]-U_?3%\8ZQ2

@@ -76,12 +76,16 @@ class Note(models.Model):
     photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        """Create only one note for each user and show"""
-        if Note.objects.filter(user=self.user, show=self.show).exists():
-            raise ValidationError('You can only create one note per show')
+        """Create only one note for each user and show, unless updating an existing note."""
+        if not self.pk: # if the note is new, create a new note 
+            # check if the note already exists for the user and show
+            if Note.objects.filter(user=self.user, show=self.show).exists(): 
+                raise ValidationError('You can only create one note per show')
+        
+        # Check if the show date is in the future
         if self.show.show_date > timezone.now():
             raise ValidationError("Cannot add notes to future shows.")
-        super(Note, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo

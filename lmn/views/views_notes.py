@@ -10,11 +10,14 @@ from ..forms import NewNoteForm
 
 from django.utils import timezone
 
+from django.contrib import messages  # Message to display
+
+
 @login_required
 def new_note(request, show_pk):
     """ Create a new note for a show. """
     show = get_object_or_404(Show, pk=show_pk)
-    
+
     # checks that a note for this show doesn't already exist
     if Note.objects.filter(user=request.user, show=show).exists():
         form = NewNoteForm()  # empty form
@@ -38,7 +41,7 @@ def new_note(request, show_pk):
             # if an error occurs, show the error message 
             except ValidationError as e:
                 # Show error message if the show date is in the future
-                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', { 'error': e}))
+                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', {'error': e}))
 
     else:
         form = NewNoteForm()
@@ -77,7 +80,7 @@ def notes_for_show(request, show_pk):
     """ Get notes for one show, most recent first. """
     show = get_object_or_404(Show, pk=show_pk)  
     notes = Note.objects.filter(show=show_pk).order_by('-posted_date')
-    
+
     dt = timezone.now()
     
     if request.user.is_authenticated: # we only wanna shows this to user if logged 
@@ -93,4 +96,32 @@ def notes_for_show(request, show_pk):
 def note_detail(request, note_pk):
     """ Display one note. """
     note = get_object_or_404(Note, pk=note_pk)
+
     return render(request, 'lmn/notes/note_detail.html', {'note': note})
+
+# Delete feature will be displayed within that note details, and only for the owner of those notes
+# When a non login users tries to delete, it will redirect them to the login section
+
+
+@login_required
+def delete_note(request, note_pk):
+    note = get_object_or_404(Note, pk=note_pk)
+
+    # If the request is not from the note user (owner of those notes), then redirect them back to the login page and give them a message error
+    if request.method == 'POST':
+        # Check if current user is the owner of those notes they are about to delete
+        if request.user != note.user:
+
+            # Error Message for unauthorized user
+            messages.error(request, 'Unauthorized user! Please use the correct login for that note account!')
+
+            # Redirect to the login page
+            return redirect('login')
+
+        # Else, delete that note
+        note.delete()
+        # Redirect them to the latest notes
+        return redirect('latest_notes')
+
+    # Any thing else redirect them to the latest notes
+    return redirect('latest_notes')

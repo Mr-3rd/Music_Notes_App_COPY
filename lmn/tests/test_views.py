@@ -12,6 +12,7 @@ from datetime import timezone
 from lmn.models import Note, Show, Artist, Venue
 
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Simple upload file library allows to create a "in memory file" that behaves like a file type that would be uploaded. Can customize what type of upload it is (e.g name, content, content type)
 # https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
@@ -20,6 +21,9 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image
 # Import IO for file manipulation
 import io
+
+# Default storage import
+from django.core.files.storage import default_storage
 
 
 class TestHomePage(TestCase):
@@ -142,7 +146,6 @@ class TestArtistViews(TestCase):
         # From the fixture, show 2's "show_date": "2017-02-02T19:30:00-06:00"
         expected_date = datetime.datetime(2017, 2, 2, 19, 30, 0, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-        
 
         # from the fixture, show 1's "show_date": "2017-01-02T17:30:00-00:00",
         self.assertEqual(show2.artist.name, 'REM')
@@ -161,13 +164,13 @@ class TestArtistViews(TestCase):
         # This show has "show_date": "2017-01-21T21:45:00-00:00",
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
-        
+
         expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-        
+
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
         self.assertEqual(show2.show_date, expected_date)
-        
+
         # Artist 3, no shows
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 3})
@@ -266,22 +269,20 @@ class TestVenues(TestCase):
         url = reverse('artists_at_venue', kwargs={'venue_pk': 1})
         response = self.client.get(url)
         shows = list(response.context['shows'].all())
-        show1 , show2= shows[0], shows[1]
+        show1, show2 = shows[0], shows[1]
         self.assertEqual(2, len(shows))
 
+        self.assertEqual(show1.artist.name, 'ACDC')
+        self.assertEqual(show1.venue.name, 'First Avenue')
 
         self.assertEqual(show1.artist.name, 'ACDC')
         self.assertEqual(show1.venue.name, 'First Avenue')
-        
-        self.assertEqual(show1.artist.name, 'ACDC')
-        self.assertEqual(show1.venue.name, 'First Avenue')
-        
+
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
         self.assertEqual(show2.show_date, expected_date)
-        
+
         expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
         self.assertEqual(show1.show_date, expected_date)
-
 
         # Venue 3 has not had any shows
 
@@ -367,6 +368,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
 
         # Verify note is in database
         new_note_query = Note.objects.filter(rating=5, text='ok', title='blah blah')
+        new_note_query = Note.objects.filter(rating=5, text='ok', title='blah blah')
         self.assertEqual(new_note_query.count(), 1)
 
         # And one more note in DB than before
@@ -384,6 +386,7 @@ class TestAddNotesWhenUserLoggedIn(TestCase):
             {'rating': 5, 'text': 'ok', 'title': 'blah blah'},
             follow=True)
 
+        new_note = Note.objects.filter(rating=5, text='ok', title='blah blah').first()
         new_note = Note.objects.filter(rating=5, text='ok', title='blah blah').first()
 
         self.assertRedirects(response, reverse('note_detail', kwargs={'note_pk': new_note.pk}))
@@ -637,7 +640,7 @@ class TestShowDetail(TestCase):
         self.assertEqual(response.status_code, 404)
 
 class TestOneNotePerShow(TestCase):
-    
+
     # fixure data
     fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
 
@@ -645,7 +648,7 @@ class TestOneNotePerShow(TestCase):
     def setUp(self):
         user = User.objects.first()
         self.client.force_login(user)
-        
+
     # test that user can only create one note per show
     def test_error_msg_for_more_than_one_note_per_show(self):
         response = self.client.get(reverse('new_note', kwargs={'show_pk': 1}))
@@ -696,6 +699,7 @@ class TestPhotoUpload(TestCase):
         # Mock form data to send to create a new note 
         # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
         mock_form_data = {'text': 'ok', 'title': 'blah blah', 'rating': 5, 'photo': mock_image}
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'rating': 5, 'photo': mock_image}
 
         new_note_url = reverse('new_note', kwargs={'show_pk': 3})
 
@@ -708,6 +712,7 @@ class TestPhotoUpload(TestCase):
         # print('Response', response.content)
 
         # Get first new note that was created
+        new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
         new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
 
         # Assert that the response redirected to note detail page:
@@ -734,6 +739,7 @@ class TestPhotoUpload(TestCase):
 
         # First note retrieved
         new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
+        new_note = Note.objects.filter(text='ok', title='blah blah', rating=5).first()
 
         # Fetch note detail page of that new note created
         note_detail_url = reverse('note_detail', kwargs={'note_pk': new_note.pk})
@@ -754,40 +760,41 @@ class TestPhotoUpload(TestCase):
         # Checking the response
         # print(response_from_note_detail_url.content)
 
+
 class TestnoNotesforFutureShows(TestCase):
     #     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
-    
+
     # <HttpResponseRedirect status_code=302, "text/html; charset=utf-8", url="/accounts/login/?next=/notes/add/1/">
     fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
 
-
-    def setUp(self): # login user 
+    def setUp(self):  # login user 
         user = User.objects.first()
         self.client.force_login(user)
 
-    
     def test_display_error_msg(self):
         # note count we started with 3
         initial_note_count = Note.objects.count()
-        
+
         # url for adding a note to a past show
         new_note_url = reverse('new_note', kwargs={'show_pk': 3}) 
-        
+
         # for future
         new_note_url_2 = reverse('new_note', kwargs={'show_pk': 4}) 
-        
+
         # add a note for the show that has already happened
         response = self.client.post(new_note_url, {'text': 'testing_1', 'title': 'blah blah', 'rating': 5}, follow=True)
         
         # all should be 200 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should increase by 1
-        
+
         # for future show
+        response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah', 'rating': 5})
         response_2 = self.client.post(new_note_url_2, {'text': 'testing_2', 'title': 'blah blah', 'rating': 5})
         self.assertNotEqual(response_2.status_code, 200)  # Should not be 200 OK
         self.assertTemplateUsed('lmn/notes/new_note.html')  # right template is being used
-        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400) # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        # check that the error message is shown, and also because this one your arent't redirect we don't need the follow=True, took me a while to figure that out
+        self.assertContains(response_2, 'Cannot add notes to future shows.', status_code=400)
         self.assertEqual(Note.objects.count(), initial_note_count + 1)  # note count should not increase by 1
         
 class TesteditNoteRequest(TestCase):
@@ -832,3 +839,164 @@ class TesteditNoteRequest(TestCase):
         self.assertTemplateUsed('404.html')
         
         
+        
+class TesteditNoteRequest(TestCase):
+    """ Test edit note request, with valid and invalid data """
+    
+    fixtures = ['testing_users', 'testing_artists', 'testing_shows', 'testing_venues', 'testing_notes']
+    
+    # login user 
+    def setUp(self):
+        user = User.objects.first()
+        self.client.force_login(user)
+    
+    def test_editing_note(self):
+        
+        # get an existing note from the fixture data
+        note_url = self.client.get(reverse('edit_note', kwargs={'show_pk': 1}))
+        
+        # should be 200
+        self.assertEqual(note_url.status_code, 200)
+        
+        self.assertTemplateUsed('lmn/notes/edit_note.html')
+        
+        # update the note with new data and follow to the updated note
+        updated_note = self.client.post(reverse('edit_note', kwargs={'show_pk': 1}), {'text': 'testing_1', 'title': 'blah blah'}, follow=True) # follow set to true because it will take you to the updated note in detail_note
+        
+        # should be 200
+        self.assertEqual(updated_note.status_code, 200)
+        
+        # check the template we are in should be the note detail page
+        self.assertTemplateUsed('lmn/notes/note_detail.html')
+        
+        # check the content
+        self.assertContains(updated_note, 'testing_1')
+        
+        # now to test with fake data and note
+        note_url = self.client.get(reverse('edit_note', kwargs={'show_pk': 21321}))
+        
+        # should be 404
+        self.assertEqual(note_url.status_code, 404)
+        
+        # check the template we are in should be the 404 page
+        self.assertTemplateUsed('404.html')
+        
+        
+
+
+class TestNoteDeletion(TestCase):
+    fixtures = ['testing_artists', 'testing_venues', 'testing_shows', 'testing_users']
+
+    def setUp(self):
+        # Create 2 new users to test deletion scenarios for unauthorized and authorized
+        self.mockUser1 = User.objects.create_user(
+            username='MockUser1', password='TestingPass1', email='MockUserMailing1@gmail.com')
+        self.mockUser2 = User.objects.create_user(
+            username='MockUsers2', password='TestingPass2', email='MockUserMailing2@gmail.com')
+
+        # Grab the first show object
+        show = Show.objects.first()
+
+        # New Note instance from mock user 1
+        self.note = Note.objects.create(user=self.mockUser1, show=show, text='Testing note deletion', title='blah blah')
+
+    # Testing successful note deletion from that authorized owner of that note
+    def test_delete_that_note_from_authorized_owner(self):
+        # Use and login user 1 for owner
+        self.client.login(username='MockUser1', password='TestingPass1')
+
+        # Post request to delete
+        response = self.client.post(reverse('delete_note', kwargs={'note_pk': self.note.pk}))
+
+        # After response, check if the note does not exists after the client's post req to delete
+        self.assertFalse(Note.objects.filter(pk=self.note.pk).exists())
+
+        # In the delete function in views_note, it would redirect you after deletion
+        self.assertRedirects(response, reverse('latest_notes'))
+
+    # Testing note deletion for unauthorized owner
+    def test_delete_note_by_unauthorized_owner(self):
+
+        # Login user 2 
+        self.client.login(username='MockUser2', password='TestingPass2')
+
+        # User 2 will make a post request to delete the note
+        response = self.client.post(reverse('delete_note', kwargs={'note_pk': self.note.pk}), follow=True)
+
+        # print(response.content)
+
+        # Url redirection: accounts/login/?next=/notes/detail/delete/1/
+        expected_url_redirected_to_login = reverse('login') + '?next=' + \
+            reverse('delete_note', kwargs={'note_pk': self.note.pk})
+        # Assert that note should still exists
+        self.assertTrue(Note.objects.filter(pk=self.note.pk).exists())
+
+        # Assert that the Response should be redirected to login page
+        self.assertRedirects(response, expected_url_redirected_to_login, status_code=302, target_status_code=200)
+
+
+# Test after note deletion, the photo is gone from media file as well
+class TestNoteDeletionAndPhotoIsDeletedInMediaAsWell(TestCase):
+    def setUp(self):
+        self.mockUser1 = User.objects.create_user(
+            username='MockUser1', password='TestingPass1', email='MockUserMailing1@gmail.com')
+
+        self.client.force_login(self.mockUser1)
+
+        # Creating a new show
+        # Create a whole new user, show, venue, artist, for this test because there can't be duplicate notes per show
+        mock_artist = Artist.objects.create(name='Mock_Artist_for_testing')
+
+        mock_venue = Venue.objects.create(name='Example_Venue_For_Test', city='Example_City', state='Example_State')
+
+        self.mock_show = Show.objects.create(show_date=timezone.now(), artist=mock_artist, venue=mock_venue)
+
+    # This is to mimic a real file type to upload and the app only has a imagefield from the models where it only validates real image data that are accepted. So a random string or random binary data as a file will not pass the validation.
+    @staticmethod
+    def generate_testing_image_to_use(name='test_image.jpg'):
+        # Understanding BytesIO()- My understanding, creates a file like data from string data. You can use it to manipulate binary data (images, audio,vids, etc) without making a physical file in system, instead just uses RAM.
+        # https://levelup.gitconnected.com/python-stringio-and-bytesio-compared-with-open-c0e99b9def31#:~:text=StringIO%20and%20BytesIO%20are%20methods,to%20mimic%20a%20normal%20file. 
+        # https://www.reddit.com/r/learnpython/comments/z9lfa7/class_bytes_vs_class_iobytesio/
+        buffer_file = io.BytesIO()
+
+        mock_image_creation = Image.new('RGB', (200, 200), color='grey')
+
+        # Saving the image into the file buffer as a JPEG
+        mock_image_creation.save(buffer_file, 'JPEG')
+
+        # Move cursor before reading the file to the first (start) of the buffer
+        buffer_file.seek(0)
+
+        # Returns a mimic mock image file type (The buffer reads the content of the mock image file into the simple file uploaded)
+        # https://stackoverflow.com/questions/11170425/how-to-unit-test-file-upload-in-django
+        return SimpleUploadedFile(name, buffer_file.read(), content_type='image/jpeg')
+
+    # Testing out the feature where after a note has been deleted, the photo is deleted in the default storage as well
+    def test_successful_note_deletion_also_deletes_photo_entirely(self):
+        # Create note w/ photo upload
+        # Mock image uses simple upload file library method and pillow image creation. Calling this function would create a real mock image data to send for the mock post request
+        mock_image = self.generate_testing_image_to_use()
+
+        # Mock form data to send to create a new note 
+        # Previous text and title used from above tests above but added photo for data to send as well with mock image created using pillow
+        mock_form_data = {'text': 'ok', 'title': 'blah blah', 'photo': mock_image, 'rating': 4}
+
+        # new note creation
+        new_note_url = reverse('new_note', kwargs={'show_pk': self.mock_show.pk})
+
+        # Response would redirect to the note_detail.html page after successful save and upload
+        response = self.client.post(
+            new_note_url, mock_form_data, follow=True
+        )
+
+        # Get first new note that was created
+        new_note = Note.objects.filter(text='ok', title='blah blah').first()
+
+        # Delete note url
+        delete_note_url = reverse('delete_note', kwargs={'note_pk': new_note.pk})
+
+        # Making the post to delete the note with given context and url
+        self.client.post(delete_note_url)
+
+        # Photo should be gone from storage(Media folder/user_images)
+        self.assertFalse(default_storage.exists(new_note.photo.name))

@@ -29,7 +29,6 @@ def new_note(request, show_pk):
             "hide_button": True
         })
         
-
     if request.method == 'POST':
         form = NewNoteForm(request.POST, request.FILES)
         if form.is_valid():

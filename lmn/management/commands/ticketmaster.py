@@ -41,20 +41,20 @@ class Command(BaseCommand):
                     venue_state = venue['state']['name']
 
                     # Check if Venue already exists
-                    venue_instance, _ = Venue.objects.get_or_create(name=venue_name, city=venue_city, state=venue_state)
+                    venue_instance, created = Venue.objects.get_or_create(name=venue_name, city=venue_city, state=venue_state)
 
                 # Insert Artist data
                 if 'attractions' in event["_embedded"] and event['_embedded']['attractions'][0].get('name'):
                     artist_name = event['_embedded']['attractions'][0]['name']
 
                     # Check if Artist already exists
-                    artist_instance, _ = Artist.objects.get_or_create(name=artist_name)
+                    artist_instance, created = Artist.objects.get_or_create(name=artist_name)
 
                 # Insert Show data
                 show_date_time = show_date + ' ' + event_time
 
-                # Check if Show already exists
-                show_instance, _ = Show.objects.get_or_create(show_date=show_date_time, artist_id=artist_instance.pk, venue_id=venue_instance.pk)
+                # Check if Show already exists < I assume this is where the constraint is stalling the build
+                show_instance, created = Show.objects.get_or_create(show_date=show_date_time, artist_id=artist_instance.pk, venue_id=venue_instance.pk)
 
             print("Data successfully saved to Django models")
 

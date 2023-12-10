@@ -39,14 +39,12 @@ class Venue(models.Model):
 
 class Show(models.Model):
     """ One Artist playing at one Venue at a particular date and time. """
-    show_date = models.DateTimeField(blank=False, unique=True)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, unique=True)
-    venue = models.ForeignKey(Venue, on_delete=models.CASCADE, unique=True)
-    
+    show_date = models.DateTimeField(blank=False)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     class Meta:
         # This is a constraint that prevents duplicate shows
         unique_together = ('show_date', 'artist', 'venue')
-
     def __str__(self):
         return f'Artist: {self.artist} At: {self.venue} On: {self.show_date}'
 

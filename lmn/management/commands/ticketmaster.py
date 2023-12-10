@@ -3,7 +3,7 @@ import requests
 import os
 from lmn.models import Artist, Venue, Show
 
-class TicketmasterCommand(BaseCommand):
+class Command(BaseCommand):
     help = 'my custom'
 
     def handle(self, *args, **options):

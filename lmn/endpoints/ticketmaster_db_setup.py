@@ -5,8 +5,8 @@ from ..models import Artist, Venue, Show
 
 
 ticketmaster_url = 'https://app.ticketmaster.com/discovery/v2/events'
-api_key = 'CleWRaZrzLrHNHogFrXKKKz4S1LSbzwq'
-API_key = os.environ.get('TICKETMASTER')
+
+api_key = os.environ.get('TICKETMASTER')
 
 params = {
     'stateCode': 'MN',

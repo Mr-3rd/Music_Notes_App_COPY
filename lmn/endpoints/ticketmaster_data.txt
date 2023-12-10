@@ -1,2693 +1,778 @@
-{
-  "_embedded": {
-    "events": [
-      {
-        "name": "Minnesota Orchestra w/ Disneys Frozen In Concert",
-        "type": "event",
-        "id": "Z7r9jZ1AdPIuS",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1AdPIuS",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": true
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": true
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-16T01:00:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-15",
-            "localTime": "19:00:00",
-            "dateTime": "2023-12-16T01:00:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAeJ",
-              "name": "Classical"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vF1A",
-              "name": "Classical/Vocal"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://www.minnesotaorchestra.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/minnesota-orchestra-w-disneys-frozen-in-minneapolis-minnesota-12-15-2023/event/Zu0FM1R0e5tQKBq",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "seatmap": {
-          "staticUrl": "https://content.resale.ticketmaster.com/graphics/TMResale/2/VenueMaps/3370-0-0-1-OrchestraHall71877.png"
-        },
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1AdPIuS?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-            },
-            {
-              "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Orchestra Hall-MN",
-              "type": "venue",
-              "id": "ZFr9jZ77Fv",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55403",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Minneapolis"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line2": "Minneapolis, MN"
-              },
-              "location": {
-                "longitude": "-93.286102",
-                "latitude": "44.970299"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 50,
-                "_total": 50,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Minnesota Orchestra",
-              "type": "attraction",
-              "id": "ZFr9jZF1v6",
-              "test": false,
-              "locale": "en-us",
-              "externalLinks": {
-                "wiki": [
-                  {
-                    "url": "https://en.wikipedia.org/wiki/Minnesota_Orchestra"
-                  }
-                ],
-                "musicbrainz": [
-                  {
-                    "id": "227b1359-4587-44d8-8616-6275816cb999"
-                  }
-                ],
-                "homepage": [
-                  {
-                    "url": "http://www.minnesotaorchestra.org/"
-                  }
-                ]
-              },
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAeJ",
-                    "name": "Classical"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7vF1A",
-                    "name": "Classical/Vocal"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 47,
-                "_total": 47,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-                }
-              }
-            },
-            {
-              "name": "Disneys Frozen In Concert",
-              "type": "attraction",
-              "id": "Z7r9jZapKs",
-              "test": false,
-              "locale": "en-us",
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nl",
-                    "name": "Undefined"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 7,
-                "_total": 7,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "Minnesota Orchestra w/ Disneys Frozen In Concert",
-        "type": "event",
-        "id": "Z7r9jZ1AdPIpe",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1AdPIpe",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": true
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": true
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-17T20:00:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-17",
-            "localTime": "14:00:00",
-            "dateTime": "2023-12-17T20:00:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAeJ",
-              "name": "Classical"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vF1A",
-              "name": "Classical/Vocal"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://www.minnesotaorchestra.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/minnesota-orchestra-w-disneys-frozen-in-minneapolis-minnesota-12-17-2023/event/Zu0FM1R0e5tQKgn",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "seatmap": {
-          "staticUrl": "https://content.resale.ticketmaster.com/graphics/TMResale/2/VenueMaps/3370-0-0-1-OrchestraHall71877.png"
-        },
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1AdPIpe?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-            },
-            {
-              "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Orchestra Hall-MN",
-              "type": "venue",
-              "id": "ZFr9jZ77Fv",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55403",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Minneapolis"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line2": "Minneapolis, MN"
-              },
-              "location": {
-                "longitude": "-93.286102",
-                "latitude": "44.970299"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 50,
-                "_total": 50,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Minnesota Orchestra",
-              "type": "attraction",
-              "id": "ZFr9jZF1v6",
-              "test": false,
-              "locale": "en-us",
-              "externalLinks": {
-                "wiki": [
-                  {
-                    "url": "https://en.wikipedia.org/wiki/Minnesota_Orchestra"
-                  }
-                ],
-                "musicbrainz": [
-                  {
-                    "id": "227b1359-4587-44d8-8616-6275816cb999"
-                  }
-                ],
-                "homepage": [
-                  {
-                    "url": "http://www.minnesotaorchestra.org/"
-                  }
-                ]
-              },
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAeJ",
-                    "name": "Classical"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7vF1A",
-                    "name": "Classical/Vocal"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 47,
-                "_total": 47,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-                }
-              }
-            },
-            {
-              "name": "Disneys Frozen In Concert",
-              "type": "attraction",
-              "id": "Z7r9jZapKs",
-              "test": false,
-              "locale": "en-us",
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nl",
-                    "name": "Undefined"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 7,
-                "_total": 7,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "Minnesota Orchestra w/ Disneys Frozen In Concert",
-        "type": "event",
-        "id": "Z7r9jZ1AdP3f3",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1AdP3f3",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": true
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": true
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-16T20:00:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-16",
-            "localTime": "14:00:00",
-            "dateTime": "2023-12-16T20:00:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAeJ",
-              "name": "Classical"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vF1A",
-              "name": "Classical/Vocal"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://www.minnesotaorchestra.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/minnesota-orchestra-w-disneys-frozen-in-minneapolis-minnesota-12-16-2023/event/Zu0FM1R0e5tQ7l7",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "seatmap": {
-          "staticUrl": "https://content.resale.ticketmaster.com/graphics/TMResale/2/VenueMaps/3370-0-0-1-OrchestraHall71877.png"
-        },
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1AdP3f3?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-            },
-            {
-              "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Orchestra Hall-MN",
-              "type": "venue",
-              "id": "ZFr9jZ77Fv",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55403",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Minneapolis"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line2": "Minneapolis, MN"
-              },
-              "location": {
-                "longitude": "-93.286102",
-                "latitude": "44.970299"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 50,
-                "_total": 50,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Minnesota Orchestra",
-              "type": "attraction",
-              "id": "ZFr9jZF1v6",
-              "test": false,
-              "locale": "en-us",
-              "externalLinks": {
-                "wiki": [
-                  {
-                    "url": "https://en.wikipedia.org/wiki/Minnesota_Orchestra"
-                  }
-                ],
-                "musicbrainz": [
-                  {
-                    "id": "227b1359-4587-44d8-8616-6275816cb999"
-                  }
-                ],
-                "homepage": [
-                  {
-                    "url": "http://www.minnesotaorchestra.org/"
-                  }
-                ]
-              },
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAeJ",
-                    "name": "Classical"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7vF1A",
-                    "name": "Classical/Vocal"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 47,
-                "_total": 47,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-                }
-              }
-            },
-            {
-              "name": "Disneys Frozen In Concert",
-              "type": "attraction",
-              "id": "Z7r9jZapKs",
-              "test": false,
-              "locale": "en-us",
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nl",
-                    "name": "Undefined"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 7,
-                "_total": 7,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "Minnesota Orchestra w/ Disneys Frozen In Concert",
-        "type": "event",
-        "id": "Z7r9jZ1AdPIp_",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1AdPIp_",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": true
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": true
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-17T01:00:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-16",
-            "localTime": "19:00:00",
-            "dateTime": "2023-12-17T01:00:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAeJ",
-              "name": "Classical"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vF1A",
-              "name": "Classical/Vocal"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://www.minnesotaorchestra.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/minnesota-orchestra-w-disneys-frozen-in-minneapolis-minnesota-12-16-2023/event/Zu0FM1R0e5tQKgP",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "seatmap": {
-          "staticUrl": "https://content.resale.ticketmaster.com/graphics/TMResale/2/VenueMaps/3370-0-0-1-OrchestraHall71877.png"
-        },
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1AdPIp_?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-            },
-            {
-              "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Orchestra Hall-MN",
-              "type": "venue",
-              "id": "ZFr9jZ77Fv",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55403",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Minneapolis"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line2": "Minneapolis, MN"
-              },
-              "location": {
-                "longitude": "-93.286102",
-                "latitude": "44.970299"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 50,
-                "_total": 50,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/ZFr9jZ77Fv?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Minnesota Orchestra",
-              "type": "attraction",
-              "id": "ZFr9jZF1v6",
-              "test": false,
-              "locale": "en-us",
-              "externalLinks": {
-                "wiki": [
-                  {
-                    "url": "https://en.wikipedia.org/wiki/Minnesota_Orchestra"
-                  }
-                ],
-                "musicbrainz": [
-                  {
-                    "id": "227b1359-4587-44d8-8616-6275816cb999"
-                  }
-                ],
-                "homepage": [
-                  {
-                    "url": "http://www.minnesotaorchestra.org/"
-                  }
-                ]
-              },
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/518/83a05c63-479c-4f7e-a7aa-1932aab77518_105461_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAeJ",
-                    "name": "Classical"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7vF1A",
-                    "name": "Classical/Vocal"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 47,
-                "_total": 47,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/ZFr9jZF1v6?locale=en-us"
-                }
-              }
-            },
-            {
-              "name": "Disneys Frozen In Concert",
-              "type": "attraction",
-              "id": "Z7r9jZapKs",
-              "test": false,
-              "locale": "en-us",
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/f51/ee785ed6-f806-4195-98f4-69f67e09df51_106201_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nl",
-                    "name": "Undefined"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 7,
-                "_total": 7,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/Z7r9jZapKs?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "Sons of Serendip",
-        "type": "event",
-        "id": "Z7r9jZ1A7v31p",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7v31p",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": false
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": false
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": false
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": false
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": false
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": false
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": false
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": false
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": false
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": false
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-15T01:30:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-14",
-            "localTime": "19:30:00",
-            "dateTime": "2023-12-15T01:30:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAvl",
-              "name": "Other"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vk1I",
-              "name": "Other"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://ordway.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/sons-of-serendip-saint-paul-minnesota-12-14-2023/event/Zu0FM1R0e5FD7eg",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1A7v31p?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/K8vZ917fZt7?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/Z7r9jZadHJ?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Ordway Concert Hall",
-              "type": "venue",
-              "id": "Z7r9jZadHJ",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55102",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Saint Paul"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line1": "345 Washington Street"
-              },
-              "location": {
-                "longitude": "-93.122101",
-                "latitude": "44.9324"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 3,
-                "_total": 3,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/Z7r9jZadHJ?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Sons of Serendip",
-              "type": "attraction",
-              "id": "K8vZ917fZt7",
-              "test": false,
-              "url": "https://www.ticketmaster.com/sons-of-serendip-tickets/artist/2175073",
-              "locale": "en-us",
-              "externalLinks": {
-                "youtube": [
-                  {
-                    "url": "https://www.youtube.com/sonsofserendip"
-                  }
-                ],
-                "twitter": [
-                  {
-                    "url": "https://twitter.com/SonsOfSerendip"
-                  }
-                ],
-                "itunes": [
-                  {
-                    "url": "https://music.apple.com/ca/artist/sons-of-serendip/949238882"
-                  }
-                ],
-                "facebook": [
-                  {
-                    "url": "https://www.facebook.com/SonsofSerendip"
-                  }
-                ],
-                "spotify": [
-                  {
-                    "url": "https://open.spotify.com/artist/11hAm1yZqtybebogMPzvV4?autoplay=true"
-                  }
-                ],
-                "instagram": [
-                  {
-                    "url": "http://instagram.com/sonsofserendip"
-                  }
-                ],
-                "homepage": [
-                  {
-                    "url": "https://www.sonsofserendip.com/"
-                  }
-                ]
-              },
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": false
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": false
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": false
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": false
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": false
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": false
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": false
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": false
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": false
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/a/c81/f7d74fae-02a8-4420-aa30-c5b462a9fc81_721581_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": false
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAeA",
-                    "name": "Rock"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7v6dI",
-                    "name": "Adult Contemporary"
-                  },
-                  "type": {
-                    "id": "KZAyXgnZfZ7v7l1",
-                    "name": "Group"
-                  },
-                  "subType": {
-                    "id": "KZFzBErXgnZfZ7vA77",
-                    "name": "Quartet"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 2,
-                "_total": 2,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/K8vZ917fZt7?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "Saint Paul Chamber Orchestra",
-        "type": "event",
-        "id": "Z7r9jZ1A7ZMbz",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7ZMbz",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": true
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": true
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-17T01:00:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-16",
-            "localTime": "19:00:00",
-            "dateTime": "2023-12-17T01:00:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAvl",
-              "name": "Other"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vk1I",
-              "name": "Other"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://ordway.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/saint-paul-chamber-orchestra-saint-paul-minnesota-12-16-2023/event/Zu0FM1R0e5F09ET",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1A7ZMbz?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/Z7r9jZa6Ia?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/Z7r9jZadHJ?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Ordway Concert Hall",
-              "type": "venue",
-              "id": "Z7r9jZadHJ",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55102",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Saint Paul"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line1": "345 Washington Street"
-              },
-              "location": {
-                "longitude": "-93.122101",
-                "latitude": "44.9324"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 3,
-                "_total": 3,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/Z7r9jZadHJ?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Saint Paul Chamber Orchestra",
-              "type": "attraction",
-              "id": "Z7r9jZa6Ia",
-              "test": false,
-              "locale": "en-us",
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAvl",
-                    "name": "Other"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7vk1I",
-                    "name": "Other"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 33,
-                "_total": 33,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/Z7r9jZa6Ia?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "Saint Paul Chamber Orchestra",
-        "type": "event",
-        "id": "Z7r9jZ1A7ZMby",
-        "test": false,
-        "url": "https://www.ticketmaster.com/event/Z7r9jZ1A7ZMby",
-        "locale": "en-us",
-        "images": [
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg",
-            "width": 640,
-            "height": 427,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-            "width": 2048,
-            "height": 1152,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg",
-            "width": 305,
-            "height": 203,
-            "fallback": true
-          },
-          {
-            "ratio": "4_3",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg",
-            "width": 305,
-            "height": 225,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg",
-            "width": 100,
-            "height": 56,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg",
-            "width": 205,
-            "height": 115,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg",
-            "width": 640,
-            "height": 360,
-            "fallback": true
-          },
-          {
-            "ratio": "3_2",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg",
-            "width": 1024,
-            "height": 683,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg",
-            "width": 1024,
-            "height": 576,
-            "fallback": true
-          },
-          {
-            "ratio": "16_9",
-            "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg",
-            "width": 1136,
-            "height": 639,
-            "fallback": true
-          }
-        ],
-        "sales": {
-          "public": {
-            "startDateTime": "1900-01-01T06:00:00Z",
-            "startTBD": false,
-            "startTBA": false,
-            "endDateTime": "2023-12-17T20:00:00Z"
-          }
-        },
-        "dates": {
-          "start": {
-            "localDate": "2023-12-17",
-            "localTime": "14:00:00",
-            "dateTime": "2023-12-17T20:00:00Z",
-            "dateTBD": false,
-            "dateTBA": false,
-            "timeTBA": false,
-            "noSpecificTime": false
-          },
-          "status": {
-            "code": "onsale"
-          },
-          "spanMultipleDays": false
-        },
-        "classifications": [
-          {
-            "primary": true,
-            "segment": {
-              "id": "KZFzniwnSyZfZ7v7nJ",
-              "name": "Music"
-            },
-            "genre": {
-              "id": "KnvZfZ7vAvl",
-              "name": "Other"
-            },
-            "subGenre": {
-              "id": "KZazBEonSMnZfZ7vk1I",
-              "name": "Other"
-            },
-            "family": false
-          }
-        ],
-        "outlets": [
-          {
-            "url": "https://ordway.org",
-            "type": "venueBoxOffice"
-          },
-          {
-            "url": "https://www.ticketmaster.com/saint-paul-chamber-orchestra-saint-paul-minnesota-12-17-2023/event/Zu0FM1R0e5F09EX",
-            "type": "tmMarketPlace"
-          }
-        ],
-        "ticketing": {
-          "allInclusivePricing": {
-            "enabled": false
-          }
-        },
-        "_links": {
-          "self": {
-            "href": "/discovery/v2/events/Z7r9jZ1A7ZMby?locale=en-us"
-          },
-          "attractions": [
-            {
-              "href": "/discovery/v2/attractions/Z7r9jZa6Ia?locale=en-us"
-            }
-          ],
-          "venues": [
-            {
-              "href": "/discovery/v2/venues/Z7r9jZadHJ?locale=en-us"
-            }
-          ]
-        },
-        "_embedded": {
-          "venues": [
-            {
-              "name": "Ordway Concert Hall",
-              "type": "venue",
-              "id": "Z7r9jZadHJ",
-              "test": false,
-              "locale": "en-us",
-              "postalCode": "55102",
-              "timezone": "America/Chicago",
-              "city": {
-                "name": "Saint Paul"
-              },
-              "state": {
-                "name": "Minnesota",
-                "stateCode": "MN"
-              },
-              "country": {
-                "name": "United States Of America",
-                "countryCode": "US"
-              },
-              "address": {
-                "line1": "345 Washington Street"
-              },
-              "location": {
-                "longitude": "-93.122101",
-                "latitude": "44.9324"
-              },
-              "dmas": [
-                {
-                  "id": 336
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 3,
-                "_total": 3,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/venues/Z7r9jZadHJ?locale=en-us"
-                }
-              }
-            }
-          ],
-          "attractions": [
-            {
-              "name": "Saint Paul Chamber Orchestra",
-              "type": "attraction",
-              "id": "Z7r9jZa6Ia",
-              "test": false,
-              "locale": "en-us",
-              "images": [
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RECOMENDATION_16_9.jpg",
-                  "width": 100,
-                  "height": 56,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_3_2.jpg",
-                  "width": 640,
-                  "height": 427,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_LARGE_16_9.jpg",
-                  "width": 2048,
-                  "height": 1152,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_EVENT_DETAIL_PAGE_16_9.jpg",
-                  "width": 205,
-                  "height": 115,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_PORTRAIT_16_9.jpg",
-                  "width": 640,
-                  "height": 360,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_ARTIST_PAGE_3_2.jpg",
-                  "width": 305,
-                  "height": 203,
-                  "fallback": true
-                },
-                {
-                  "ratio": "4_3",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_CUSTOM.jpg",
-                  "width": 305,
-                  "height": 225,
-                  "fallback": true
-                },
-                {
-                  "ratio": "3_2",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_3_2.jpg",
-                  "width": 1024,
-                  "height": 683,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_TABLET_LANDSCAPE_16_9.jpg",
-                  "width": 1024,
-                  "height": 576,
-                  "fallback": true
-                },
-                {
-                  "ratio": "16_9",
-                  "url": "https://s1.ticketm.net/dam/c/060/c5c08e7a-9912-456c-a060-2758be94e060_105881_RETINA_LANDSCAPE_16_9.jpg",
-                  "width": 1136,
-                  "height": 639,
-                  "fallback": true
-                }
-              ],
-              "classifications": [
-                {
-                  "primary": true,
-                  "segment": {
-                    "id": "KZFzniwnSyZfZ7v7nJ",
-                    "name": "Music"
-                  },
-                  "genre": {
-                    "id": "KnvZfZ7vAvl",
-                    "name": "Other"
-                  },
-                  "subGenre": {
-                    "id": "KZazBEonSMnZfZ7vk1I",
-                    "name": "Other"
-                  },
-                  "family": false
-                }
-              ],
-              "upcomingEvents": {
-                "tmr": 33,
-                "_total": 33,
-                "_filtered": 0
-              },
-              "_links": {
-                "self": {
-                  "href": "/discovery/v2/attractions/Z7r9jZa6Ia?locale=en-us"
-                }
-              }
-            }
-          ]
-        }
-      }
-    ]
-  },
-  "_links": {
-    "self": {
-      "href": "/discovery/v2/events?startDateTime=2022-01-01T00%3A00%3A00Z&size=200&stateCode=MN&endDateTime=2024-01-01T00%3A00%3A00Z&keyword=concert"
-    }
-  },
-  "page": {
-    "size": 200,
-    "totalElements": 7,
-    "totalPages": 1,
-    "number": 0
-  }
-}
+--Show1-- 
+Show: Ariel Posen 
+Date: 2023-12-13 
+Event Time: 20:00:00 
+
+venue 1: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Ariel Posen 
+
+--Show2-- 
+Show: Heiruspecs 
+Date: 2023-12-16 
+Event Time: 20:00:00 
+
+venue 2: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Heiruspecs 
+
+--Show3-- 
+Show: Broadway Rave - The Musical Theatre Dance Party 
+Date: 2023-12-14 
+Event Time: 21:00:00 
+
+venue 3: 
+Name: Fine Line Music Cafe 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Broadway Rave 
+
+--Show4-- 
+Show: Felix Cartal 
+Date: 2023-12-30 
+Event Time: 21:00:00 
+
+venue 4: 
+Name: Fine Line Music Cafe 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Felix Cartal 
+
+--Show5-- 
+Show: Impaler 
+Date: 2023-12-15 
+Event Time: 20:30:00 
+
+venue 5: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Impaler 
+
+--Show6-- 
+Show: Mannheim Steamroller Christmas 
+Date: 2023-12-14 
+Event Time: 19:30:00 
+
+venue 6: 
+Name: DECC Symphony Hall 
+City: Duluth 
+State: Minnesota 
+Code: MN 
+
+Artist: Mannheim Steamroller Christmas 
+
+--Show7-- 
+Show: Joe Samba 
+Date: 2023-12-13 
+Event Time: 20:00:00 
+
+venue 7: 
+Name: 7th Street Entry 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Joe Samba 
+
+--Show8-- 
+Show: Caitlyn Smith 
+Date: 2023-12-22 
+Event Time: 20:00:00 
+
+venue 8: 
+Name: Fitzgerald Theater 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Caitlyn Smith 
+
+--Show9-- 
+Show: Hot Mulligan 
+Date: 2023-12-14 
+Event Time: 17:30:00 
+
+venue 9: 
+Name: Fillmore Minneapolis presented by Affinity Plus 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Hot Mulligan 
+
+--Show10-- 
+Show: Trans-Siberian Orchestra-The Ghosts Of Christmas Eve 
+Date: 2023-12-30 
+Event Time: 15:00:00 
+
+venue 10: 
+Name: Xcel Energy Center 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Trans-Siberian Orchestra 
+
+--Show11-- 
+Show: Wild Horses 
+Date: 2023-12-20 
+Event Time: 19:30:00 
+
+venue 11: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Wild Horses 
+
+--Show12-- 
+Show: Emo Nite 
+Date: 2023-12-22 
+Event Time: 21:00:00 
+
+venue 12: 
+Name: First Avenue 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Emo Nite 
+
+--Show13-- 
+Show: Sons of Serendip 
+Date: 2023-12-14 
+Event Time: 19:30:00 
+
+venue 13: 
+Name: Ordway Concert Hall 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Sons of Serendip 
+
+--Show14-- 
+Show: JD McPherson 
+Date: 2023-12-13 
+Event Time: 20:00:00 
+
+venue 14: 
+Name: Fine Line Music Cafe 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: JD McPherson 
+
+--Show15-- 
+Show: Craig Owens 
+Date: 2023-12-15 
+Event Time: 20:00:00 
+
+venue 15: 
+Name: Fine Line Music Cafe 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Craig Owens 
+
+--Show16-- 
+Show: Lucid Nights - Zeds Dead 
+Date: 2023-12-30 
+Event Time: 20:00:00 
+
+venue 16: 
+Name: Armory 
+City:  Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Lucid Nights 
+
+--Show17-- 
+Show: Trans-Siberian Orchestra-The Ghosts Of Christmas Eve 
+Date: 2023-12-30 
+Event Time: 19:30:00 
+
+venue 17: 
+Name: Xcel Energy Center 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Trans-Siberian Orchestra 
+
+--Show18-- 
+Show: Trailer Trash 
+Date: 2023-12-21 
+Event Time: 20:00:00 
+
+venue 18: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Trailer Trash 
+
+--Show19-- 
+Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
+Date: 2023-12-16 
+Event Time: 14:00:00 
+
+venue 19: 
+Name: Orchestra Hall-MN 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Minnesota Orchestra 
+
+--Show20-- 
+Show: HEBL w/ Marijuana Deathsquads 
+Date: 2023-12-22 
+Event Time: 20:00:00 
+
+venue 20: 
+Name: 7th Street Entry 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: HEBL 
+
+--Show21-- 
+Show: Billy Raffoul 
+Date: 2023-12-11 
+Event Time: 20:00:00 
+
+venue 21: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Billy Raffoul 
+
+--Show22-- 
+Show: Trailer Trash 
+Date: 2023-12-23 
+Event Time: 20:00:00 
+
+venue 22: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Trailer Trash 
+
+--Show23-- 
+Show: Soul Asylum 
+Date: 2023-12-29 
+Event Time: 21:00:00 
+
+venue 23: 
+Name: First Avenue 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Soul Asylum 
+
+--Show24-- 
+Show: No Scrubs: 90's Dance Party 
+Date: 2023-12-22 
+Event Time: 21:00:00 
+
+venue 24: 
+Name: Fine Line Music Cafe 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: No Scrubs - 90s Dance Party 
+
+--Show25-- 
+Show: Action Bronson 
+Date: 2023-12-15 
+Event Time: 20:00:00 
+
+venue 25: 
+Name: Palace Theatre-MN 
+City: St. Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Action Bronson 
+
+--Show26-- 
+Show: Neva Dinova w/ Doom Flower 
+Date: 2023-12-12 
+Event Time: 20:00:00 
+
+venue 26: 
+Name: 7th Street Entry 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Neva Dinova 
+
+--Show27-- 
+Show: The Jayhawks 
+Date: 2023-12-16 
+Event Time: 19:30:00 
+
+venue 27: 
+Name: Palace Theatre-MN 
+City: St. Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: The Jayhawks 
+
+--Show28-- 
+Show: Odd Prospect w/ Mom Rock 
+Date: 2023-12-18 
+Event Time: 20:00:00 
+
+venue 28: 
+Name: 7th Street Entry 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Odd Prospect 
+
+--Show29-- 
+Show: Shaun Johnson Big Band Experience: The Holly Jolly Tour 
+Date: 2023-12-11 
+Event Time: 19:30:00 
+
+venue 29: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: Shaun Johnson 
+
+--Show30-- 
+Show: Durry 
+Date: 2023-12-16 
+Event Time: 21:00:00 
+
+venue 30: 
+Name: First Avenue 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Durry 
+
+--Show31-- 
+Show: The Blenders - Holiday Soul Tour 2023 
+Date: 2023-12-10 
+Event Time: 14:00:00 
+
+venue 31: 
+Name: Pantages Theatre 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: The Blenders 
+
+--Show32-- 
+Show: Cantus Christmas 
+Date: 2023-12-22 
+Event Time: 19:30:00 
+
+venue 32: 
+Name: Ordway Center for Performing Arts 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Cantus Christmas 
+
+--Show33-- 
+Show: Shaun Johnson 
+Date: 2023-12-22 
+Event Time: 19:00:00 
+
+venue 33: 
+Name: Mayo Clinic Health System Event Center 
+City: Mankato 
+State: Minnesota 
+Code: MN 
+
+Artist: Shaun Johnson 
+
+--Show34-- 
+Show: Michael W Smith Christmas With Special Guest Michael Tait 
+Date: 2023-12-16 
+Event Time: 19:00:00 
+
+venue 34: 
+Name: Orpheum Theatre 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Michael W. Smith 
+
+--Show35-- 
+Show: Yussef Dayes 
+Date: 2023-12-17 
+Event Time: 20:00:00 
+
+venue 35: 
+Name: Fine Line Music Cafe 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Yussef Dayes 
+
+--Show36-- 
+Show: Saint Paul Chamber Orchestra 
+Date: 2023-12-17 
+Event Time: 14:00:00 
+
+venue 36: 
+Name: Ordway Concert Hall 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Saint Paul Chamber Orchestra 
+
+--Show37-- 
+Show: Trailer Trash 
+Date: 2023-12-22 
+Event Time: 20:00:00 
+
+venue 37: 
+Name: Turf Club 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Trailer Trash 
+
+--Show38-- 
+Show: An Andy and Bing Christmas 
+Date: 2023-12-17 
+Event Time: 14:00:00 
+
+venue 38: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: An Andy and Bing Christmas 
+
+--Show39-- 
+Show: An Andy and Bing Christmas 
+Date: 2023-12-17 
+Event Time: 19:00:00 
+
+venue 39: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: An Andy and Bing Christmas 
+
+--Show40-- 
+Show: Rock and Roll Playhouse 
+Date: 2023-12-10 
+Event Time: 11:30:00 
+
+venue 40: 
+Name: First Avenue 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: The Rock and Roll Playhouse 
+
+--Show41-- 
+Show: Aqua 
+Date: 2023-12-13 
+Event Time: 19:00:00 
+
+venue 41: 
+Name: Fillmore Minneapolis presented by Affinity Plus 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Aqua 
+
+--Show42-- 
+Show: Zakk Sabbath w/ The Native Howl 
+Date: 2023-12-28 
+Event Time: 19:30:00 
+
+venue 42: 
+Name: First Avenue 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Zakk Sabbath 
+
+--Show43-- 
+Show: Christmas With Elvis 
+Date: 2023-12-13 
+Event Time: 19:30:00 
+
+venue 43: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: Christmas With Elvis 
+
+--Show44-- 
+Show: From Ashes To New: Blackout Tour Pt. 1 
+Date: 2023-12-11 
+Event Time: 17:00:00 
+
+venue 44: 
+Name: Varsity Theater 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: From Ashes To New 
+
+--Show45-- 
+Show: Robert Jon and The Wreck 
+Date: 2023-12-10 
+Event Time: 20:00:00 
+
+venue 45: 
+Name: 7th Street Entry 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Robert Jon and The Wreck 
+
+--Show46-- 
+Show: The Gambler Returns: The Ultimate Kenny Rogers Tribute 
+Date: 2023-12-16 
+Event Time: 19:00:00 
+
+venue 46: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: Local Artist 1 
+--Show47-- 
+Show: Caroline Smith 
+Date: 2023-12-30 
+Event Time: 21:00:00 
+
+venue 47: 
+Name: First Avenue 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Caroline Smith 
+
+--Show48-- 
+Show: The Barefoot Movement 
+Date: 2023-12-13 
+Event Time: 19:30:00 
+
+venue 48: 
+Name: Cedar Cultural Center 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: The Barefoot Movement 
+
+--Show49-- 
+Show: Mannheim Steamroller Christmas 
+Date: 2023-12-15 
+Event Time: 19:30:00 
+
+venue 49: 
+Name: Orpheum Theatre 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Mannheim Steamroller Christmas 
+
+--Show50-- 
+Show: Glitterati Presents Glamour & Gold: A Great Gatsby New Year's Eve 
+Date: 2023-12-31 
+Event Time: 18:00:00 
+
+venue 50: 
+Name: DECC Harborside Ballroom 
+City: Duluth 
+State: Minnesota 
+Code: MN 
+
+Artist: Glitterati Presents Glamour & Gold: A Great Gatsby New Year's Eve 
+
+--Show51-- 
+Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
+Date: 2023-12-17 
+Event Time: 14:00:00 
+
+venue 51: 
+Name: Orchestra Hall-MN 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Minnesota Orchestra 
+
+--Show52-- 
+Show: Saint Paul Chamber Orchestra 
+Date: 2023-12-16 
+Event Time: 19:00:00 
+
+venue 52: 
+Name: Ordway Concert Hall 
+City: Saint Paul 
+State: Minnesota 
+Code: MN 
+
+Artist: Saint Paul Chamber Orchestra 
+
+--Show53-- 
+Show: Lucid Nights - 2 Day Pass 
+Date: 2023-12-30 
+Event Time: 00:00:00 
+
+venue 53: 
+Name: Armory 
+City:  Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Lucid Nights 
+
+--Show54-- 
+Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
+Date: 2023-12-15 
+Event Time: 19:00:00 
+
+venue 54: 
+Name: Orchestra Hall-MN 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Minnesota Orchestra 
+
+--Show55-- 
+Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
+Date: 2023-12-16 
+Event Time: 19:00:00 
+
+venue 55: 
+Name: Orchestra Hall-MN 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Minnesota Orchestra 
+
+--Show56-- 
+Show: A Carpenters' Christmas 
+Date: 2023-12-21 
+Event Time: 20:00:00 
+
+venue 56: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: Local Artist 2 
+--Show57-- 
+Show: MANIA: The ABBA Tribute 
+Date: 2023-12-28 
+Event Time: 19:30:00 
+
+venue 57: 
+Name: CH Mayo Presentation Hall at Mayo Civic Center 
+City: Rochester 
+State: Minnesota 
+Code: MN 
+
+Artist: MANIA: The ABBA Tribute 
+
+--Show58-- 
+Show: Shaun Johnson + The Big Band Experience - Holly Jolly Holiday Tour 
+Date: 2023-12-20 
+Event Time: 19:00:00 
+
+venue 58: 
+Name: CH Mayo Presentation Hall at Mayo Civic Center 
+City: Rochester 
+State: Minnesota 
+Code: MN 
+
+Artist: Shaun Johnson 
+
+--Show59-- 
+Show: BoDeans 
+Date: 2023-12-28 
+Event Time: 19:30:00 
+
+venue 59: 
+Name: Ames Center 
+City: Burnsville 
+State: Minnesota 
+Code: MN 
+
+Artist: BoDeans 
+
+--Show60-- 
+Show: Kristin Chenoweth w/ Minnesota Orchestra 
+Date: 2023-12-18 
+Event Time: 19:30:00 
+
+venue 60: 
+Name: Orchestra Hall-MN 
+City: Minneapolis 
+State: Minnesota 
+Code: MN 
+
+Artist: Kristin Chenoweth 
+

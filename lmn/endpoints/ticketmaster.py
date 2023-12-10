@@ -30,7 +30,14 @@ class Command(BaseCommand):
 
             # Insert data into Django models
             for event in data["_embedded"]["events"]:
+                # We do not need show title
+                # show_title = event['name']
+
+                # Get the show data now, but hold off on saving it
+
+                #Every show has a date
                 show_date = event['dates']['start']['localDate']
+                # Use a get method to search for localTime or enter in all 000 for unknown/ TBD events
                 event_time = event['dates']['start'].get('localTime', '00:00:00')
 
                 # Insert Venue data
@@ -40,22 +47,24 @@ class Command(BaseCommand):
                     venue_city = venue['city']['name']
                     venue_state = venue['state']['name']
 
-                    # Check if Venue already exists
-                    venue_instance, _ = Venue.objects.get_or_create(name=venue_name, city=venue_city, state=venue_state)
+                    # State code saved for future iteration
+                    # stateCode = venue['state']['stateCode']
+
+                    venue_instance = Venue(name=venue_name, city=venue_city, state=venue_state)
+                    venue_instance.save()
 
                 # Insert Artist data
                 if 'attractions' in event["_embedded"] and event['_embedded']['attractions'][0].get('name'):
                     artist_name = event['_embedded']['attractions'][0]['name']
 
-                    # Check if Artist already exists
-                    artist_instance, _ = Artist.objects.get_or_create(name=artist_name)
+                    artist_instance = Artist(name=artist_name)
+                    artist_instance.save()
 
                 # Insert Show data
-                show_date_time = show_date + ' ' + event_time
+                show_date_time = show_date +' ' + event_time
 
-                # Check if Show already exists
-                show_instance, _ = Show.objects.get_or_create(show_date=show_date_time, artist_id=artist_instance.pk, venue_id=venue_instance.pk)
-
+                show_instance = Show(show_date=show_date_time, artist_id=artist_instance.pk, venue_id=venue_instance.pk)
+                show_instance.save()
             print("Data successfully saved to Django models")
 
         except requests.exceptions.RequestException as err:

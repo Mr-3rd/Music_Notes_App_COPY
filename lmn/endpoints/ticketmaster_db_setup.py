@@ -1,6 +1,8 @@
+from django.core.management.base import BaseCommand
 import requests
 import os
 from ..models import Artist, Venue, Show
+
 
 ticketmaster_url = 'https://app.ticketmaster.com/discovery/v2/events'
 api_key = 'CleWRaZrzLrHNHogFrXKKKz4S1LSbzwq'

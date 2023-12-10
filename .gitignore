@@ -19,3 +19,4 @@ media/
 #ignore personal files
 text/
 node_modules/
+endpoints/

@@ -1,6 +1,5 @@
 import requests
 import os
-import json
 
 ticketmaster_url = 'https://app.ticketmaster.com/discovery/v2/events'
 

@@ -2,7 +2,6 @@
 Show: Ariel Posen 
 Date: 2023-12-13 
 Event Time: 20:00:00 
-
 venue 1: 
 Name: Turf Club 
 City: Saint Paul 
@@ -15,7 +14,6 @@ Artist: Ariel Posen
 Show: Heiruspecs 
 Date: 2023-12-16 
 Event Time: 20:00:00 
-
 venue 2: 
 Name: Turf Club 
 City: Saint Paul 
@@ -28,7 +26,6 @@ Artist: Heiruspecs
 Show: Broadway Rave - The Musical Theatre Dance Party 
 Date: 2023-12-14 
 Event Time: 21:00:00 
-
 venue 3: 
 Name: Fine Line Music Cafe 
 City: Minneapolis 
@@ -41,7 +38,6 @@ Artist: Broadway Rave
 Show: Felix Cartal 
 Date: 2023-12-30 
 Event Time: 21:00:00 
-
 venue 4: 
 Name: Fine Line Music Cafe 
 City: Minneapolis 
@@ -54,7 +50,6 @@ Artist: Felix Cartal
 Show: Impaler 
 Date: 2023-12-15 
 Event Time: 20:30:00 
-
 venue 5: 
 Name: Turf Club 
 City: Saint Paul 
@@ -67,7 +62,6 @@ Artist: Impaler
 Show: Mannheim Steamroller Christmas 
 Date: 2023-12-14 
 Event Time: 19:30:00 
-
 venue 6: 
 Name: DECC Symphony Hall 
 City: Duluth 
@@ -80,7 +74,6 @@ Artist: Mannheim Steamroller Christmas
 Show: Joe Samba 
 Date: 2023-12-13 
 Event Time: 20:00:00 
-
 venue 7: 
 Name: 7th Street Entry 
 City: Minneapolis 
@@ -93,7 +86,6 @@ Artist: Joe Samba
 Show: Caitlyn Smith 
 Date: 2023-12-22 
 Event Time: 20:00:00 
-
 venue 8: 
 Name: Fitzgerald Theater 
 City: Saint Paul 
@@ -106,7 +98,6 @@ Artist: Caitlyn Smith
 Show: Hot Mulligan 
 Date: 2023-12-14 
 Event Time: 17:30:00 
-
 venue 9: 
 Name: Fillmore Minneapolis presented by Affinity Plus 
 City: Minneapolis 
@@ -119,7 +110,6 @@ Artist: Hot Mulligan
 Show: Trans-Siberian Orchestra-The Ghosts Of Christmas Eve 
 Date: 2023-12-30 
 Event Time: 15:00:00 
-
 venue 10: 
 Name: Xcel Energy Center 
 City: Saint Paul 
@@ -132,7 +122,6 @@ Artist: Trans-Siberian Orchestra
 Show: Wild Horses 
 Date: 2023-12-20 
 Event Time: 19:30:00 
-
 venue 11: 
 Name: Turf Club 
 City: Saint Paul 
@@ -145,7 +134,6 @@ Artist: Wild Horses
 Show: Emo Nite 
 Date: 2023-12-22 
 Event Time: 21:00:00 
-
 venue 12: 
 Name: First Avenue 
 City: Minneapolis 
@@ -158,7 +146,6 @@ Artist: Emo Nite
 Show: Sons of Serendip 
 Date: 2023-12-14 
 Event Time: 19:30:00 
-
 venue 13: 
 Name: Ordway Concert Hall 
 City: Saint Paul 
@@ -171,7 +158,6 @@ Artist: Sons of Serendip
 Show: JD McPherson 
 Date: 2023-12-13 
 Event Time: 20:00:00 
-
 venue 14: 
 Name: Fine Line Music Cafe 
 City: Minneapolis 
@@ -184,7 +170,6 @@ Artist: JD McPherson
 Show: Craig Owens 
 Date: 2023-12-15 
 Event Time: 20:00:00 
-
 venue 15: 
 Name: Fine Line Music Cafe 
 City: Minneapolis 
@@ -197,7 +182,6 @@ Artist: Craig Owens
 Show: Lucid Nights - Zeds Dead 
 Date: 2023-12-30 
 Event Time: 20:00:00 
-
 venue 16: 
 Name: Armory 
 City:  Minneapolis 
@@ -210,7 +194,6 @@ Artist: Lucid Nights
 Show: Trans-Siberian Orchestra-The Ghosts Of Christmas Eve 
 Date: 2023-12-30 
 Event Time: 19:30:00 
-
 venue 17: 
 Name: Xcel Energy Center 
 City: Saint Paul 
@@ -223,7 +206,6 @@ Artist: Trans-Siberian Orchestra
 Show: Trailer Trash 
 Date: 2023-12-21 
 Event Time: 20:00:00 
-
 venue 18: 
 Name: Turf Club 
 City: Saint Paul 
@@ -236,7 +218,6 @@ Artist: Trailer Trash
 Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
 Date: 2023-12-16 
 Event Time: 14:00:00 
-
 venue 19: 
 Name: Orchestra Hall-MN 
 City: Minneapolis 
@@ -249,7 +230,6 @@ Artist: Minnesota Orchestra
 Show: HEBL w/ Marijuana Deathsquads 
 Date: 2023-12-22 
 Event Time: 20:00:00 
-
 venue 20: 
 Name: 7th Street Entry 
 City: Minneapolis 
@@ -262,7 +242,6 @@ Artist: HEBL
 Show: Billy Raffoul 
 Date: 2023-12-11 
 Event Time: 20:00:00 
-
 venue 21: 
 Name: Turf Club 
 City: Saint Paul 
@@ -275,7 +254,6 @@ Artist: Billy Raffoul
 Show: Trailer Trash 
 Date: 2023-12-23 
 Event Time: 20:00:00 
-
 venue 22: 
 Name: Turf Club 
 City: Saint Paul 
@@ -288,7 +266,6 @@ Artist: Trailer Trash
 Show: Soul Asylum 
 Date: 2023-12-29 
 Event Time: 21:00:00 
-
 venue 23: 
 Name: First Avenue 
 City: Minneapolis 
@@ -301,7 +278,6 @@ Artist: Soul Asylum
 Show: No Scrubs: 90's Dance Party 
 Date: 2023-12-22 
 Event Time: 21:00:00 
-
 venue 24: 
 Name: Fine Line Music Cafe 
 City: Minneapolis 
@@ -314,7 +290,6 @@ Artist: No Scrubs - 90s Dance Party
 Show: Action Bronson 
 Date: 2023-12-15 
 Event Time: 20:00:00 
-
 venue 25: 
 Name: Palace Theatre-MN 
 City: St. Paul 
@@ -327,7 +302,6 @@ Artist: Action Bronson
 Show: Neva Dinova w/ Doom Flower 
 Date: 2023-12-12 
 Event Time: 20:00:00 
-
 venue 26: 
 Name: 7th Street Entry 
 City: Minneapolis 
@@ -340,7 +314,6 @@ Artist: Neva Dinova
 Show: The Jayhawks 
 Date: 2023-12-16 
 Event Time: 19:30:00 
-
 venue 27: 
 Name: Palace Theatre-MN 
 City: St. Paul 
@@ -353,7 +326,6 @@ Artist: The Jayhawks
 Show: Odd Prospect w/ Mom Rock 
 Date: 2023-12-18 
 Event Time: 20:00:00 
-
 venue 28: 
 Name: 7th Street Entry 
 City: Minneapolis 
@@ -366,7 +338,6 @@ Artist: Odd Prospect
 Show: Shaun Johnson Big Band Experience: The Holly Jolly Tour 
 Date: 2023-12-11 
 Event Time: 19:30:00 
-
 venue 29: 
 Name: Ames Center 
 City: Burnsville 
@@ -379,7 +350,6 @@ Artist: Shaun Johnson
 Show: Durry 
 Date: 2023-12-16 
 Event Time: 21:00:00 
-
 venue 30: 
 Name: First Avenue 
 City: Minneapolis 
@@ -392,7 +362,6 @@ Artist: Durry
 Show: The Blenders - Holiday Soul Tour 2023 
 Date: 2023-12-10 
 Event Time: 14:00:00 
-
 venue 31: 
 Name: Pantages Theatre 
 City: Minneapolis 
@@ -405,7 +374,6 @@ Artist: The Blenders
 Show: Cantus Christmas 
 Date: 2023-12-22 
 Event Time: 19:30:00 
-
 venue 32: 
 Name: Ordway Center for Performing Arts 
 City: Saint Paul 
@@ -418,7 +386,6 @@ Artist: Cantus Christmas
 Show: Shaun Johnson 
 Date: 2023-12-22 
 Event Time: 19:00:00 
-
 venue 33: 
 Name: Mayo Clinic Health System Event Center 
 City: Mankato 
@@ -431,7 +398,6 @@ Artist: Shaun Johnson
 Show: Michael W Smith Christmas With Special Guest Michael Tait 
 Date: 2023-12-16 
 Event Time: 19:00:00 
-
 venue 34: 
 Name: Orpheum Theatre 
 City: Minneapolis 
@@ -444,7 +410,6 @@ Artist: Michael W. Smith
 Show: Yussef Dayes 
 Date: 2023-12-17 
 Event Time: 20:00:00 
-
 venue 35: 
 Name: Fine Line Music Cafe 
 City: Minneapolis 
@@ -457,7 +422,6 @@ Artist: Yussef Dayes
 Show: Saint Paul Chamber Orchestra 
 Date: 2023-12-17 
 Event Time: 14:00:00 
-
 venue 36: 
 Name: Ordway Concert Hall 
 City: Saint Paul 
@@ -470,7 +434,6 @@ Artist: Saint Paul Chamber Orchestra
 Show: Trailer Trash 
 Date: 2023-12-22 
 Event Time: 20:00:00 
-
 venue 37: 
 Name: Turf Club 
 City: Saint Paul 
@@ -483,7 +446,6 @@ Artist: Trailer Trash
 Show: An Andy and Bing Christmas 
 Date: 2023-12-17 
 Event Time: 14:00:00 
-
 venue 38: 
 Name: Ames Center 
 City: Burnsville 
@@ -496,7 +458,6 @@ Artist: An Andy and Bing Christmas
 Show: An Andy and Bing Christmas 
 Date: 2023-12-17 
 Event Time: 19:00:00 
-
 venue 39: 
 Name: Ames Center 
 City: Burnsville 
@@ -509,7 +470,6 @@ Artist: An Andy and Bing Christmas
 Show: Rock and Roll Playhouse 
 Date: 2023-12-10 
 Event Time: 11:30:00 
-
 venue 40: 
 Name: First Avenue 
 City: Minneapolis 
@@ -522,7 +482,6 @@ Artist: The Rock and Roll Playhouse
 Show: Aqua 
 Date: 2023-12-13 
 Event Time: 19:00:00 
-
 venue 41: 
 Name: Fillmore Minneapolis presented by Affinity Plus 
 City: Minneapolis 
@@ -535,7 +494,6 @@ Artist: Aqua
 Show: Zakk Sabbath w/ The Native Howl 
 Date: 2023-12-28 
 Event Time: 19:30:00 
-
 venue 42: 
 Name: First Avenue 
 City: Minneapolis 
@@ -548,7 +506,6 @@ Artist: Zakk Sabbath
 Show: Christmas With Elvis 
 Date: 2023-12-13 
 Event Time: 19:30:00 
-
 venue 43: 
 Name: Ames Center 
 City: Burnsville 
@@ -561,7 +518,6 @@ Artist: Christmas With Elvis
 Show: From Ashes To New: Blackout Tour Pt. 1 
 Date: 2023-12-11 
 Event Time: 17:00:00 
-
 venue 44: 
 Name: Varsity Theater 
 City: Minneapolis 
@@ -574,7 +530,6 @@ Artist: From Ashes To New
 Show: Robert Jon and The Wreck 
 Date: 2023-12-10 
 Event Time: 20:00:00 
-
 venue 45: 
 Name: 7th Street Entry 
 City: Minneapolis 
@@ -587,7 +542,6 @@ Artist: Robert Jon and The Wreck
 Show: The Gambler Returns: The Ultimate Kenny Rogers Tribute 
 Date: 2023-12-16 
 Event Time: 19:00:00 
-
 venue 46: 
 Name: Ames Center 
 City: Burnsville 
@@ -599,7 +553,6 @@ Artist: Local Artist 1
 Show: Caroline Smith 
 Date: 2023-12-30 
 Event Time: 21:00:00 
-
 venue 47: 
 Name: First Avenue 
 City: Minneapolis 
@@ -612,7 +565,6 @@ Artist: Caroline Smith
 Show: The Barefoot Movement 
 Date: 2023-12-13 
 Event Time: 19:30:00 
-
 venue 48: 
 Name: Cedar Cultural Center 
 City: Minneapolis 
@@ -625,7 +577,6 @@ Artist: The Barefoot Movement
 Show: Mannheim Steamroller Christmas 
 Date: 2023-12-15 
 Event Time: 19:30:00 
-
 venue 49: 
 Name: Orpheum Theatre 
 City: Minneapolis 
@@ -638,7 +589,6 @@ Artist: Mannheim Steamroller Christmas
 Show: Glitterati Presents Glamour & Gold: A Great Gatsby New Year's Eve 
 Date: 2023-12-31 
 Event Time: 18:00:00 
-
 venue 50: 
 Name: DECC Harborside Ballroom 
 City: Duluth 
@@ -651,7 +601,6 @@ Artist: Glitterati Presents Glamour & Gold: A Great Gatsby New Year's Eve
 Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
 Date: 2023-12-17 
 Event Time: 14:00:00 
-
 venue 51: 
 Name: Orchestra Hall-MN 
 City: Minneapolis 
@@ -664,7 +613,6 @@ Artist: Minnesota Orchestra
 Show: Saint Paul Chamber Orchestra 
 Date: 2023-12-16 
 Event Time: 19:00:00 
-
 venue 52: 
 Name: Ordway Concert Hall 
 City: Saint Paul 
@@ -677,7 +625,6 @@ Artist: Saint Paul Chamber Orchestra
 Show: Lucid Nights - 2 Day Pass 
 Date: 2023-12-30 
 Event Time: 00:00:00 
-
 venue 53: 
 Name: Armory 
 City:  Minneapolis 
@@ -690,7 +637,6 @@ Artist: Lucid Nights
 Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
 Date: 2023-12-15 
 Event Time: 19:00:00 
-
 venue 54: 
 Name: Orchestra Hall-MN 
 City: Minneapolis 
@@ -703,7 +649,6 @@ Artist: Minnesota Orchestra
 Show: Minnesota Orchestra w/ Disneys Frozen In Concert 
 Date: 2023-12-16 
 Event Time: 19:00:00 
-
 venue 55: 
 Name: Orchestra Hall-MN 
 City: Minneapolis 
@@ -716,7 +661,6 @@ Artist: Minnesota Orchestra
 Show: A Carpenters' Christmas 
 Date: 2023-12-21 
 Event Time: 20:00:00 
-
 venue 56: 
 Name: Ames Center 
 City: Burnsville 
@@ -728,7 +672,6 @@ Artist: Local Artist 2
 Show: MANIA: The ABBA Tribute 
 Date: 2023-12-28 
 Event Time: 19:30:00 
-
 venue 57: 
 Name: CH Mayo Presentation Hall at Mayo Civic Center 
 City: Rochester 
@@ -741,7 +684,6 @@ Artist: MANIA: The ABBA Tribute
 Show: Shaun Johnson + The Big Band Experience - Holly Jolly Holiday Tour 
 Date: 2023-12-20 
 Event Time: 19:00:00 
-
 venue 58: 
 Name: CH Mayo Presentation Hall at Mayo Civic Center 
 City: Rochester 
@@ -754,7 +696,6 @@ Artist: Shaun Johnson
 Show: BoDeans 
 Date: 2023-12-28 
 Event Time: 19:30:00 
-
 venue 59: 
 Name: Ames Center 
 City: Burnsville 
@@ -767,7 +708,6 @@ Artist: BoDeans
 Show: Kristin Chenoweth w/ Minnesota Orchestra 
 Date: 2023-12-18 
 Event Time: 19:30:00 
-
 venue 60: 
 Name: Orchestra Hall-MN 
 City: Minneapolis 

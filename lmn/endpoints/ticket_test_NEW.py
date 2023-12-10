@@ -31,39 +31,40 @@ try:
     #locate and store just events
     data = data["_embedded"]["events"]
 
-
-
     with open(file_path, 'w') as file:
 
+        # Tracking which artist, my query returns 60
         show_number = 0
         artist_number = 0
         venue_number = 0
 
+        #the list of events is pulled above
         for event in data:
 
+            
             show_number = show_number + 1
+
+            #TODO: Create the data we save to the DB
             show_title = event['name']
             show_date = event['dates']['start']['localDate']
 
+            #Some shows didn't have a local time, so I just made them all zeros
             if 'localTime' in event['dates']['start'].keys():
-
                 event_time = event['dates']['start']['localTime']
             else:
                 event_time = '00:00:00'
             
-
+            # Save the Show Data
             file.write(f'--Show{show_number}-- \n') 
-
             file.write(f'Show: {show_title} \n')
-            
             file.write(f'Date: {show_date} \n')
-
             file.write(f'Event Time: {event_time} \n')
 
-            file.write(f'\n')
-            
+
+            #find the venues
             venues = event["_embedded"]["venues"]
-            
+
+            # The list stores 1 venue for each time we collected above
             for venue in venues:
                 venue_name = venue['name']
                 venue_city = venue['city']['name']
@@ -71,6 +72,7 @@ try:
                 stateCode = venue['state']['stateCode']
                 venue_number = venue_number + 1
 
+                #TODO: Save to DB
                 file.write(f'venue {venue_number}: \n' +
                     f'Name: {venue_name} \n' +
                     f'City: {venue_city} \n' +
@@ -78,14 +80,19 @@ try:
                     f'Code: {stateCode} \n' +
                     f'\n' )
             
+            # Some attractions did not have an artist name ( two local artist doing covers
             if 'attractions' in event["_embedded"].keys():
-
                 if 'name' in event['_embedded']['attractions'][0]:
 
+                    #TODO: Create the data for the artist
                     artist_name = event['_embedded']['attractions'][0]['name']
-
+                    
+                    #TODO: Save to DB
                     file.write(f'Artist: {artist_name} \n')
                     file.write('\n')
+
+
+    #Create a "Local Artist # for the unknown local artists doing cover shows"
                 else:
                     artist_number = artist_number + 1
                     file.write(f'Artist: Local Artist {artist_number} \n')

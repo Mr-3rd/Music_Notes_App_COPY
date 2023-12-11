@@ -4,13 +4,14 @@
 
   <h2 id="venues-for-artist-title">Venues that {{ artist.name }} has played at</h2>
 
-  {% for show in shows %}
+  {% for show_dict in future_shows %}
 
     <div class="show" id="show-{{ show.pk }}">
-      <p>{{ show.venue.name}} on {{ show.show_date }}</p>
-      {% if dontshowLink%}
-        <p><a href="{% url 'notes_for_show' show_pk=show.pk %}">See notes for this show and add your own</a></p>
-      {% endif %}
+      <p>{{ show_dict.show.artist.name }} on {{ show_dict.show.show_date }}.
+        {% if not show_dict.future %}
+          <a href="{% url 'notes_for_show' show_pk=show_dict.show.pk %}">See notes for this show, and add your own</a>
+        {% endif %}
+      </p>
     </div>
 
   {% empty %}
@@ -18,3 +19,7 @@
   {% endfor %}
 
 {% endblock %}
+
+
+
+

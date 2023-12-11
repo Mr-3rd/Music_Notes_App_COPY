@@ -136,46 +136,50 @@ class TestArtistViews(TestCase):
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 1})
         response = self.client.get(url)
-        shows = list(response.context['shows'].all())
+
+        
+        shows = list(response.context['future_shows'])
         show1, show2 = shows[0], shows[1]
+        
         self.assertEqual(2, len(shows))
 
-        self.assertEqual(show1.artist.name, 'REM')
-        self.assertEqual(show1.venue.name, 'The Turf Club')
+        self.assertEqual(show1['show'].artist.name, 'REM')
+        self.assertEqual(show1['show'].venue.name, 'The Turf Club')
 
         # From the fixture, show 2's "show_date": "2017-02-02T19:30:00-06:00"
         expected_date = datetime.datetime(2017, 2, 2, 19, 30, 0, tzinfo=timezone.utc)
-        self.assertEqual(show1.show_date, expected_date)
+        self.assertEqual(show1['show'].show_date, expected_date)
+        
 
         # from the fixture, show 1's "show_date": "2017-01-02T17:30:00-00:00",
-        self.assertEqual(show2.artist.name, 'REM')
-        self.assertEqual(show2.venue.name, 'The Turf Club')
+        self.assertEqual(show2['show'].artist.name, 'REM')
+        self.assertEqual(show2['show'].venue.name, 'The Turf Club')
         expected_date = datetime.datetime(2017, 1, 2, 17, 30, 0, tzinfo=timezone.utc)
-        self.assertEqual(show2.show_date, expected_date)
+        self.assertEqual(show2['show'].show_date, expected_date)
 
         # Artist 2 (ACDC) has played at venue 1 (First Ave)
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 2})
         response = self.client.get(url)
-        shows = list(response.context['shows'].all())
+        shows = list(response.context['future_shows'])
         show1, show2 = shows[0], shows[1]
         self.assertEqual(2, len(shows))
 
         # This show has "show_date": "2017-01-21T21:45:00-00:00",
-        self.assertEqual(show1.artist.name, 'ACDC')
-        self.assertEqual(show1.venue.name, 'First Avenue')
-
+        self.assertEqual(show1['show'].artist.name, 'ACDC')
+        self.assertEqual(show1['show'].venue.name, 'First Avenue')
+        
         expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
-        self.assertEqual(show1.show_date, expected_date)
-
+        self.assertEqual(show1['show'].show_date, expected_date)
+        
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
-        self.assertEqual(show2.show_date, expected_date)
-
+        self.assertEqual(show2['show'].show_date, expected_date)
+        
         # Artist 3, no shows
 
         url = reverse('venues_for_artist', kwargs={'artist_pk': 3})
         response = self.client.get(url)
-        shows = list(response.context['shows'].all())
+        shows = list(response.context['future_shows'])
         self.assertEqual(0, len(shows))
 
 
@@ -249,46 +253,47 @@ class TestVenues(TestCase):
 
         url = reverse('artists_at_venue', kwargs={'venue_pk': 2})
         response = self.client.get(url)
-        shows = list(response.context['shows'].all())
+        shows = list(response.context['future_shows'])
         show1, show2 = shows[0], shows[1]
         self.assertEqual(2, len(shows))
 
-        self.assertEqual(show1.artist.name, 'REM')
-        self.assertEqual(show1.venue.name, 'The Turf Club')
+        self.assertEqual(show1['show'].artist.name, 'REM')
+        self.assertEqual(show1['show'].venue.name, 'The Turf Club')
 
         expected_date = datetime.datetime(2017, 2, 2, 19, 30, 0, tzinfo=timezone.utc)
-        self.assertEqual(show1.show_date, expected_date)
+        self.assertEqual(show1['show'].show_date, expected_date)
 
-        self.assertEqual(show2.artist.name, 'REM')
-        self.assertEqual(show2.venue.name, 'The Turf Club')
+        self.assertEqual(show2['show'].artist.name, 'REM')
+        self.assertEqual(show2['show'].venue.name, 'The Turf Club')
         expected_date = datetime.datetime(2017, 1, 2, 17, 30, 0, tzinfo=timezone.utc)
-        self.assertEqual(show2.show_date, expected_date)
+        self.assertEqual(show2['show'].show_date, expected_date)
 
         # Artist 2 (ACDC) has played at venue 1 (First Ave)
 
         url = reverse('artists_at_venue', kwargs={'venue_pk': 1})
         response = self.client.get(url)
-        shows = list(response.context['shows'].all())
-        show1, show2 = shows[0], shows[1]
+        shows = list(response.context['future_shows'])
+        show1 , show2= shows[0], shows[1]
         self.assertEqual(2, len(shows))
 
-        self.assertEqual(show1.artist.name, 'ACDC')
-        self.assertEqual(show1.venue.name, 'First Avenue')
-
-        self.assertEqual(show1.artist.name, 'ACDC')
-        self.assertEqual(show1.venue.name, 'First Avenue')
-
+        self.assertEqual(show1['show'].artist.name, 'ACDC')
+        self.assertEqual(show1['show'].venue.name, 'First Avenue')
+        
+        self.assertEqual(show1['show'].artist.name, 'ACDC')
+        self.assertEqual(show1['show'].venue.name, 'First Avenue')
+        
         expected_date = datetime.datetime(2017, 1, 21, 21, 45, 0, tzinfo=timezone.utc)
-        self.assertEqual(show2.show_date, expected_date)
-
+        self.assertEqual(show2['show'].show_date, expected_date)
+        
         expected_date = datetime.datetime(2024, 2, 2, 19, 30, tzinfo=timezone.utc)
-        self.assertEqual(show1.show_date, expected_date)
+        self.assertEqual(show1['show'].show_date, expected_date)
+
 
         # Venue 3 has not had any shows
 
         url = reverse('artists_at_venue', kwargs={'venue_pk': 3})
         response = self.client.get(url)
-        shows = list(response.context['shows'].all())
+        shows = list(response.context['future_shows'])
         self.assertEqual(0, len(shows))
 
     def test_correct_template_used_for_venues(self):

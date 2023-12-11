@@ -41,7 +41,7 @@ def new_note(request, show_pk):
             # if an error occurs, show the error message 
             except ValidationError as e:
                 # Show error message if the show date is in the future
-                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', {'error': e}))
+                return HttpResponseBadRequest(render(request, 'lmn/notes/new_note.html', {'error': e, 'show': show }))
 
     else:
         form = NewNoteForm()

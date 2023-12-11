@@ -4,7 +4,9 @@
   {% if error %}
     <div class="display-box">
       <p class="error">{{ error }}</p>
-      <a class="back-btn" href="{% url 'venue_list' %}">Back</a> 
+      <a class="back-btn" href="{% url 'latest_notes' %}">Back</a> 
+      <a class="back-btn" href="{% url 'edit_note' show_pk=show.pk %}">Update Note</a> 
+
     </div>
   {% else %}
     <h2>New note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date}}</h2>

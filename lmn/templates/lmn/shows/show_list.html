@@ -1,4 +1,5 @@
-{% extends 'lmn/base.html' %} {% block content %}
+{% extends 'lmn/base.html' %}
+{% block content %}
   <h2>Show List</h2>
   <div id="card-place-holder">
     <div id="card">
@@ -8,9 +9,7 @@
         <input type="submit" value="Search" />
       </form>
       <div>
-        {% if shows %}
-          <h3>All Shows</h3>
-        {% endif %}
+        {% if shows %}<h3>All Shows</h3>{% endif %}
       </div>
       <div id="sub-card-info">
         {% for show in shows %}

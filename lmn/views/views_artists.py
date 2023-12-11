@@ -11,13 +11,18 @@ def venues_for_artist(request, artist_pk):
     artist = Artist.objects.get(pk=artist_pk)
     dt = timezone.now()
     
+    future_shows = []
+    
     # loop through the shows
     for show in shows:
-        # checks if the venue has a show that hasn't happened yet
-        if show.show_date > dt:
-                return render(request, 'lmn/venues/venue_list_for_artist.html', {'artist': artist, 'shows': shows})
-
-    return render(request, 'lmn/venues/venue_list_for_artist.html', {'artist': artist, 'shows': shows, 'dontshowLink': True})
+        # if the show is in the future, added to the future_shows list with a variable named 'future' set to True
+        if show.show_date >= dt:
+            future_shows.append({'show': show, 'future': True})
+        # if the show is in the past, added to the future_shows list with a variable named 'future' set to False
+        else:
+            future_shows.append({'show': show, 'future': False})
+    
+    return render(request, 'lmn/venues/venue_list_for_artist.html', {'artist': artist, 'future_shows': future_shows})
 
 def artist_list(request):
     """ Get a list of all artists, ordered by name.

@@ -39,14 +39,12 @@ class Venue(models.Model):
 
 class Show(models.Model):
     """ One Artist playing at one Venue at a particular date and time. """
-    show_date = models.DateTimeField(blank=False, unique=True)
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, unique=True)
-    venue = models.ForeignKey(Venue, on_delete=models.CASCADE, unique=True)
-    
+    show_date = models.DateTimeField(blank=False)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     class Meta:
         # This is a constraint that prevents duplicate shows
         unique_together = ('show_date', 'artist', 'venue')
-
     def __str__(self):
         return f'Artist: {self.artist} At: {self.venue} On: {self.show_date}'
 
@@ -86,6 +84,22 @@ class Note(models.Model):
         if self.show.show_date > timezone.now():
             raise ValidationError("Cannot add notes to future shows.")
         super().save(*args, **kwargs)
+
+    def delete_photo(self, photo):
+        # check if that photo exists first before deleting it
+        if default_storage.exists(photo.name):  
+
+            default_storage.delete(photo.name)
+
+        # When the note is deleted, delete the picture completely as well from the folder before from the database.
+
+    def delete(self, *args, **kwargs):
+        if self.photo:
+            # This method takes care of deleting the photo from the default storage system (user_images folder)
+            self.delete_photo(self.photo)
+
+        # Calls the delete super class which handles the deletion off the instance from the database. 'args' and 'kwargs' are arguments for the delete super method. 
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         # Photo Url will be generated if there is a photo uploaded, else it will display no photo

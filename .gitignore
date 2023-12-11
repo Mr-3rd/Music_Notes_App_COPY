@@ -15,3 +15,8 @@ env
 
 #ignore all user's media files
 media/
+
+#ignore personal files
+text/
+node_modules/
+endpoints/

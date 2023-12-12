@@ -1,7 +1,5 @@
 {% extends 'lmn/base.html' %}
-
 {% block content %}
-
   <h2 id="artists-at-venue-title">Artists that have played at {{ venue.name }}</h2>
 
   {% for show_dict in future_shows %}
@@ -16,5 +14,4 @@
   {% empty %}
     <p id="no-results">We have no records of shows at this venue.</p>
   {% endfor %}
-
 {% endblock %}

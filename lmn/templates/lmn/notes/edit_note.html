@@ -1,17 +1,28 @@
 {% extends 'lmn/base.html' %}
-
 {% block content %}
-
-  <h2>Edit note for {{ show.artist.name }} at {{ show.venue.name }} on {{ show.show_date }}</h2>
-
-  {% if error %}
-    <p class="error">{{ error }}</p>
-  {% endif %}
-
-  <form method="POST"  enctype="multipart/form-data" action="{% url 'edit_note' show_pk=show.pk %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update Note">
+  <h2>
+    Edit note for {{ show.artist.name }} at {{ show.venue.name }} on {{
+    show.show_date }}
+  </h2>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="POST"
+        enctype="multipart/form-data"
+        action="{% url 'edit_note' show_pk=show.pk %}">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Update Note" />
   </form>
-
+  <!-- If the correct user is authenticated and login, then show that delete button for that note detail -->
+  {% if user.is_authenticated and note.user == user %}
+    <!-- Delete Button Form -->
+    <form action="{% url 'delete_note' note_pk=note.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete" onclick="return deleteConfirm()" />
+    </form>
+    <script>
+  function deleteConfirm() {
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
+    return confirm('Delete this note?');
+  }
+    </script>
+  {% endif %}
 {% endblock %}

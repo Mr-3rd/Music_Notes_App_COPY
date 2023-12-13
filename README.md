@@ -6,11 +6,13 @@
 ### To install
 
 1. Create and activate a virtual environment. Use Python3 as the interpreter. Suggest locating the venv/ directory outside of the code directory.
+2. Once you have your environment set, add the `TICKETMASTER` key. The value for this key can be found in the project's Slack channel.
 
 ```
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
+python manage.py ticketmaster
 python manage.py runserver
 ```
 
